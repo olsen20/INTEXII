@@ -1,14 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/Footer.css";
+import "../styles/Footer.css"; // If you have any custom styles
 
 const Footer: React.FC = () => {
   return (
-    <footer className="full-width-footer bg-dark text-white pt-4">
-      {/* Use container-fluid directly on the footer or inside the footer */}
+    <footer className="footer full-width-footer bg-dark text-white pt-4">
       <div className="container-fluid px-5">
+        {/* Single row with three columns */}
         <div className="row">
-          <div className="col-md-4 mb-3">
+          {/* Left-aligned column */}
+          <div className="col-md-4 text-start mb-3">
             <h5>Company</h5>
             <ul className="list-unstyled">
               <li>
@@ -28,7 +29,9 @@ const Footer: React.FC = () => {
               </li>
             </ul>
           </div>
-          <div className="col-md-4 mb-3">
+
+          {/* Centered column */}
+          <div className="col-md-4 text-center mb-3">
             <h5>Legal</h5>
             <ul className="list-unstyled">
               <li>
@@ -48,10 +51,15 @@ const Footer: React.FC = () => {
               </li>
             </ul>
           </div>
-          <div className="col-md-4 mb-3">
+
+          {/* Right-aligned column */}
+          <div className="col-md-4 text-end mb-3">
             <h5>Follow Us</h5>
-            <ul className="list-unstyled d-flex">
-              <li className="me-3">
+            {/* If you want the icons themselves to align right, keep text-end. 
+                If you'd rather center them horizontally within this column, 
+                use text-center. */}
+            <ul className="list-unstyled d-flex justify-content-end">
+              <li className="ms-3">
                 <a className="text-white" href="https://facebook.com">
                   <i
                     className="bi bi-facebook"
@@ -59,7 +67,7 @@ const Footer: React.FC = () => {
                   ></i>
                 </a>
               </li>
-              <li className="me-3">
+              <li className="ms-3">
                 <a className="text-white" href="https://twitter.com">
                   <i
                     className="bi bi-twitter"
@@ -67,7 +75,7 @@ const Footer: React.FC = () => {
                   ></i>
                 </a>
               </li>
-              <li className="me-3">
+              <li className="ms-3">
                 <a className="text-white" href="https://instagram.com">
                   <i
                     className="bi bi-instagram"
@@ -79,9 +87,9 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
+        {/* Newsletter or other elements */}
         <div className="row mt-3">
           <div className="col-12 text-center">
-            {/* Newsletter or other elements */}
             <form className="d-flex justify-content-center mb-3">
               <input
                 type="email"
@@ -95,6 +103,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
+        {/* Copyright */}
         <div className="text-center py-2 border-top border-secondary">
           &copy; {new Date().getFullYear()} CineNiche. All Rights Reserved.
         </div>
