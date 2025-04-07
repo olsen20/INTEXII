@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/93eb0b08-6e64-4874-9c98-74f6426085fb/resourceGroups/appsvc_windows_eastus/providers/Microsoft.Web/sites/MovieIntex-Backend",
+  "appService.deploySubpath": "backend\\Intex.API\\publish"
+}
