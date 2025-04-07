@@ -10,3 +10,7 @@
 .footer {
   font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial";
 }
+
+.footer a:hover {
+  text-decoration: underline !important;
+}
