@@ -75,7 +75,11 @@ const PrivacyPage: React.FC = () => {
         <h2 className="fw-bold">7. Contact Us</h2>
         <p>
           If you have any questions about this Privacy Policy, please contact us
-          at [contact email].
+          at{" "}
+          <a href="mailto:support@cineniche.com">
+            <strong>support@cineniche.com</strong>
+          </a>
+          .
         </p>
         <br></br>
         <p>

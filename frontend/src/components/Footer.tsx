@@ -18,11 +18,6 @@ const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link className="text-white text-decoration-none" to="/careers">
-                  Careers
-                </Link>
-              </li>
-              <li>
                 <Link className="text-white text-decoration-none" to="/contact">
                   Contact
                 </Link>
@@ -42,11 +37,6 @@ const Footer: React.FC = () => {
               <li>
                 <Link className="text-white text-decoration-none" to="/terms">
                   Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link className="text-white text-decoration-none" to="/cookies">
-                  Cookie Policy
                 </Link>
               </li>
             </ul>
