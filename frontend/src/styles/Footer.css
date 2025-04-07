@@ -14,3 +14,12 @@
 .footer a:hover {
   text-decoration: underline !important;
 }
+
+.btn-subscribe {
+  background-color: #a3acd7 !important; /* your hex code */
+  color: #fff !important;
+  border: none; /* optional to remove any border */
+}
+.btn-subscribe:hover {
+  background-color: #7180b5 !important; /* slightly darker on hover */
+}
