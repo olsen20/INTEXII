@@ -1,0 +1,13 @@
+.slide-up {
+  transform: translateY(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.slide-down {
+  transform: translateY(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.navbar {
+  font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial";
+}
