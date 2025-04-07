@@ -25,7 +25,9 @@ const Header: React.FC = () => {
   }, []);
 
   return (
-    <nav className="navbar fixed-top navbar-dark bg-dark fs-5">
+    <nav
+      className={`navbar fixed-top navbar-dark bg-dark fs-5 ${showHeader ? "slide-down" : "slide-up"}`}
+    >
       <div className="container-fluid d-flex justify-content-between align-items-center">
         {/* Left Section: Logo + "Browse" + "My Stuff" */}
         <div className="d-flex align-items-center">

@@ -1,0 +1,8 @@
+.recommended-section {
+  background-color: #333 !important; /* dark gray background */
+  width: 100%;
+  padding: 2rem 0;
+  margin: 0; /* remove any default margin */
+  display: contents; 
+}
+
