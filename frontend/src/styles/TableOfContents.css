@@ -1,0 +1,29 @@
+/* TableOfContents.css */
+.toc-wrapper {
+  background-color: #f8f9fa; /* light gray background */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* subtle shadow */
+  padding: 1rem; /* equivalent to Bootstrap's p-3 */
+  border-radius: 0.25rem; /* rounded corners */
+}
+
+.list-group-item {
+  border: none; /* remove default border */
+  background-color: #f8f9fa; /* match background */
+  transition: background-color 0.2s ease-in-out;
+}
+
+.list-group-item:hover {
+  background-color: #e9ecef; /* darker on hover */
+}
+
+.list-group-item:focus,
+.list-group-item.active {
+  background-color: #e9ecef;
+  outline: none;
+}
+
+/* Sticky container for the TOC */
+.sticky-toc {
+  position: sticky;
+  top: 100px; /* adjust to match your header's height */
+}
