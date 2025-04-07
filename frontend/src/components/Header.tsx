@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import "../Header.css"; // Import custom CSS for slide-up/slide-down animations
+import "../styles/Header.css"; // Import custom CSS for slide-up/slide-down animations
 import fullLogo from "../assets/fullLogo.png"; // Import your logo image
 
 const Header: React.FC = () => {
