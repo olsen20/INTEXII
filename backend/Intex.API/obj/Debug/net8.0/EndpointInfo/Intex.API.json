@@ -363,12 +363,11 @@
         }
       }
     },
-    "/WeatherForecast": {
+    "/api/Movie/GetAllTitles": {
       "get": {
         "tags": [
-          "WeatherForecast"
+          "Movie"
         ],
-        "operationId": "GetWeatherForecast",
         "responses": {
           "200": {
             "description": "OK",
@@ -377,7 +376,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
+                    "$ref": "#/components/schemas/MovieTitle"
                   }
                 }
               },
@@ -385,7 +384,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
+                    "$ref": "#/components/schemas/MovieTitle"
                   }
                 }
               },
@@ -393,7 +392,83 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
+                    "$ref": "#/components/schemas/MovieTitle"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Movie/GetAllUsers": {
+      "get": {
+        "tags": [
+          "Movie"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MovieUser"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MovieUser"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MovieUser"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Movie/GetAllRatings": {
+      "get": {
+        "tags": [
+          "Movie"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MovieRating"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MovieRating"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MovieRating"
                   }
                 }
               }
@@ -544,6 +619,276 @@
         },
         "additionalProperties": false
       },
+      "MovieRating": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "showId": {
+            "type": "string",
+            "nullable": true
+          },
+          "rating": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MovieTitle": {
+        "type": "object",
+        "properties": {
+          "showId": {
+            "type": "string",
+            "nullable": true
+          },
+          "typeField": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "director": {
+            "type": "string",
+            "nullable": true
+          },
+          "castField": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "releaseYear": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rating": {
+            "type": "string",
+            "nullable": true
+          },
+          "duration": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "posterUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "action": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "adventure": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "animeSeriesInternationalTvShows": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "britishTvShowsDocuseriesInternationalTvShows": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "children": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "comedies": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "comediesDramasInternationalMovies": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "comediesInternationalMovies": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "comediesRomanticMovies": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "crimeTvShowsDocuseries": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "documentaries": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "documentariesInternationalMovies": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "docuseries": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dramas": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dramasInternationalMovies": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dramasRomanticMovies": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "familyMovies": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fantasy": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "horrorMovies": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "internationalMoviesThrillers": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "internationalTvShowsRomanticTvShowsTvDramas": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "kidsTv": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "languageTvShows": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "musicals": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "natureTv": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "realityTv": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "spirituality": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tvAction": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tvComedies": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tvDramas": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "talkShowsTvComedies": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "thrillers": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MovieUser": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "age": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "gender": {
+            "type": "string",
+            "nullable": true
+          },
+          "netflix": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "amazonPrime": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "disney": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "paramount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "max": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hulu": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "appleTv": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "peacock": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "zip": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "RefreshRequest": {
         "required": [
           "refreshToken"
@@ -663,29 +1008,6 @@
           },
           "isMachineRemembered": {
             "type": "boolean"
-          }
-        },
-        "additionalProperties": false
-      },
-      "WeatherForecast": {
-        "type": "object",
-        "properties": {
-          "date": {
-            "type": "string",
-            "format": "date"
-          },
-          "temperatureC": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "temperatureF": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "summary": {
-            "type": "string",
-            "nullable": true
           }
         },
         "additionalProperties": false

@@ -15,7 +15,7 @@ namespace Intex.API.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Table mapping
-            modelBuilder.Entity<MovieTitle>().ToTable("movie_titles_cleaned").HasKey(m => m.ShowId);
+            modelBuilder.Entity<MovieTitle>().ToTable("movie_titles").HasKey(m => m.ShowId);
             modelBuilder.Entity<MovieUser>().ToTable("movie_users").HasKey(u => u.UserId);
             modelBuilder.Entity<MovieRating>().ToTable("movie_ratings");
 
