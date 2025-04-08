@@ -6,19 +6,19 @@ interface HeroBannerProps {
   title: string;
   description: string;
   trailerUrl: string; // URL to your trailer video
-  movieId: number;
+  // movieId: number;
 }
 
 const HeroBanner: React.FC<HeroBannerProps> = ({
   title,
   description,
   trailerUrl,
-  movieId,
+  // movieId,
 }) => {
   const navigate = useNavigate();
 
   const handleDetails = () => {
-    navigate(`/movies/${movieId}`);
+    // navigate(`/movies/${movieId}`);
   };
 
   return (

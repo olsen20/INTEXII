@@ -5,7 +5,7 @@ html, body {
 }
 
 .recommended-section {
-  background-color: #333 !important; /* dark gray background */
+  background-color: #202020 !important; /* dark gray background */
   width: 100%;
   padding: 2rem;
   margin: 0; /* remove any default margin */
@@ -40,3 +40,14 @@ video {
   object-fit: cover;
   width: 100%;
   height: 75vh !important;
+}
+
+.movieCard {
+  background-color: "#333" !important;
+  border : "none" !important;
+  width: "10rem" !important;
+}
+
+.card-hover:hover {
+  background-color: #303030 !important; /* dark gray background on hover */
+}
