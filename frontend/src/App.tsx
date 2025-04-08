@@ -12,6 +12,7 @@ import ContactPage from "./pages/ContactPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import MovieDetails from "./pages/MovieDetails";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/browse" element={<MoviePage />} />
+        <Route path="/movies/:showId" element={<MovieDetails />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/create-account" element={<CreateAccountPage />} />
         <Route path="/login" element={<LoginPage />} />

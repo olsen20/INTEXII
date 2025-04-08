@@ -3,16 +3,18 @@ import Footer from "../components/Footer";
 import "../styles/LandingPage.css";
 import { useEffect, useState } from "react";
 import { Movie } from "../types/Movies";
+import { fetchTrendingMovies } from "../api/MovieAPI";
 
 function HomePage() {
   const [trendingMovies, setTrendingMovies] = useState<Movie[]>([]);
 
   // Retrieve top ten most trending movies
   useEffect(() => {
-    fetch("https://localhost:5000/api/Movie/top10")
-      .then((res) => res.json())
+    fetchTrendingMovies()
       .then((data) => setTrendingMovies(data))
-      .catch((err) => console.error("Failed to fetch trending movies:", err));
+      .catch((err) =>
+        console.error("Failed to load trending movies:", err)
+      );
   }, []);
   
   return (
