@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Header.css"; // Import custom CSS for slide-up/slide-down animations
-import fullLogo from "../assets/fullLogo.png"; // Import your logo image
+import fullLogo2 from "../assets/fullLogo2.png"; // Import your logo image
 
 const HeaderNotSignedIn: React.FC = () => {
   const [showHeader, setShowHeader] = useState<boolean>(true);
@@ -25,20 +25,22 @@ const HeaderNotSignedIn: React.FC = () => {
   }, []);
 
   return (
-    <nav className="navbar fixed-top navbar-dark bg-dark fs-5">
+    <nav
+      className={`navbar fixed-top navbar-dark bg-dark fs-5 ${
+        showHeader ? "slide-down" : "slide-up"
+      }`}
+    >
       <div className="container-fluid d-flex justify-content-between align-items-center">
         {/* Left Section: Logo */}
         <div className="d-flex align-items-center">
-          {/* Logo */}
           <Link className="navbar-brand me-5" to="/">
             <img
-              src={fullLogo}
+              src={fullLogo2}
               alt="CineNiche Logo"
               style={{ height: "50px" }}
             />
           </Link>
         </div>
-
         {/* Right Section: Login and Sign Up */}
         <div className="d-flex align-items-center">
           <ul className="navbar-nav d-flex flex-row">
@@ -48,9 +50,9 @@ const HeaderNotSignedIn: React.FC = () => {
               </Link>
             </li>
             <li className="nav-item me-5">
-                <Link to="/login" className="login-button">
-                    Login
-                </Link>
+              <Link to="/login" className="login-button">
+                Login
+              </Link>
             </li>
           </ul>
         </div>

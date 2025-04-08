@@ -2,7 +2,7 @@ import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import MoviePage from "./pages/MoviePage";
-// import SearchPage from "./pages/SearchPage";
+import SearchPage from "./pages/SearchPage";
 import CreateAccountPage from "./pages/CreateAccountPage";
 import LoginPage from "./pages/LoginPage";
 import PrivacyPage from "./pages/PrivacyPage";
@@ -21,7 +21,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/browse" element={<MoviePage />} />
         <Route path="/movies/:showId" element={<MovieDetails />} />
-        {/* <Route path="/search" element={<SearchPage />} /> */}
+        <Route path="/search" element={<SearchPage />} />
         <Route path="/create-account" element={<CreateAccountPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />

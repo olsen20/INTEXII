@@ -32,7 +32,7 @@ const Header: React.FC = () => {
         {/* Left Section: Logo + "Browse" + "My Stuff" */}
         <div className="d-flex align-items-center">
           {/* Logo */}
-          <Link className="navbar-brand me-5" to="/">
+          <Link className="navbar-brand me-5" to="/browse">
             <img
               src={fullLogo2}
               alt="CineNiche Logo"
