@@ -1,3 +1,9 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
 .recommended-section {
   background-color: #333 !important; /* dark gray background */
   width: 100%;
@@ -5,4 +11,3 @@
   margin: 0; /* remove any default margin */
   display: contents; 
 }
-
