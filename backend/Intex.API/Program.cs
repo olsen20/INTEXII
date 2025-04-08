@@ -30,9 +30,19 @@ builder.Services.AddSingleton<IEmailSender<IdentityUser>, NoOpEmailSender<Identi
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
+    // Claim configuration
     options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier;
-    options.ClaimsIdentity.UserNameClaimType = ClaimTypes.Email; // Ensure email is stored in claims
+    options.ClaimsIdentity.UserNameClaimType = ClaimTypes.Email;
+
+    // Password policy
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequiredLength = 13;
+    options.Password.RequiredUniqueChars = 1;
 });
+
 
 builder.Services.AddScoped<IUserClaimsPrincipalFactory<IdentityUser>, CustomUserClaimsPrincipalFactory>();
 
@@ -52,7 +62,8 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins("http://localhost:3000", "https://yellow-grass-01700f61e.6.azurestaticapps.net/")
             .AllowAnyMethod()
-            .AllowAnyHeader();
+            .AllowAnyHeader()
+            .AllowCredentials();
     }));
 
 var app = builder.Build();
