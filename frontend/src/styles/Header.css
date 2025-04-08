@@ -11,3 +11,30 @@
 .navbar {
   font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial";
 }
+
+.login-button {
+  color: #cfcfe1;
+  border: 1.5px solid #cfcfe1;
+  background-color: transparent;
+  padding: 6px 22px;
+  margin-top: 2px; /* helps with vertical centering */
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  transition: all 0.25s ease;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  height: 40px; /* force consistent button height */
+}
+.login-button:hover,
+.login-button:focus {
+  background-color: #cfcfe1;
+  color: #1a1a1a;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  text-decoration: none;
+}
