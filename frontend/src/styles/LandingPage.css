@@ -1,0 +1,193 @@
+.login-background {
+    background: url("../../Login Background.png") center center / cover no-repeat fixed;
+    background-color: #000;
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+  
+.login-overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+    min-height: 100vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+  
+.login-card {
+    background-color: #1a1a1a;
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6);
+    color: #f5f5f5;
+}  
+
+.custom-checkbox {
+    accent-color: #89bbd9;
+    width: 1.2rem;
+    height: 1.2rem;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
+  
+.login-card .form-check {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+.login-card .form-check-label {
+    margin-bottom: 0;
+    color: #f5f5f5;
+    font-size: 1rem;
+    line-height: 1;
+}
+  
+.trending-section {
+    padding: 3rem 2rem;
+    color: white;
+  }
+  
+  .trending-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  
+  .trending-scroll {
+    display: flex;
+    gap: 1.2rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    scrollbar-width: none; /* Firefox */
+  }
+  .trending-scroll::-webkit-scrollbar {
+    display: none; /* Chrome */
+  }
+  
+  .trending-card {
+    position: relative;
+    min-width: 160px;
+    flex: 0 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    transition: transform 0.3s;
+  }
+  .trending-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .trending-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    max-height: 240px;
+    object-fit: cover;
+  }
+  
+  .trending-rank {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: white;
+    -webkit-text-stroke: 1px black;
+  }
+  
+  .trending-section {
+    background-color: #333;
+    padding: 2rem 3rem;
+    color: #fff;
+  }
+  
+  .trending-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    color: #fff;
+  }
+  
+  .trending-carousel {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    scroll-snap-type: x mandatory;
+  }
+  
+  .trending-carousel::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .description-section {
+    background-color: #333;
+    padding: 4rem 2rem;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .description-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  
+  .description-subtitle {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    color: #ccc;
+  }
+  
+  .category-highlights {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  
+  .highlight-card {
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    height: 340px;
+    width: 230px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: flex-end;
+  }
+  
+  .highlight-card:hover {
+    transform: translateY(-6px);
+  }
+  
+  .card-overlay {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.4));
+    width: 100%;
+    padding: 1rem;
+  }
+  
+  .highlight-subtitle {
+    font-size: 0.85rem;
+    color: #bbb;
+    margin-bottom: 0.3rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .highlight-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #fff;
+  }
+  
