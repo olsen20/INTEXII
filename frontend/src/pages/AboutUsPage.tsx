@@ -46,6 +46,8 @@ const AboutUsPage: React.FC = () => {
           </div>
         </div>
       </div>
+      <br></br>
+      <br></br>
       <Footer />
     </>
   );
