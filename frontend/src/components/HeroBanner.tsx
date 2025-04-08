@@ -31,11 +31,6 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
         muted
         loop
         playsInline
-        style={{
-          objectFit: "cover",
-          width: "100%",
-          height: "60vh",
-        }}
       />
       {/* Overlay content */}
       <div className="hero-content position-absolute top-50 start-0 translate-middle-y ps-5 text-white">
