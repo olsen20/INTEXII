@@ -1,26 +1,42 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\",
+  "WorkspaceRootPath": "C:\\Users\\lonni\\OneDrive\\Desktop\\intexII\\INTEXII\\backend\\Intex.API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\maris\\onedrive\\desktop\\school\\winter 2025\\intex\\application\\backend\\intex.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\lonni\\onedrive\\desktop\\intexii\\intexii\\backend\\intex.api\\controllers\\recommendcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:controllers\\recommendcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\maris\\onedrive\\desktop\\school\\winter 2025\\intex\\application\\backend\\intex.api\\controllers\\moviecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:controllers\\moviecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\lonni\\onedrive\\desktop\\intexii\\intexii\\backend\\intex.api\\data\\contentfiltering.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:data\\contentfiltering.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\maris\\onedrive\\desktop\\school\\winter 2025\\intex\\application\\backend\\intex.api\\data\\moviedbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\lonni\\onedrive\\desktop\\intexii\\intexii\\backend\\intex.api\\data\\moviedbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:data\\moviedbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\maris\\onedrive\\desktop\\school\\winter 2025\\intex\\application\\backend\\intex.api\\data\\movieuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:data\\movieuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\lonni\\onedrive\\desktop\\intexii\\intexii\\backend\\intex.api\\data\\collaborativemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:data\\collaborativemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\maris\\onedrive\\desktop\\school\\winter 2025\\intex\\application\\backend\\intex.api\\data\\movierating.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:data\\movierating.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\lonni\\onedrive\\desktop\\intexii\\intexii\\backend\\intex.api\\data\\movietitle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:data\\movietitle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\lonni\\onedrive\\desktop\\intexii\\intexii\\backend\\intex.api\\data\\userbasedmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:data\\userbasedmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\lonni\\onedrive\\desktop\\intexii\\intexii\\backend\\intex.api\\controllers\\itemrecommender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:controllers\\itemrecommender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\lonni\\onedrive\\desktop\\intexii\\intexii\\backend\\intex.api\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\lonni\\onedrive\\desktop\\intexii\\intexii\\backend\\intex.api\\services\\reccomendationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:services\\reccomendationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -29,78 +45,182 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "DockedWidth": 46,
+          "SelectedChildIndex": -1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             },
             {
               "$type": "Bookmark",
+              "Name": "ST:0:0:{26341fe2-71dd-46fd-bb1b-2e51a92a0d64}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
               "Name": "ST:129:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 1605,
+          "SelectedChildIndex": 14,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:18:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:17:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:35:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:36:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:36:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAABQAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "CollaborativeModel.cs",
+              "DocumentMoniker": "C:\\Users\\lonni\\OneDrive\\Desktop\\intexII\\INTEXII\\backend\\Intex.API\\Data\\CollaborativeModel.cs",
+              "RelativeDocumentMoniker": "Data\\CollaborativeModel.cs",
+              "ToolTip": "C:\\Users\\lonni\\OneDrive\\Desktop\\intexII\\INTEXII\\backend\\Intex.API\\Data\\CollaborativeModel.cs",
+              "RelativeToolTip": "Data\\CollaborativeModel.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACkAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T20:29:24.767Z",
+              "WhenOpened": "2025-04-08T20:41:18.681Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ContentFiltering.cs",
+              "DocumentMoniker": "C:\\Users\\lonni\\OneDrive\\Desktop\\intexII\\INTEXII\\backend\\Intex.API\\Data\\ContentFiltering.cs",
+              "RelativeDocumentMoniker": "Data\\ContentFiltering.cs",
+              "ToolTip": "C:\\Users\\lonni\\OneDrive\\Desktop\\intexII\\INTEXII\\backend\\Intex.API\\Data\\ContentFiltering.cs",
+              "RelativeToolTip": "Data\\ContentFiltering.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-08T20:50:06.567Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MovieTitle.cs",
+              "DocumentMoniker": "C:\\Users\\lonni\\OneDrive\\Desktop\\intexII\\INTEXII\\backend\\Intex.API\\Data\\MovieTitle.cs",
+              "RelativeDocumentMoniker": "Data\\MovieTitle.cs",
+              "ToolTip": "C:\\Users\\lonni\\OneDrive\\Desktop\\intexII\\INTEXII\\backend\\Intex.API\\Data\\MovieTitle.cs",
+              "RelativeToolTip": "Data\\MovieTitle.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAIsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-08T20:29:33.76Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ItemRecommender.cs",
+              "DocumentMoniker": "C:\\Users\\lonni\\OneDrive\\Desktop\\intexII\\INTEXII\\backend\\Intex.API\\Controllers\\ItemRecommender.cs",
+              "RelativeDocumentMoniker": "Controllers\\ItemRecommender.cs",
+              "ToolTip": "C:\\Users\\lonni\\OneDrive\\Desktop\\intexII\\INTEXII\\backend\\Intex.API\\Controllers\\ItemRecommender.cs",
+              "RelativeToolTip": "Controllers\\ItemRecommender.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-08T20:24:21.395Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\lonni\\OneDrive\\Desktop\\intexII\\INTEXII\\backend\\Intex.API\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\lonni\\OneDrive\\Desktop\\intexII\\INTEXII\\backend\\Intex.API\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-08T20:21:02.456Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UserBasedModel.cs",
+              "DocumentMoniker": "C:\\Users\\lonni\\OneDrive\\Desktop\\intexII\\INTEXII\\backend\\Intex.API\\Data\\UserBasedModel.cs",
+              "RelativeDocumentMoniker": "Data\\UserBasedModel.cs",
+              "ToolTip": "C:\\Users\\lonni\\OneDrive\\Desktop\\intexII\\INTEXII\\backend\\Intex.API\\Data\\UserBasedModel.cs",
+              "RelativeToolTip": "Data\\UserBasedModel.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAACwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-08T20:11:08.139Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "MovieDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\Data\\MovieDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\lonni\\OneDrive\\Desktop\\intexII\\INTEXII\\backend\\Intex.API\\Data\\MovieDbContext.cs",
               "RelativeDocumentMoniker": "Data\\MovieDbContext.cs",
-              "ToolTip": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\Data\\MovieDbContext.cs",
+              "ToolTip": "C:\\Users\\lonni\\OneDrive\\Desktop\\intexII\\INTEXII\\backend\\Intex.API\\Data\\MovieDbContext.cs",
               "RelativeToolTip": "Data\\MovieDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T20:21:05.56Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MovieUser.cs",
-              "DocumentMoniker": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\Data\\MovieUser.cs",
-              "RelativeDocumentMoniker": "Data\\MovieUser.cs",
-              "ToolTip": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\Data\\MovieUser.cs",
-              "RelativeToolTip": "Data\\MovieUser.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T20:16:19.422Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MovieRating.cs",
-              "DocumentMoniker": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\Data\\MovieRating.cs",
-              "RelativeDocumentMoniker": "Data\\MovieRating.cs",
-              "ToolTip": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\Data\\MovieRating.cs",
-              "RelativeToolTip": "Data\\MovieRating.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T20:16:18.375Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MovieController.cs",
-              "DocumentMoniker": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\Controllers\\MovieController.cs",
-              "RelativeDocumentMoniker": "Controllers\\MovieController.cs",
-              "ToolTip": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\Controllers\\MovieController.cs",
-              "RelativeToolTip": "Controllers\\MovieController.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAYwBIAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T19:53:23.905Z",
+              "WhenOpened": "2025-04-08T20:13:02.826Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RecommendController.cs",
+              "DocumentMoniker": "C:\\Users\\lonni\\OneDrive\\Desktop\\intexII\\INTEXII\\backend\\Intex.API\\Controllers\\RecommendController.cs",
+              "RelativeDocumentMoniker": "Controllers\\RecommendController.cs",
+              "ToolTip": "C:\\Users\\lonni\\OneDrive\\Desktop\\intexII\\INTEXII\\backend\\Intex.API\\Controllers\\RecommendController.cs",
+              "RelativeToolTip": "Controllers\\RecommendController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-08T02:59:08.138Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ReccomendationService.cs",
+              "DocumentMoniker": "C:\\Users\\lonni\\OneDrive\\Desktop\\intexII\\INTEXII\\backend\\Intex.API\\Services\\ReccomendationService.cs",
+              "RelativeDocumentMoniker": "Services\\ReccomendationService.cs",
+              "ToolTip": "C:\\Users\\lonni\\OneDrive\\Desktop\\intexII\\INTEXII\\backend\\Intex.API\\Services\\ReccomendationService.cs",
+              "RelativeToolTip": "Services\\ReccomendationService.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAIwEcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-08T02:57:49.847Z"
             }
           ]
         }

@@ -11,6 +11,10 @@ namespace Intex.API.Data
         public DbSet<MovieTitle> MovieTitles { get; set; }
         public DbSet<MovieUser> MovieUsers { get; set; }
         public DbSet<MovieRating> MovieRatings { get; set; }
+        public DbSet<UserBasedModel> HybridRecommenders { get; set; }
+        public DbSet<CollaborativeModel> CollaborativeRecommendations { get; set; }
+        public DbSet<ContentFiltering> ContentRecommendations { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -22,6 +26,11 @@ namespace Intex.API.Data
             // Composite key for movie_ratings
             modelBuilder.Entity<MovieRating>()
                 .HasKey(r => new { r.UserId, r.ShowId });
+
+            // Table mapping for UserBasedModel (hybrid_recommender table)
+            modelBuilder.Entity<UserBasedModel>().ToTable("hybrid_recommender");
+            modelBuilder.Entity<CollaborativeModel>().ToTable("collaborative_recommendations");
+            modelBuilder.Entity<ContentFiltering>().ToTable("top_10_content_recommendations");
         }
     }
 
