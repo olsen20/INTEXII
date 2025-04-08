@@ -62,7 +62,8 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins("http://localhost:3000", "https://yellow-grass-01700f61e.6.azurestaticapps.net/")
             .AllowAnyMethod()
-            .AllowAnyHeader();
+            .AllowAnyHeader()
+            .AllowCredentials();
     }));
 
 var app = builder.Build();
