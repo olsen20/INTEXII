@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import HeaderNotSignedIn from "../components/HeaderNotSignedIn";
 import Footer from "../components/Footer";
 import { loginUser } from "../api/IdentityAPI";
-import "../styles/LoginPage.css";
+import "../styles/LandingPage.css";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
@@ -12,6 +12,7 @@ function LoginPage() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  // When the form is changed, update the submission
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, type, checked, value } = e.target;
     if (type === "checkbox") setRememberme(checked);
@@ -19,20 +20,24 @@ function LoginPage() {
     else if (name === "password") setPassword(value);
   };
 
+  // When the user clicks "New to CineNiche", navigate to Create Account page
   const handleRegisterClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     navigate("/create-account");
   };
 
+  // Handle the form submission
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
 
+    // Ensure both fields are filled in
     if (!email || !password) {
       setError("Please fill in all fields.");
       return;
     }
 
+    // Attempt to login
     try {
       const response = await loginUser(email, password, rememberme);
       let data = null;

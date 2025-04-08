@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import HeaderNotSignedIn from "../components/HeaderNotSignedIn";
 import Footer from "../components/Footer";
 import { registerUser } from "../api/IdentityAPI";
-import "../styles/LoginPage.css";
+import "../styles/LandingPage.css";
 
 function CreateAccountPage() {
   const [email, setEmail] = useState("");
@@ -12,11 +12,13 @@ function CreateAccountPage() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  // When user clicks "Already have an account", navigate to the login page
   const handleLoginClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     navigate("/login");
   };
 
+  // When the form is changed, update the submission
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     if (name === "email") setEmail(value);
@@ -24,9 +26,11 @@ function CreateAccountPage() {
     if (name === "confirmPassword") setConfirmPassword(value);
   };
 
+  // Handle form submission
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    // Ensure account information is in the proper format
     if (!email || !password || !confirmPassword) {
       setError("Please fill in all fields.");
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -35,6 +39,8 @@ function CreateAccountPage() {
       setError("Passwords do not match.");
     } else {
       setError("");
+
+      // Create an account for the user
       registerUser(email, password)
         .then((res) => {
             if (res.ok) {
