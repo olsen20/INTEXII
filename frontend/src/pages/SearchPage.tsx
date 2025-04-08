@@ -194,6 +194,7 @@ const SearchPage: React.FC = () => {
       </div>
 
       <div className="pagination-controls">
+        <br></br>
         <button
           onClick={() => goToPage(currentPage - 1)}
           disabled={currentPage === 1}
@@ -207,6 +208,7 @@ const SearchPage: React.FC = () => {
         >
           Next
         </button>
+        <br></br>
       </div>
 
       <Footer />
