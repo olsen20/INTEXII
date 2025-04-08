@@ -13,7 +13,7 @@ const CarouselRow: React.FC<CarouselRowProps> = ({ title, movies, limit }) => {
   const moviesToDisplay = limit ? movies.slice(0, limit) : movies;
   return (
     <div className="mb-4">
-      <h2 className="text-white ms-3">{title}</h2>
+      <h2 className="text-white ms-3" style={{padding: "1rem"}}>{title}</h2>
       <div className="d-flex overflow-auto py-2">
         {moviesToDisplay.map((movie) => (
           <MovieCard key={movie.showId} movie={movie} />
