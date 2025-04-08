@@ -91,7 +91,7 @@ function HomePage() {
     <h2 className="trending-title">Trending with Our Viewers:</h2>
     <div className="trending-carousel">
       {trendingMovies.map((movie, index) => (
-        <div className="trending-card" key={movie.show_id}>
+        <div className="trending-card" key={movie.showId}>
           <span className="trending-rank">{index + 1}</span>
           <img
             src={movie.posterUrl || "/images/Placeholder.jpg"}

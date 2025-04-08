@@ -1,0 +1,54 @@
+.movie-card {
+  width: 10rem;
+  border: none !important;
+  position: relative; /* Enables absolute positioning for the rank overlay */
+  transition: transform 0.4s ease;
+}
+
+/* Hover scale effect for the entire card */
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+/* The poster image inside the card */
+.movie-card img {
+  width: 10rem;
+  height: 15rem;
+  object-fit: cover;
+  display: block;
+  border: none !important;
+}
+
+/* The ranking overlay, shown only if the card has the "top10" class + rank */
+.movie-card.top10 .top10-ranking {
+  position: absolute;
+  bottom: 100px; /* or top: 8px if you prefer it in the upper-left corner */
+  left: 8px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  -webkit-text-stroke: 1px #000; /* Outline for better contrast */
+  text-shadow: 1px 1px 2px #000; /* Additional shadow for further contrast */
+  z-index: 2;
+}
+
+/* Card body (title area) */
+.movie-card-body {
+  background-color: #202020;
+  padding: 0.5rem;
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+.movieCard {
+  background-color: "#333" !important;
+  border: "none" !important;
+  width: "10rem" !important;
+}
+
+.card-hover:hover {
+  background-color: #303030 !important; /* dark gray background on hover */
+}

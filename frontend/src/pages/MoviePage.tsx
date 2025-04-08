@@ -5,10 +5,13 @@ import CarouselRow from "../components/CarouselRow";
 import HeroBanner from "../components/HeroBanner";
 import { featuredMovie, Movie } from "../types/Movies";
 import "../index.css";
+import "../styles/MovieCard.css";
 
 const MoviePage: React.FC = () => {
   // State to store the raw movies data from the API
   const [movies, setMovies] = useState<Movie[]>([]);
+  // New state for Top 10 movies
+  const [top10Movies, setTop10Movies] = useState<Movie[]>([]);
 
   // Fetch from the API on mount
   useEffect(() => {
@@ -19,6 +22,17 @@ const MoviePage: React.FC = () => {
         setMovies(data);
       })
       .catch((err) => console.error("Error fetching movies:", err));
+  }, []);
+
+  // New useEffect for fetching Top 10 movies
+  useEffect(() => {
+    fetch("https://localhost:5000/api/Movie/top10")
+      .then((response) => response.json())
+      .then((data: Movie[]) => {
+        console.log("Fetched Top 10 movies:", data);
+        setTop10Movies(data);
+      })
+      .catch((err) => console.error("Error fetching Top 10 movies:", err));
   }, []);
 
   // Derive filtered data using the raw movies state
@@ -55,6 +69,10 @@ const MoviePage: React.FC = () => {
       />
       <br></br>
       <div className="recommended-section">
+        {/* New Carousel for Top 10 Movies */}
+        <div className="trending px-5">
+          <CarouselRow title="Top 10 Movies" movies={top10Movies} limit={10} showRanking={true} />
+        </div>
         {/* Carousel section for Movies */}
         <div className="px-5">
           <CarouselRow title="Movies" movies={moviesCategory} limit={15} />
