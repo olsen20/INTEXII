@@ -11,14 +11,14 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   return (
     <Link to={`/movies/${movie.show_id}`} className="text-decoration-none me-3">
       <div className="card" style={{ width: '10rem' }}>
-        <img
+        {/* <img
           src={posterUrl}
           className="card-img-top"
           alt={movie.title}
           onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) =>
             (e.currentTarget.src = '/posters/default.jpg')
           }
-        />
+        /> */}
         <div className="card-body p-2">
           <p className="card-text text-center text-white">{movie.title}</p>
         </div>

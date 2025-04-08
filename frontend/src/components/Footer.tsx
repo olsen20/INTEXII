@@ -18,11 +18,6 @@ const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link className="text-white text-decoration-none" to="/careers">
-                  Careers
-                </Link>
-              </li>
-              <li>
                 <Link className="text-white text-decoration-none" to="/contact">
                   Contact
                 </Link>
@@ -42,11 +37,6 @@ const Footer: React.FC = () => {
               <li>
                 <Link className="text-white text-decoration-none" to="/terms">
                   Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link className="text-white text-decoration-none" to="/cookies">
-                  Cookie Policy
                 </Link>
               </li>
             </ul>
@@ -90,19 +80,22 @@ const Footer: React.FC = () => {
         {/* Newsletter or other elements */}
         <div className="row mt-3">
           <div className="col-12 text-center">
+            {/* Small, light text above the form */}
+            <p className=" small mb-1">Subscribe to our mailing list</p>
+
             <form className="d-flex justify-content-center mb-3">
               <input
                 type="email"
                 className="form-control w-auto me-2"
                 placeholder="Enter your email"
               />
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-subscribe">
                 Subscribe
               </button>
             </form>
           </div>
         </div>
-
+        <br></br>
         {/* Copyright */}
         <div className="text-center py-2 border-top border-secondary">
           &copy; {new Date().getFullYear()} CineNiche. All Rights Reserved.
