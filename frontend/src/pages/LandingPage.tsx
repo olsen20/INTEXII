@@ -3,16 +3,18 @@ import Footer from "../components/Footer";
 import "../styles/LandingPage.css";
 import { useEffect, useState } from "react";
 import { Movie } from "../types/Movies";
+import { fetchTrendingMovies } from "../api/MovieAPI";
 
 function HomePage() {
   const [trendingMovies, setTrendingMovies] = useState<Movie[]>([]);
 
   // Retrieve top ten most trending movies
   useEffect(() => {
-    fetch("https://localhost:5000/api/Movie/top10")
-      .then((res) => res.json())
+    fetchTrendingMovies()
       .then((data) => setTrendingMovies(data))
-      .catch((err) => console.error("Failed to fetch trending movies:", err));
+      .catch((err) =>
+        console.error("Failed to load trending movies:", err)
+      );
   }, []);
   
   return (
@@ -91,7 +93,7 @@ function HomePage() {
     <h2 className="trending-title">Trending with Our Viewers:</h2>
     <div className="trending-carousel">
       {trendingMovies.map((movie, index) => (
-        <div className="trending-card" key={movie.show_id}>
+        <div className="trending-card" key={movie.showId}>
           <span className="trending-rank">{index + 1}</span>
           <img
             src={movie.posterUrl || "/images/Placeholder.jpg"}
