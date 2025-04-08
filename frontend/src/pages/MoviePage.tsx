@@ -2,58 +2,97 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import CarouselRow from "../components/CarouselRow";
-import { Movie } from "../types/Movies";
+import HeroBanner from "../components/HeroBanner";
+import { featuredMovie, Movie } from "../types/Movies";
 import "../index.css";
 
-const Home: React.FC = () => {
-  const [recommended, setRecommended] = useState<Movie[]>([]);
-  const [genres, setGenres] = useState<Record<string, Movie[]>>({});
+const MoviePage: React.FC = () => {
+  // State to store the raw movies data from the API
+  const [movies, setMovies] = useState<Movie[]>([]);
 
-  // Dummy data for recommended movies
-  const sampleRecommended: Movie[] = [
-    { show_id: 1, title: "The Matrix" },
-    { show_id: 2, title: "Inception" },
-    { show_id: 3, title: "Interstellar" },
-    { show_id: 4, title: "The Godfather" },
-    { show_id: 5, title: "Pulp Fiction" },
-  ];
-
-  // Dummy data for movies grouped by genre
-  const sampleGenres: Record<string, Movie[]> = {
-    Action: [
-      { show_id: 6, title: "Die Hard" },
-      { show_id: 7, title: "Mad Max: Fury Road" },
-      { show_id: 8, title: "John Wick" },
-    ],
-    Comedy: [
-      { show_id: 9, title: "Superbad" },
-      { show_id: 10, title: "Step Brothers" },
-    ],
-  };
-
+  // Fetch from the API on mount
   useEffect(() => {
-    // Set the dummy data immediately for testing
-    setRecommended(sampleRecommended);
-    setGenres(sampleGenres);
+    fetch("https://localhost:5000/api/Movie/GetAllTitles") // Replace with your actual API endpoint
+      .then((response) => response.json())
+      .then((data: Movie[]) => {
+        console.log("Fetched movies:", data);
+        setMovies(data);
+      })
+      .catch((err) => console.error("Error fetching movies:", err));
   }, []);
+
+  // Derive filtered data using the raw movies state
+  const moviesCategory = movies.filter(
+    (movie) => movie.typeField?.toLowerCase() === "movie"
+  );
+  const tvShowsCategory = movies.filter(
+    (movie) => movie.typeField?.toLowerCase() === "tv show"
+  );
+  const actionMovies = movies.filter((movie) => movie.action === 1);
+  const comedyMovies = movies.filter((movie) => movie.comedies === 1);
+  const documentaryMovies = movies.filter((movie) => movie.documentaries === 1);
+  const horrorMovies = movies.filter((movie) => movie.horrorMovies === 1);
+
+  // Use the first movie as featured or choose a fallback
+  const featuredMovie: featuredMovie = { title: "Paris, Texas" };
+
+  // Trailer URL (ensure the video is located in public/trailers)
+  const trailerUrl = "/trailers/parisTexas.mp4";
+
+  // Description for the hero banner (could come from featuredMovie if available)
+  const heroDescription =
+    "Travis Henderson, a disoriented drifter with no memory, is unexpectedly reunited with his long-lost family. Witness a quiet, contemplative journey of rediscovery and hope.";
 
   return (
     <div className="bg-black text-white min-vh-100 pt-5">
       <Header />
-      {/* Full-width recommended section */}
+
+      {/* Hero section at the top using the trailer */}
+      <HeroBanner
+        title={featuredMovie.title || ""}
+        description={heroDescription}
+        trailerUrl={trailerUrl}
+      />
+      <br></br>
       <div className="recommended-section">
-        <CarouselRow title="Recommended for You" movies={recommended} />
+        {/* Carousel section for Movies */}
+        <div className="px-5">
+          <CarouselRow title="Movies" movies={moviesCategory} limit={15} />
+        </div>
+
+        {/* Carousel section for TV Shows */}
+        <div className="px-5">
+          <CarouselRow title="TV Shows" movies={tvShowsCategory} limit={15} />
+        </div>
+
+        {/* Carousel section for Action */}
+        <div className="px-5">
+          <CarouselRow title="Action" movies={actionMovies} limit={15} />
+        </div>
+
+        {/* Carousel section for Comedy */}
+        <div className="px-5">
+          <CarouselRow title="Comedy" movies={comedyMovies} limit={15} />
+        </div>
+
+        {/* Carousel section for Documentary */}
+        <div className="px-5">
+          <CarouselRow
+            title="Documentaries"
+            movies={documentaryMovies}
+            limit={15}
+          />
+        </div>
+
+        {/* Carousel section for Horror */}
+        <div className="px-5">
+          <CarouselRow title="Horror" movies={horrorMovies} limit={15} />
+        </div>
       </div>
 
-      {/* Other genre sections remain inside a container */}
-      <div className="container mt-5 pt-3">
-        {Object.entries(genres).map(([genre, movies]) => (
-          <CarouselRow key={genre} title={genre} movies={movies} />
-        ))}
-      </div>
       <Footer />
     </div>
   );
 };
 
-export default Home;
+export default MoviePage;

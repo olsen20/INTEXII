@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Header.css"; // Import custom CSS for slide-up/slide-down animations
-import fullLogo from "../assets/fullLogo.png"; // Import your logo image
+import fullLogo2 from "../assets/fullLogo2.png"; // Import your logo image
 
 const Header: React.FC = () => {
   const [showHeader, setShowHeader] = useState<boolean>(true);
@@ -34,7 +34,7 @@ const Header: React.FC = () => {
           {/* Logo */}
           <Link className="navbar-brand me-5" to="/">
             <img
-              src={fullLogo}
+              src={fullLogo2}
               alt="CineNiche Logo"
               style={{ height: "50px" }}
             />

@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import TableOfContents from "../components/TableofContents";
+import TableOfContents from "../components/TableOfContents";
 
 const ContactPage: React.FC = () => {
   return (
@@ -51,6 +51,7 @@ const ContactPage: React.FC = () => {
           </div>
         </div>
       </div>
+      <br></br>
       <Footer />
     </>
   );
