@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import HeaderNotSignedIn from "../components/HeaderNotSignedIn";
 import Footer from "../components/Footer";
 import { registerUser } from "../api/IdentityAPI";
+import "../styles/LoginPage.css";
 
 function CreateAccountPage() {
   const [email, setEmail] = useState("");
@@ -50,67 +51,75 @@ function CreateAccountPage() {
 
   return (
     <>
-        <HeaderNotSignedIn />
-        <div className="register-container d-flex justify-content-center align-items-center min-vh-100 bg-dark text-light">
-        <div className="register-card card p-4 rounded-4 border-0 text-light" style={{ maxWidth: "500px", width: "100%", backgroundColor: '#1a1a1a' }}>
-            <h2 className="text-center mb-4 fw-bold text-light">Create Your Account</h2>
-            <form onSubmit={handleSubmit}>
-            <div className="form-floating mb-3">
-                <input
-                type="email"
-                id="email"
-                name="email"
-                className="form-control bg-dark text-light border-light"
-                placeholder="Email"
-                value={email}
-                onChange={handleChange}
-                />
-                <label htmlFor="email" className="text-secondary">Email address</label>
-            </div>
+      <HeaderNotSignedIn />
+      <div className="login-background">
+        <div className="login-overlay d-flex justify-content-center align-items-center">
+          <div className="container">
+            <div className="row justify-content-center">
+              <div className="col-md-8 col-lg-6">
+                <div className="login-card p-5 text-light rounded-4 shadow-lg">
+                  <h1 className="text-center fw-bold mb-4 display-5 text-light">Create Account</h1>
+                  <form onSubmit={handleSubmit}>
+                    <div className="form-floating mb-3">
+                      <input
+                        type="email"
+                        name="email"
+                        className="form-control bg-dark text-light border-light"
+                        placeholder="Email"
+                        value={email}
+                        onChange={handleChange}
+                      />
+                      <label htmlFor="email" className="text-secondary">Email address</label>
+                    </div>
 
-            <div className="form-floating mb-3">
-                <input
-                type="password"
-                id="password"
-                name="password"
-                className="form-control bg-dark text-light border-light"
-                placeholder="Password"
-                value={password}
-                onChange={handleChange}
-                />
-                <label htmlFor="password" className="text-secondary">Password</label>
-            </div>
+                    <div className="form-floating mb-3">
+                      <input
+                        type="password"
+                        name="password"
+                        className="form-control bg-dark text-light border-light"
+                        placeholder="Password"
+                        value={password}
+                        onChange={handleChange}
+                      />
+                      <label htmlFor="password" className="text-secondary">Password</label>
+                    </div>
 
-            <div className="form-floating mb-3">
-                <input
-                type="password"
-                id="confirmPassword"
-                name="confirmPassword"
-                className="form-control bg-dark text-light border-light"
-                placeholder="Confirm Password"
-                value={confirmPassword}
-                onChange={handleChange}
-                />
-                <label htmlFor="confirmPassword" className="text-secondary">Confirm Password</label>
-            </div>
+                    <div className="form-floating mb-3">
+                      <input
+                        type="password"
+                        name="confirmPassword"
+                        className="form-control bg-dark text-light border-light"
+                        placeholder="Confirm Password"
+                        value={confirmPassword}
+                        onChange={handleChange}
+                      />
+                      <label htmlFor="confirmPassword" className="text-secondary">Confirm Password</label>
+                    </div>
 
-            {error && <div className="text-danger mb-3 text-center">{error}</div>}
+                    {error && <p className="text-danger text-center">{error}</p>}
 
-            <div className="d-grid mb-3">
-            <button type="submit" className="btn btn-outline-light login-button w-100">
-                Register
-                </button>
-            </div>
+                    <div className="d-grid mb-3">
+                      <button type="submit" className="btn btn-secondary text-light w-100">
+                        Register
+                      </button>
+                    </div>
 
-            <div className="d-grid">
-                <button onClick={handleLoginClick} className="btn btn-secondary text-light">
-                Already have an account? Login
-                </button>
+                    <div className="d-grid">
+                      <button
+                        onClick={handleLoginClick}
+                        className="btn btn-outline-light fw-bold w-100"
+                      >
+                        Already have an account? Login
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
-            </form>
+          </div>
         </div>
-        </div>
-        <Footer />
+      </div>
+      <Footer />
     </>
   );
 }
