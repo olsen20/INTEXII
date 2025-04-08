@@ -13,6 +13,7 @@ namespace Intex.API.Data
         public DbSet<MovieRating> MovieRatings { get; set; }
         public DbSet<UserBasedModel> HybridRecommenders { get; set; }
         public DbSet<CollaborativeModel> CollaborativeRecommendations { get; set; }
+        public DbSet<ContentRecommendation> ContentRecommendations { get; set; }
 
 
 
@@ -30,6 +31,7 @@ namespace Intex.API.Data
             // Table mapping for UserBasedModel (hybrid_recommender table)
             modelBuilder.Entity<UserBasedModel>().ToTable("hybrid_recommender");
             modelBuilder.Entity<CollaborativeModel>().ToTable("collaborative_recommendations");
+            modelBuilder.Entity<ContentRecommendation>().ToTable("top_10_content_recommendations");
 
         }
     }
