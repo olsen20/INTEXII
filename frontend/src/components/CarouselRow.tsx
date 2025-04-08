@@ -2,6 +2,7 @@
 import React from "react";
 import MovieCard from "./MovieCard";
 import { Movie } from "../types/Movies";
+import "../index.css";
 
 interface CarouselRowProps {
   title: string;
@@ -10,12 +11,19 @@ interface CarouselRowProps {
   showRanking?: boolean;
 }
 
-const CarouselRow: React.FC<CarouselRowProps> = ({ title, movies, limit, showRanking }) => {
+const CarouselRow: React.FC<CarouselRowProps> = ({
+  title,
+  movies,
+  limit,
+  showRanking,
+}) => {
   const moviesToDisplay = limit ? movies.slice(0, limit) : movies;
   return (
     <div className="mb-4">
-      <h2 className="text-white ms-3" style={{ padding: "1rem" }}>{title}</h2>
-      <div className="d-flex overflow-auto py-2">
+      <h2 className="text-white ms-3" style={{ padding: "1rem" }}>
+        {title}
+      </h2>
+      <div className="carousel-row d-flex overflow-auto py-2">
         {moviesToDisplay.map((movie, index) => (
           <MovieCard
             key={movie.showId}

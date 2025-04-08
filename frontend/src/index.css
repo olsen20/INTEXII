@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -42,3 +43,10 @@ video {
   height: 75vh !important;
 }
 
+.carousel-row {
+  scrollbar-width: none;
+}
+
+.carousel-row::-webkit-scrollbar {
+  display: none;
+}
