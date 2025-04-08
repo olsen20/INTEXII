@@ -88,7 +88,33 @@ namespace Intex.API.Controllers
             return Ok(recommendedMovies); // ✅ Ensures a return value
         }
 
-        
+        [HttpGet("content/{showId}")]
+        public async Task<ActionResult<IEnumerable<MovieTitle>>> GetContentRecommendations(string showId)
+        {
+            // Step 1: Get the content recommendations for the provided showId
+            var contentRecommendations = await _context.ContentRecommendations
+                .Where(cr => cr.ShowId == showId)
+                .ToListAsync();
+
+            if (contentRecommendations == null || contentRecommendations.Count == 0)
+            {
+                return NotFound(new { message = "No content recommendations found for this ShowId" });
+            }
+
+            // Step 2: Extract the ContentRecommendation values (recommended ShowIds)
+            var recommendationIds = contentRecommendations
+                .Select(cr => cr.Recommendation)
+                .Where(id => !string.IsNullOrEmpty(id))
+                .ToList();
+
+            // Step 3: Query the MovieTitles table to get the recommended movies by their ShowIds
+            var recommendedMovies = await _context.MovieTitles
+                .Where(mt => recommendationIds.Contains(mt.ShowId))
+                .ToListAsync();
+
+            // Step 4: Return the list of MovieTitle objects
+            return Ok(recommendedMovies);
+        }
 
     }
 }
