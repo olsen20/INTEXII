@@ -66,6 +66,7 @@ const SearchPage: React.FC = () => {
   const [mediaTypeFilter, setMediaTypeFilter] = useState<string>("all");
   const [genreFilters, setGenreFilters] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState<string>("titleAsc");
+  const [ratingFilter, setRatingFilter] = useState<string>("all");
 
   // Pagination
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -126,6 +127,10 @@ const SearchPage: React.FC = () => {
         // Movie passes if any field for this sub-genre equals 1
         return fields.some((field) => (m as any)[field] === 1);
       });
+    })
+    .filter((m) => {
+      if (ratingFilter === "all") return true;
+      return m.rating === ratingFilter;
     });
 
   // Sorting logic
@@ -177,6 +182,27 @@ const SearchPage: React.FC = () => {
             <select value={sortBy} onChange={handleSortChange}>
               <option value="titleAsc">Title (A-Z)</option>
               <option value="titleDesc">Title (Z-A)</option>
+            </select>
+            {/* Filter by Rating */}
+            <select
+              value={ratingFilter}
+              onChange={(e) => {
+                setRatingFilter(e.target.value);
+                setCurrentPage(1);
+              }}
+            >
+              <option value="all">All Ratings</option>
+              <option value="G">G</option>
+              <option value="PG">PG</option>
+              <option value="PG-13">PG-13</option>
+              <option value="R">R</option>
+              <option value="NC-17">NC-17</option>
+              <option value="TV-Y">TV-Y</option>
+              <option value="TV-Y7">TV-Y7</option>
+              <option value="TV-G">TV-G</option>
+              <option value="TV-PG">TV-PG</option>
+              <option value="TV-14">TV-14</option>
+              <option value="TV-MA">TV-MA</option>
             </select>
           </div>
 
