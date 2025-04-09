@@ -107,7 +107,11 @@ function CreateAccountPage() {
                       <label htmlFor="confirmPassword" className="text-secondary">Confirm Password</label>
                     </div>
 
-                    {error && <p className="text-danger text-center">{error}</p>}
+                    {error && (
+                      <p className={`text-center ${error === "Successful registration. Please log in." ? "text-success" : "text-danger"}`}>
+                        {error}
+                      </p>
+                    )}
 
                     <div className="d-grid mb-3">
                       <button type="submit" className="btn btn-secondary text-light w-100">
