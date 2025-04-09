@@ -2,7 +2,8 @@
 .admin-manage-container {
   padding: 2rem;
   background-color: #191919;
-  min-height: calc(100vh - 70px); /* some spacing for header */
+  min-height: calc(100vh - 70px);
+  text-align: center; /* Center main header */
 }
 
 .admin-manage-container h1 {
@@ -23,6 +24,7 @@
   padding: 0.5rem;
   border: none;
   border-radius: 4px;
+  text-align: left; /* Ensure input text is left-aligned */
 }
 
 .add-movie-btn {
@@ -72,7 +74,7 @@
 }
 
 .delete-btn:hover {
-  background-color: #600; /* a warning color */
+  background-color: #600;
 }
 
 .pagination-controls {
@@ -82,7 +84,7 @@
   gap: 1rem;
 }
 
-/* Modal styling for add/edit */
+/* Modal overlay: allow vertical scrolling if content exceeds viewport */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -94,33 +96,79 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-y: auto; /* change from hidden to auto for vertical scrolling */
+  padding: 1rem; /* Add some padding so the modal doesn't touch the very edge */
 }
 
+/* Modal content: wider and scrollable body */
 .modal-content {
   background-color: #2a2a2a;
-  padding: 2rem;
   border-radius: 8px;
-  width: 400px;
+  width: 600px; /* Wider modal */
+  max-height: 80vh; /* Restrict height relative to viewport */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
-.modal-content h2 {
-  margin-bottom: 1rem;
+/* The scrollable modal body that contains all form fields */
+.modal-body {
+  flex: 1 1 auto;
+  padding: 2rem;
+  overflow-y: auto;
 }
 
+/* Hide modal body scrollbar if desired */
+.modal-body::-webkit-scrollbar {
+  display: none;
+}
+.modal-body {
+  -ms-overflow-style: none; /* IE 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Ensure inputs and textareas span full width */
+.modal-body .form-group input,
+.modal-body .form-group textarea,
+.modal-body .form-group select {
+  width: 100%;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid #444;
+  background-color: #444;
+  color: #fff;
+}
+
+/* Form-group: labels left aligned, fields full width */
 .form-group {
   margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   gap: 0.3rem;
 }
 
-.modal-buttons {
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-  margin-top: 1rem;
+.form-group label {
+  text-align: left;
+  width: 100%;
 }
 
+/* Fixed modal buttons: always visible at bottom of modal content */
+.modal-buttons {
+  flex: 0 0 auto;
+  background-color: #2a2a2a;
+  padding: 1rem;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center; /* Center the buttons */
+  gap: 2rem;
+}
+
+/* Button styles for Save/Cancel */
 .save-btn,
 .cancel-btn {
   background-color: #444;
