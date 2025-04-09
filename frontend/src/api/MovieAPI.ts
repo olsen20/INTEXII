@@ -2,6 +2,7 @@
 const API_URL =
   "https://cineniche2-backend-gvduhzdyd9e0gea2.eastus-01.azurewebsites.net/api/Movie";
 
+// Get the top 10 most trending movies
 export async function fetchTrendingMovies(): Promise<any[]> {
   try {
     const response = await fetch(`${API_URL}/top10`);
@@ -48,4 +49,3 @@ export async function fetchMovieById(showId: string) {
   
     return await response.json();
   }
-  
