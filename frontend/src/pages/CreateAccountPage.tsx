@@ -12,6 +12,11 @@ function CreateAccountPage() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+    // Third-party authentication with Google
+    const handleGoogleLogin = () => {
+      window.location.href = "https://localhost:5000/Account/ExternalLogin?provider=Google&returnUrl=/browse";
+    };
+
   // When user clicks "Already have an account", navigate to the login page
   const handleLoginClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -107,6 +112,18 @@ function CreateAccountPage() {
                     <div className="d-grid mb-3">
                       <button type="submit" className="btn btn-secondary text-light w-100">
                         Register
+                      </button>
+                    </div>
+
+                    <div className="d-grid mb-3">
+                      <p>OR</p>
+                      <button type="button" className="btn-google w-100" onClick={handleGoogleLogin}>
+                        <img
+                          src="/googleIcon.png"
+                          alt="Google Logo"
+                          className="google-icon"
+                        />
+                        Sign in with Google
                       </button>
                     </div>
 

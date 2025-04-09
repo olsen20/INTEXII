@@ -1,5 +1,42 @@
 [
   {
+    "ContainingType": "Intex.API.Controllers.AccountController",
+    "Method": "ExternalLogin",
+    "RelativePath": "Account/ExternalLogin",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "provider",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "returnUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Intex.API.Controllers.AccountController",
+    "Method": "ExternalLoginCallback",
+    "RelativePath": "Account/ExternalLoginCallback",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "returnUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Intex.API.Controllers.MovieController",
     "Method": "GetMovieById",
     "RelativePath": "api/Movie/Details/{showId}",
@@ -368,7 +405,7 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_5",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_6",
     "RelativePath": "logout",
     "HttpMethod": "POST",
     "IsController": false,
@@ -486,7 +523,7 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_6",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_7",
     "RelativePath": "pingauth",
     "HttpMethod": "GET",
     "IsController": false,
