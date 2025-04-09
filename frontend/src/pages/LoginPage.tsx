@@ -12,6 +12,11 @@ function LoginPage() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  // Third-party authentication with Google
+  const handleGoogleLogin = () => {
+    window.location.href = "https://localhost:5000/Account/ExternalLogin?provider=Google&returnUrl=/browse";
+  };
+
   // When the form is changed, update the submission
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, type, checked, value } = e.target;
@@ -107,6 +112,17 @@ function LoginPage() {
                     <div className="d-grid mb-3">
                       <button type="submit" className="btn btn-secondary text-light w-100">
                         Sign In
+                      </button>
+                    </div>
+
+                    <div className="d-grid mb-3">
+                      <button type="button" className="btn-google w-100" onClick={handleGoogleLogin}>
+                        <img
+                          src="/googleIcon.png"
+                          alt="Google Logo"
+                          className="google-icon"
+                        />
+                        Sign in with Google
                       </button>
                     </div>
 
