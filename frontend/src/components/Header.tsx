@@ -79,7 +79,7 @@ const Header: React.FC = () => {
               <li className="nav-item me-5">
                 {/* Use Logout component with a button inside */}
                 <Logout>
-                  <button className="btn logout-button">Log Out</button>
+                  <button className="login-button">Log Out</button>
                 </Logout>
               </li>
             </ul>

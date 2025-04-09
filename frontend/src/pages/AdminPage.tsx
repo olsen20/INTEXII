@@ -3,7 +3,6 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import AuthorizeView from "../components/AuthorizeView";
 import "../styles/AdminPage.css"; // Admin page styling
-import AuthorizeView from "../components/AuthorizeView";
 import { fetchAllMovies } from "../api/MovieAPI";
 
 // Define the Movie interface with all necessary fields

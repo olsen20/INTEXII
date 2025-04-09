@@ -37,6 +37,32 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Intex.API.Controllers.AccountController",
+    "Method": "GetCurrentUserEmail",
+    "RelativePath": "Account/me",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Intex.API.Controllers.AccountController",
+    "Method": "Register",
+    "RelativePath": "Account/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Intex.API.Controllers.AccountController\u002BRegisterDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Intex.API.Controllers.MoviesController",
     "Method": "GetMovies",
     "RelativePath": "api/Admin/Movies",
@@ -415,6 +441,16 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "Intex.API.Controllers.UserController",
+    "Method": "GetUserRole",
+    "RelativePath": "api/User/role",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions\u002B\u003C\u003Ec__1\u00601[[Microsoft.AspNetCore.Identity.IdentityUser, Microsoft.Extensions.Identity.Stores, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
