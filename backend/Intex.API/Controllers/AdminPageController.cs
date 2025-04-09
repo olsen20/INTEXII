@@ -43,11 +43,15 @@ namespace Intex.API.Controllers
         [HttpPost]
         public async Task<ActionResult<MovieTitle>> CreateMovie(MovieTitle movie)
         {
-            // Optionally you can assign a new ID if needed (e.g., Guid.NewGuid().ToString())
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            movie.ShowId = Guid.NewGuid().ToString(); 
+
             _context.MovieTitles.Add(movie);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetMovie), new { id = movie.ShowId }, movie);
+            return CreatedAtAction("GetMovie", new { id = movie.ShowId }, movie);
         }
 
         // PUT: api/admin/movies/{id}
