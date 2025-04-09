@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import "../styles/AdminPage.css"; // Updated admin page styling
+import "../styles/AdminPage.css"; // Admin page styling
 
-// Updated Movie interface with all fields
+// Define the Movie interface with all necessary fields
 interface Movie {
   showId: string;
   typeField: string;
@@ -50,7 +50,7 @@ interface Movie {
   thrillers: number;
 }
 
-// Genre map for dropdown (single-select)
+// Genre options for the single-select dropdown
 const genreMap = [
   { key: "action", label: "Action" },
   { key: "adventure", label: "Adventure" },
@@ -69,10 +69,7 @@ const genreMap = [
   { key: "comediesRomanticMovies", label: "Romantic Comedies" },
   { key: "crimeTvShowsDocuseries", label: "Crime/Docuseries" },
   { key: "documentaries", label: "Documentaries" },
-  {
-    key: "documentariesInternationalMovies",
-    label: "Intl Documentaries",
-  },
+  { key: "documentariesInternationalMovies", label: "Intl Documentaries" },
   { key: "docuseries", label: "Docuseries" },
   { key: "dramas", label: "Dramas" },
   { key: "dramasInternationalMovies", label: "Intl Dramas" },
@@ -108,12 +105,12 @@ const AdminPage: React.FC = () => {
   const totalItems = movies.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
-  // CRUD modal states
+  // Modal (for Add/Edit) state
   const [isAdding, setIsAdding] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [currentMovie, setCurrentMovie] = useState<Partial<Movie>>({});
 
-  // New state for the selected genre (only one allowed)
+  // New state for a single selected genre
   const [selectedGenre, setSelectedGenre] = useState<string>("");
 
   useEffect(() => {
@@ -192,6 +189,7 @@ const AdminPage: React.FC = () => {
   const handleEditMovie = (movie: Movie) => {
     setIsEditing(true);
     setCurrentMovie(movie);
+    // If exactly one genre is true, set that as selected
     for (const g of genreMap) {
       if ((movie as any)[g.key] === 1) {
         setSelectedGenre(g.key);
@@ -204,7 +202,7 @@ const AdminPage: React.FC = () => {
     if (!window.confirm("Are you sure you want to delete this movie?")) return;
     try {
       const response = await fetch(
-        `https://localhost:5000/api/admin/movies/${showId}`,
+        `https://localhost:5000/api/Admin/Movies/${showId}`,
         {
           method: "DELETE",
         }
@@ -221,25 +219,34 @@ const AdminPage: React.FC = () => {
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!currentMovie.title) return;
+
     const updatedMovie = { ...currentMovie } as any;
-    // Set genre booleans based on selectedGenre – only one genre allowed.
+
     genreMap.forEach((g) => {
       updatedMovie[g.key] = g.key === selectedGenre ? 1 : 0;
     });
+
     if (isAdding) {
       try {
+        const payload = { ...updatedMovie };
+        delete payload.showId; // remove showId from POST
+
+        console.log("Adding movie:", payload);
+
         const response = await fetch(
-          "https://localhost:5000/api/admin/movies",
+          "https://localhost:5000/api/Admin/Movies",
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(updatedMovie),
           }
         );
+
         if (response.ok) {
           const newMovie: Movie = await response.json();
           setMovies((prev) => [...prev, newMovie]);
+        } else {
+          console.error("Add movie failed:", response.status);
         }
       } catch (error) {
         console.error("Error adding movie:", error);
@@ -248,31 +255,48 @@ const AdminPage: React.FC = () => {
     } else if (isEditing && currentMovie.showId) {
       try {
         const response = await fetch(
-          `https://localhost:5000/api/admin/movies/${currentMovie.showId}`,
+          `https://localhost:5000/api/Admin/Movies/${currentMovie.showId}`,
           {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(updatedMovie),
           }
         );
-        if (response.ok) {
-          const updatedMovieResponse: Movie = await response.json();
+
+        let updatedMovieResponse: Movie | null = null;
+
+        if (
+          response.status !== 204 &&
+          response.headers.get("content-length") !== "0"
+        ) {
+          updatedMovieResponse = await response.json();
+        }
+
+        if (updatedMovieResponse) {
           setMovies((prev) =>
             prev.map((m) =>
-              m.showId === updatedMovieResponse.showId
-                ? updatedMovieResponse
+              m.showId === updatedMovieResponse!.showId
+                ? updatedMovieResponse!
                 : m
+            )
+          );
+        } else {
+          // If backend returns 204 No Content, update manually
+          setMovies((prev) =>
+            prev.map((m) =>
+              m.showId === updatedMovie.showId ? updatedMovie : m
             )
           );
         }
       } catch (error) {
         console.error("Error updating movie:", error);
       }
+
       setIsEditing(false);
     }
   };
 
-  // Helper to generate a comma-separated genre string for table display
+  // Helper to generate a comma-separated genre string for table display.
   const computeGenreLabel = (movie: Movie): string => {
     let genres: string[] = [];
     genreMap.forEach((g) => {
@@ -283,7 +307,7 @@ const AdminPage: React.FC = () => {
     return genres.length > 0 ? genres.join(", ") : "N/A";
   };
 
-  // Close modal if clicking outside the modal content
+  // Modal overlay click closes the modal
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       setIsAdding(false);
@@ -407,6 +431,7 @@ const AdminPage: React.FC = () => {
                         title: e.target.value,
                       }))
                     }
+                    required
                   />
                 </div>
                 <div className="form-group">
@@ -419,6 +444,7 @@ const AdminPage: React.FC = () => {
                         typeField: e.target.value,
                       }))
                     }
+                    required
                   >
                     <option value="">-- Select Type --</option>
                     <option value="Movie">Movie</option>
@@ -475,12 +501,12 @@ const AdminPage: React.FC = () => {
                         releaseYear: +e.target.value,
                       }))
                     }
+                    required
                   />
                 </div>
                 <div className="form-group">
-                  <label>MPAA Rating:</label>
-                  <input
-                    type="text"
+                  <label>MPAA/TV Rating:</label>
+                  <select
                     value={currentMovie.rating || ""}
                     onChange={(e) =>
                       setCurrentMovie((prev) => ({
@@ -488,7 +514,20 @@ const AdminPage: React.FC = () => {
                         rating: e.target.value,
                       }))
                     }
-                  />
+                  >
+                    <option value="">-- Select Rating --</option>
+                    <option value="G">G</option>
+                    <option value="PG">PG</option>
+                    <option value="PG-13">PG-13</option>
+                    <option value="R">R</option>
+                    <option value="NC-17">NC-17</option>
+                    <option value="TV-Y">TV-Y</option>
+                    <option value="TV-Y7">TV-Y7</option>
+                    <option value="TV-G">TV-G</option>
+                    <option value="TV-PG">TV-PG</option>
+                    <option value="TV-14">TV-14</option>
+                    <option value="TV-MA">TV-MA</option>
+                  </select>
                 </div>
                 <div className="form-group">
                   <label>Duration:</label>
@@ -501,6 +540,7 @@ const AdminPage: React.FC = () => {
                         duration: e.target.value,
                       }))
                     }
+                    required
                   />
                 </div>
                 <div className="form-group">
@@ -513,6 +553,7 @@ const AdminPage: React.FC = () => {
                         description: e.target.value,
                       }))
                     }
+                    required
                   />
                 </div>
                 <div className="form-group">
@@ -526,6 +567,7 @@ const AdminPage: React.FC = () => {
                         posterUrl: e.target.value,
                       }))
                     }
+                    required
                   />
                 </div>
                 {/* Genre Section: Single-select dropdown */}
@@ -534,6 +576,7 @@ const AdminPage: React.FC = () => {
                   <select
                     value={selectedGenre}
                     onChange={(e) => setSelectedGenre(e.target.value)}
+                    required
                   >
                     <option value="">-- Select a Genre --</option>
                     {genreMap.map((g) => (
@@ -544,7 +587,6 @@ const AdminPage: React.FC = () => {
                   </select>
                 </div>
               </div>
-              {/* Fixed modal buttons at bottom */}
               <div className="modal-buttons">
                 <button type="submit" className="btn save-btn">
                   Save
