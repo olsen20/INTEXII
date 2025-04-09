@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../styles/AdminPage.css"; // Admin page styling
+import AuthorizeView from "../components/AuthorizeView";
+import { fetchAllMovies } from "../api/MovieAPI";
 
 // Define the Movie interface with all necessary fields
 interface Movie {
@@ -113,12 +115,14 @@ const AdminPage: React.FC = () => {
   // New state for a single selected genre
   const [selectedGenre, setSelectedGenre] = useState<string>("");
 
-  useEffect(() => {
-    fetch("https://localhost:5000/api/Movie/GetAllTitles")
-      .then((res) => res.json())
-      .then((data: Movie[]) => setMovies(data))
-      .catch((err) => console.error("Error fetching admin movies:", err));
-  }, []);
+   useEffect(() => {
+     Promise.all([fetchAllMovies()])
+       .then(([all]) => {
+         setMovies(all);
+         
+       })
+       .catch((err) => setError(err.message));
+   }, []);
 
   // Filter movies by title
   const filteredMovies = movies.filter((m) =>
@@ -205,6 +209,7 @@ const AdminPage: React.FC = () => {
         `https://localhost:5000/api/Admin/Movies/${showId}`,
         {
           method: "DELETE",
+          credentials: "include"
         }
       );
       if (response.ok) {
@@ -239,6 +244,7 @@ const AdminPage: React.FC = () => {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(updatedMovie),
+            credentials: "include",
           }
         );
 
@@ -260,6 +266,7 @@ const AdminPage: React.FC = () => {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(updatedMovie),
+            credentials: "include",
           }
         );
 
@@ -318,300 +325,307 @@ const AdminPage: React.FC = () => {
   };
 
   return (
-    <div className="bg-black text-white min-vh-100">
-      <Header />
-      <br />
+    <AuthorizeView>
+      
+      <div className="bg-black text-white min-vh-100">
+        <Header />
+        <br />
 
-      <div className="admin-manage-container">
-        <h1>Manage Movies</h1>
+        <div className="admin-manage-container">
+          <h1>Manage Movies</h1>
 
-        {/* Search Row */}
-        <div className="search-row">
-          <input
-            type="text"
-            placeholder="Search for a movie..."
-            value={searchTerm}
-            onChange={(e) => {
-              setSearchTerm(e.target.value);
-              setCurrentPage(1);
-            }}
-            className="search-bar"
-          />
-          <button className="btn add-movie-btn" onClick={handleAddMovie}>
-            + Add Movie
-          </button>
-        </div>
+          {/* Search Row */}
+          <div className="search-row">
+            <input
+              type="text"
+              placeholder="Search for a movie..."
+              value={searchTerm}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                setCurrentPage(1);
+              }}
+              className="search-bar"
+            />
+            <button className="btn add-movie-btn" onClick={handleAddMovie}>
+              + Add Movie
+            </button>
+          </div>
 
-        {/* Movie Table */}
-        <table className="admin-movie-table">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Type</th>
-              <th>Director</th>
-              <th>Release Year</th>
-              <th>Genres</th>
-              <th>Rating</th>
-              <th>Edit/Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredMovies
-              .slice(
-                (currentPage - 1) * itemsPerPage,
-                currentPage * itemsPerPage
-              )
-              .map((movie) => (
-                <tr key={movie.showId}>
-                  <td>{movie.title}</td>
-                  <td>{movie.typeField || "N/A"}</td>
-                  <td>{movie.director || "N/A"}</td>
-                  <td>{movie.releaseYear}</td>
-                  <td>{computeGenreLabel(movie)}</td>
-                  <td>{movie.rating || "N/A"}</td>
-                  <td>
-                    <button
-                      className="btn edit-btn"
-                      onClick={() => handleEditMovie(movie)}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className="btn delete-btn"
-                      onClick={() => handleDeleteMovie(movie.showId)}
-                    >
-                      Delete
-                    </button>
+          {/* Movie Table */}
+          <table className="admin-movie-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Type</th>
+                <th>Director</th>
+                <th>Release Year</th>
+                <th>Genres</th>
+                <th>Rating</th>
+                <th>Edit/Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredMovies
+                .slice(
+                  (currentPage - 1) * itemsPerPage,
+                  currentPage * itemsPerPage
+                )
+                .map((movie) => (
+                  <tr key={movie.showId}>
+                    <td>{movie.title}</td>
+                    <td>{movie.typeField || "N/A"}</td>
+                    <td>{movie.director || "N/A"}</td>
+                    <td>{movie.releaseYear}</td>
+                    <td>{computeGenreLabel(movie)}</td>
+                    <td>{movie.rating || "N/A"}</td>
+                    <td>
+                      <button
+                        className="btn edit-btn"
+                        onClick={() => handleEditMovie(movie)}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="btn delete-btn"
+                        onClick={() => handleDeleteMovie(movie.showId)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              {filteredMovies.length === 0 && (
+                <tr>
+                  <td colSpan={7} style={{ textAlign: "center" }}>
+                    No Movies Found
                   </td>
                 </tr>
-              ))}
-            {filteredMovies.length === 0 && (
-              <tr>
-                <td colSpan={7} style={{ textAlign: "center" }}>
-                  No Movies Found
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+              )}
+            </tbody>
+          </table>
 
-        {/* Pagination */}
-        <div className="pagination-controls">
-          <button
-            onClick={() => goToPage(currentPage - 1)}
-            disabled={currentPage === 1}
-          >
-            Prev
-          </button>
-          <span className="mx-2">{`Page ${currentPage} of ${totalPages}`}</span>
-          <button
-            onClick={() => goToPage(currentPage + 1)}
-            disabled={currentPage === totalPages}
-          >
-            Next
-          </button>
-        </div>
-      </div>
-
-      {/* Modal for Add/Edit */}
-      {(isAdding || isEditing) && (
-        <div className="modal-overlay" onClick={handleOverlayClick}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h2>{isAdding ? "Add Movie" : "Edit Movie"}</h2>
-            <form onSubmit={handleFormSubmit} id="movieForm">
-              <div className="modal-body">
-                <div className="form-group">
-                  <label>Title:</label>
-                  <input
-                    type="text"
-                    value={currentMovie.title || ""}
-                    onChange={(e) =>
-                      setCurrentMovie((prev) => ({
-                        ...prev,
-                        title: e.target.value,
-                      }))
-                    }
-                    required
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Type:</label>
-                  <select
-                    value={currentMovie.typeField || ""}
-                    onChange={(e) =>
-                      setCurrentMovie((prev) => ({
-                        ...prev,
-                        typeField: e.target.value,
-                      }))
-                    }
-                    required
-                  >
-                    <option value="">-- Select Type --</option>
-                    <option value="Movie">Movie</option>
-                    <option value="TV Show">TV Show</option>
-                  </select>
-                </div>
-                <div className="form-group">
-                  <label>Director:</label>
-                  <input
-                    type="text"
-                    value={currentMovie.director || ""}
-                    onChange={(e) =>
-                      setCurrentMovie((prev) => ({
-                        ...prev,
-                        director: e.target.value,
-                      }))
-                    }
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Cast:</label>
-                  <input
-                    type="text"
-                    value={currentMovie.castField || ""}
-                    onChange={(e) =>
-                      setCurrentMovie((prev) => ({
-                        ...prev,
-                        castField: e.target.value,
-                      }))
-                    }
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Country:</label>
-                  <input
-                    type="text"
-                    value={currentMovie.country || ""}
-                    onChange={(e) =>
-                      setCurrentMovie((prev) => ({
-                        ...prev,
-                        country: e.target.value,
-                      }))
-                    }
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Release Year:</label>
-                  <input
-                    type="number"
-                    value={currentMovie.releaseYear || 0}
-                    onChange={(e) =>
-                      setCurrentMovie((prev) => ({
-                        ...prev,
-                        releaseYear: +e.target.value,
-                      }))
-                    }
-                    required
-                  />
-                </div>
-                <div className="form-group">
-                  <label>MPAA/TV Rating:</label>
-                  <select
-                    value={currentMovie.rating || ""}
-                    onChange={(e) =>
-                      setCurrentMovie((prev) => ({
-                        ...prev,
-                        rating: e.target.value,
-                      }))
-                    }
-                  >
-                    <option value="">-- Select Rating --</option>
-                    <option value="G">G</option>
-                    <option value="PG">PG</option>
-                    <option value="PG-13">PG-13</option>
-                    <option value="R">R</option>
-                    <option value="NC-17">NC-17</option>
-                    <option value="TV-Y">TV-Y</option>
-                    <option value="TV-Y7">TV-Y7</option>
-                    <option value="TV-G">TV-G</option>
-                    <option value="TV-PG">TV-PG</option>
-                    <option value="TV-14">TV-14</option>
-                    <option value="TV-MA">TV-MA</option>
-                  </select>
-                </div>
-                <div className="form-group">
-                  <label>Duration:</label>
-                  <input
-                    type="text"
-                    value={currentMovie.duration || ""}
-                    onChange={(e) =>
-                      setCurrentMovie((prev) => ({
-                        ...prev,
-                        duration: e.target.value,
-                      }))
-                    }
-                    required
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Description:</label>
-                  <textarea
-                    value={currentMovie.description || ""}
-                    onChange={(e) =>
-                      setCurrentMovie((prev) => ({
-                        ...prev,
-                        description: e.target.value,
-                      }))
-                    }
-                    required
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Poster URL:</label>
-                  <input
-                    type="text"
-                    value={currentMovie.posterUrl || ""}
-                    onChange={(e) =>
-                      setCurrentMovie((prev) => ({
-                        ...prev,
-                        posterUrl: e.target.value,
-                      }))
-                    }
-                    required
-                  />
-                </div>
-                {/* Genre Section: Single-select dropdown */}
-                <div className="form-group">
-                  <label>Genre:</label>
-                  <select
-                    value={selectedGenre}
-                    onChange={(e) => setSelectedGenre(e.target.value)}
-                    required
-                  >
-                    <option value="">-- Select a Genre --</option>
-                    {genreMap.map((g) => (
-                      <option key={g.key} value={g.key}>
-                        {g.label}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-              <div className="modal-buttons">
-                <button type="submit" className="btn save-btn">
-                  Save
-                </button>
-                <button
-                  type="button"
-                  className="btn cancel-btn"
-                  onClick={() => {
-                    setIsAdding(false);
-                    setIsEditing(false);
-                    setCurrentMovie({});
-                    setSelectedGenre("");
-                  }}
-                >
-                  Cancel
-                </button>
-              </div>
-            </form>
+          {/* Pagination */}
+          <div className="pagination-controls">
+            <button
+              onClick={() => goToPage(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              Prev
+            </button>
+            <span className="mx-2">{`Page ${currentPage} of ${totalPages}`}</span>
+            <button
+              onClick={() => goToPage(currentPage + 1)}
+              disabled={currentPage === totalPages}
+            >
+              Next
+            </button>
           </div>
         </div>
-      )}
 
-      <Footer />
-    </div>
+        {/* Modal for Add/Edit */}
+        {(isAdding || isEditing) && (
+          <div className="modal-overlay" onClick={handleOverlayClick}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <h2>{isAdding ? "Add Movie" : "Edit Movie"}</h2>
+              <form onSubmit={handleFormSubmit} id="movieForm">
+                <div className="modal-body">
+                  <div className="form-group">
+                    <label>Title:</label>
+                    <input
+                      type="text"
+                      value={currentMovie.title || ""}
+                      onChange={(e) =>
+                        setCurrentMovie((prev) => ({
+                          ...prev,
+                          title: e.target.value,
+                        }))
+                      }
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Type:</label>
+                    <select
+                      value={currentMovie.typeField || ""}
+                      onChange={(e) =>
+                        setCurrentMovie((prev) => ({
+                          ...prev,
+                          typeField: e.target.value,
+                        }))
+                      }
+                      required
+                    >
+                      <option value="">-- Select Type --</option>
+                      <option value="Movie">Movie</option>
+                      <option value="TV Show">TV Show</option>
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label>Director:</label>
+                    <input
+                      type="text"
+                      value={currentMovie.director || ""}
+                      onChange={(e) =>
+                        setCurrentMovie((prev) => ({
+                          ...prev,
+                          director: e.target.value,
+                        }))
+                      }
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Cast:</label>
+                    <input
+                      type="text"
+                      value={currentMovie.castField || ""}
+                      onChange={(e) =>
+                        setCurrentMovie((prev) => ({
+                          ...prev,
+                          castField: e.target.value,
+                        }))
+                      }
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Country:</label>
+                    <input
+                      type="text"
+                      value={currentMovie.country || ""}
+                      onChange={(e) =>
+                        setCurrentMovie((prev) => ({
+                          ...prev,
+                          country: e.target.value,
+                        }))
+                      }
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Release Year:</label>
+                    <input
+                      type="number"
+                      value={currentMovie.releaseYear || 0}
+                      onChange={(e) =>
+                        setCurrentMovie((prev) => ({
+                          ...prev,
+                          releaseYear: +e.target.value,
+                        }))
+                      }
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>MPAA/TV Rating:</label>
+                    <select
+                      value={currentMovie.rating || ""}
+                      onChange={(e) =>
+                        setCurrentMovie((prev) => ({
+                          ...prev,
+                          rating: e.target.value,
+                        }))
+                      }
+                    >
+                      <option value="">-- Select Rating --</option>
+                      <option value="G">G</option>
+                      <option value="PG">PG</option>
+                      <option value="PG-13">PG-13</option>
+                      <option value="R">R</option>
+                      <option value="NC-17">NC-17</option>
+                      <option value="TV-Y">TV-Y</option>
+                      <option value="TV-Y7">TV-Y7</option>
+                      <option value="TV-G">TV-G</option>
+                      <option value="TV-PG">TV-PG</option>
+                      <option value="TV-14">TV-14</option>
+                      <option value="TV-MA">TV-MA</option>
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label>Duration:</label>
+                    <input
+                      type="text"
+                      value={currentMovie.duration || ""}
+                      onChange={(e) =>
+                        setCurrentMovie((prev) => ({
+                          ...prev,
+                          duration: e.target.value,
+                        }))
+                      }
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Description:</label>
+                    <textarea
+                      value={currentMovie.description || ""}
+                      onChange={(e) =>
+                        setCurrentMovie((prev) => ({
+                          ...prev,
+                          description: e.target.value,
+                        }))
+                      }
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Poster URL:</label>
+                    <input
+                      type="text"
+                      value={currentMovie.posterUrl || ""}
+                      onChange={(e) =>
+                        setCurrentMovie((prev) => ({
+                          ...prev,
+                          posterUrl: e.target.value,
+                        }))
+                      }
+                      required
+                    />
+                  </div>
+                  {/* Genre Section: Single-select dropdown */}
+                  <div className="form-group">
+                    <label>Genre:</label>
+                    <select
+                      value={selectedGenre}
+                      onChange={(e) => setSelectedGenre(e.target.value)}
+                      required
+                    >
+                      <option value="">-- Select a Genre --</option>
+                      {genreMap.map((g) => (
+                        <option key={g.key} value={g.key}>
+                          {g.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+                <div className="modal-buttons">
+                  <button type="submit" className="btn save-btn">
+                    Save
+                  </button>
+                  <button
+                    type="button"
+                    className="btn cancel-btn"
+                    onClick={() => {
+                      setIsAdding(false);
+                      setIsEditing(false);
+                      setCurrentMovie({});
+                      setSelectedGenre("");
+                    }}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+
+        <Footer />
+      </div>
+    </AuthorizeView>
   );
 };
 
 export default AdminPage;
+function setError(message: any): any {
+  throw new Error("Function not implemented.");
+}
+

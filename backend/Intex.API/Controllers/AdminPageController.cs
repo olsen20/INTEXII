@@ -4,11 +4,12 @@ using Intex.API.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-// using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Intex.API.Controllers
 {
-    // [Authorize(Roles = "Administrator")] 
+    [Authorize(Roles = "Administrator")] 
+    //[Authorize]
     [Route("api/Admin/[controller]")]
     [ApiController]
     public class MoviesController : ControllerBase
