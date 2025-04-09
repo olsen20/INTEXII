@@ -188,7 +188,7 @@ const SearchPage: React.FC = () => {
           />
         </div>
 
-        <div className="movies-grid-container">
+        <div className="carousel-fade-in movies-grid-container">
           {pageMovies.map((movie) => (
             <MovieCard key={movie.showId} movie={movie} />
           ))}

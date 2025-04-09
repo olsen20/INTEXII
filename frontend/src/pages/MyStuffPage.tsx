@@ -42,21 +42,21 @@ function MyStuffPage() {
 
           {/* Favorite Movies (rated 5 stars) */}
           <div className="section">
-              <div className="px-5">
+              <div className="carousel-fade-in px-5">
               <CarouselRow title="My Favorites" movies={favorites} />
               </div>
           </div>
 
           {/* Movies the user has rated */}
           <div className="section">
-              <div className="px-5">
+              <div className="carousel-fade-in px-5">
                   <CarouselRow title="Movies I've Rated" movies={rated} />
               </div>
           </div>
 
           {/* Recommended movies to watch based on the user */}
           <div className="section">
-              <div className="px-5">
+              <div className="carousel-fade-in px-5">
                   <CarouselRow title="Recommended for Me" movies={userRecs} />
               </div>
           </div>
