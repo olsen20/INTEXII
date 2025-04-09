@@ -5,6 +5,8 @@ import { Movie } from "../types/Movies";
 import MovieCard from "../components/MovieCard";
 import GenreCarousel from "../components/GenreCarousel";
 import "../styles/SearchPage.css";
+import AuthorizeView from "../components/AuthorizeView";
+import { fetchAllMovies } from "../api/MovieAPI";
 
 // Mapping of sub-genres to the corresponding API fields.
 const subGenreMap: { [key: string]: string[] } = {
@@ -57,6 +59,7 @@ const subGenreMap: { [key: string]: string[] } = {
 const SearchPage: React.FC = () => {
   // Raw movie data
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [error, setError] = useState("");
 
   // Filters, search & sort
   const [searchTerm, setSearchTerm] = useState("");
@@ -68,14 +71,11 @@ const SearchPage: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 30;
 
+  // Retrieve all movies in the database
   useEffect(() => {
-    // Fetch all data from your "all titles" endpoint
-    fetch("https://localhost:5000/api/Movie/GetAllTitles")
-      .then((res) => res.json())
-      .then((data: Movie[]) => {
-        setMovies(data);
-      })
-      .catch((err) => console.error("Error fetching data:", err));
+    fetchAllMovies()
+      .then(setMovies)
+      .catch((err) => setError(err.message));
   }, []);
 
   // Handlers
@@ -152,67 +152,69 @@ const SearchPage: React.FC = () => {
   };
 
   return (
-    <div className="bg-black text-white min-vh-100">
-      <Header />
-      <br />
-      <br />
-      <div className="search-container">
-        <input
-          type="text"
-          placeholder="Search by Title..."
-          value={searchTerm}
-          onChange={handleSearchChange}
-          className="search-bar"
-        />
-        <br></br>
-        <div className="filter-sort-menu">
-          {/* Media Type */}
-          <select value={mediaTypeFilter} onChange={handleMediaTypeChange}>
-            <option value="all">All Media</option>
-            <option value="movie">Movies</option>
-            <option value="tv">TV Shows</option>
-          </select>
-          {/* Sort by Title */}
-          <select value={sortBy} onChange={handleSortChange}>
-            <option value="titleAsc">Title (A-Z)</option>
-            <option value="titleDesc">Title (Z-A)</option>
-          </select>
+    <AuthorizeView>
+      <div className="bg-black text-white min-vh-100">
+        <Header />
+        <br />
+        <br />
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Search by Title..."
+            value={searchTerm}
+            onChange={handleSearchChange}
+            className="search-bar"
+          />
+          <br></br>
+          <div className="filter-sort-menu">
+            {/* Media Type */}
+            <select value={mediaTypeFilter} onChange={handleMediaTypeChange}>
+              <option value="all">All Media</option>
+              <option value="movie">Movies</option>
+              <option value="tv">TV Shows</option>
+            </select>
+            {/* Sort by Title */}
+            <select value={sortBy} onChange={handleSortChange}>
+              <option value="titleAsc">Title (A-Z)</option>
+              <option value="titleDesc">Title (Z-A)</option>
+            </select>
+          </div>
+
+          {/* New Genre Carousel */}
+          <GenreCarousel
+            subGenreMap={subGenreMap}
+            selectedGenres={genreFilters}
+            onToggleGenre={handleGenreChange}
+          />
         </div>
 
-        {/* New Genre Carousel */}
-        <GenreCarousel
-          subGenreMap={subGenreMap}
-          selectedGenres={genreFilters}
-          onToggleGenre={handleGenreChange}
-        />
-      </div>
+        <div className="movies-grid-container">
+          {pageMovies.map((movie) => (
+            <MovieCard key={movie.showId} movie={movie} />
+          ))}
+        </div>
 
-      <div className="movies-grid-container">
-        {pageMovies.map((movie) => (
-          <MovieCard key={movie.showId} movie={movie} />
-        ))}
-      </div>
+        <div className="pagination-controls">
+          <br></br>
+          <button
+            onClick={() => goToPage(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            Prev
+          </button>
+          <span className="mx-2">{`Page ${currentPage} of ${totalPages}`}</span>
+          <button
+            onClick={() => goToPage(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            Next
+          </button>
+          <br></br>
+        </div>
 
-      <div className="pagination-controls">
-        <br></br>
-        <button
-          onClick={() => goToPage(currentPage - 1)}
-          disabled={currentPage === 1}
-        >
-          Prev
-        </button>
-        <span className="mx-2">{`Page ${currentPage} of ${totalPages}`}</span>
-        <button
-          onClick={() => goToPage(currentPage + 1)}
-          disabled={currentPage === totalPages}
-        >
-          Next
-        </button>
-        <br></br>
+        <Footer />
       </div>
-
-      <Footer />
-    </div>
+    </AuthorizeView>
   );
 };
 

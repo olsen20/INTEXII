@@ -5,44 +5,64 @@ import "../styles/MyStuffPage.css";
 import CarouselRow from "../components/CarouselRow";
 import { useEffect, useState } from "react";
 import { fetchFavoriteMovies, fetchRatedMovies } from "../api/MovieAPI";
+import { fetchUserRecommendations } from "../api/RecommenderAPI";
+import { Movie } from "../types/Movies";
+import AuthorizeView from "../components/AuthorizeView";
 
 function MyStuffPage() {
-    const [favorites, setFavorites] = useState<any[]>([]);
-    const [rated, setRated] = useState<any[]>([]);
+    const [favorites, setFavorites] = useState<Movie[]>([]);
+    const [rated, setRated] = useState<Movie[]>([]);
+    const [userRecs, setUserRecs] = useState<Movie[]>([]);
     const [error, setError] = useState("");
 
     useEffect(() => {
-        // Fetch both favorites and rated movies
-        Promise.all([fetchFavoriteMovies(), fetchRatedMovies()])
-        .then(([favoritesData, ratedData]) => {
-            setFavorites(favoritesData);
-            setRated(ratedData);
+      // Fetch favorites, rated, and user-specific recommendations
+      Promise.all([
+        fetchFavoriteMovies(),
+        fetchRatedMovies(),
+        fetchUserRecommendations("1")  // Hard-coded for now
+      ])
+        .then(([favoritesData, ratedData, recommendations]) => {
+          setFavorites(favoritesData);
+          setRated(ratedData);
+          setUserRecs(recommendations);
         })
         .catch((err) => setError(err.message));
     }, []);
   
   return (
     <>
-      <Header />
-      <div className="my-stuff-container">
-        <div className="profile-header">
-          <FaUserCircle className="profile-icon" />
-          <h1 className="page-title">My Stuff</h1>
-        </div>
+      <AuthorizeView>
+        <Header />
+        <div className="my-stuff-container">
+          <div className="profile-header">
+            <FaUserCircle className="profile-icon" />
+            <h1 className="page-title">My Stuff</h1>
+          </div>
 
-        <div className="section">
-            <div className="px-5">
-            <CarouselRow title="My Favorites" movies={favorites} />
-            </div>
-        </div>
+          {/* Favorite Movies (rated 5 stars) */}
+          <div className="section">
+              <div className="px-5">
+              <CarouselRow title="My Favorites" movies={favorites} />
+              </div>
+          </div>
 
-        <div className="section">
-            <div className="px-5">
-                <CarouselRow title="Movies I've Rated" movies={rated} />
-            </div>
+          {/* Movies the user has rated */}
+          <div className="section">
+              <div className="px-5">
+                  <CarouselRow title="Movies I've Rated" movies={rated} />
+              </div>
+          </div>
+
+          {/* Recommended movies to watch based on the user */}
+          <div className="section">
+              <div className="px-5">
+                  <CarouselRow title="Movies We Think You'll Like:" movies={userRecs} />
+              </div>
+          </div>
         </div>
-      </div>
-      <Footer />
+        <Footer />
+      </AuthorizeView>
     </>
   );
 }

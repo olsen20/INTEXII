@@ -603,5 +603,42 @@
         "StatusCode": 400
       }
     ]
+  },
+  {
+    "ContainingType": "Intex.API.Controllers.RoleController",
+    "Method": "AddRole",
+    "RelativePath": "Role/AddRole",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Intex.API.Dtos.RoleDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Intex.API.Controllers.RoleController",
+    "Method": "AssignRoleToUser",
+    "RelativePath": "Role/AssignRoleToUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userEmail",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "roleName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

@@ -1,8 +1,19 @@
+import { Movie } from "../types/Movies";
+
 // Configure URL
 const API_URL = "https://localhost:5000/api/Movie";
 
+// Return all movies in the database
+export async function fetchAllMovies(): Promise<Movie[]> {
+  const response = await fetch(`${API_URL}/GetAllTitles`, {
+    credentials: "include",
+  });
+  if (!response.ok) throw new Error("Failed to fetch movies");
+  return await response.json();
+}
+
 // Get the top 10 most trending movies
-export async function fetchTrendingMovies(): Promise<any[]> {
+export async function fetchTrendingMovies(): Promise<Movie[]> {
     try {
       const response = await fetch(`${API_URL}/top10`);
       if (!response.ok) throw new Error("Failed to fetch trending movies");
@@ -16,7 +27,9 @@ export async function fetchTrendingMovies(): Promise<any[]> {
 
 // Get the movie details by a show_id
 export async function fetchMovieById(showId: string) {
-    const response = await fetch(`${API_URL}/Details/${showId}`);
+    const response = await fetch(`${API_URL}/Details/${showId}`, {
+      credentials: 'include',
+    });
   
     if (!response.ok) {
       throw new Error("Movie not found");
@@ -26,8 +39,8 @@ export async function fetchMovieById(showId: string) {
     return data;
   }
   
-  // Get the user's favorite movies (those rated 5 stars)
-  export async function fetchFavoriteMovies(): Promise<any[]> {
+// Get the user's favorite movies (those rated 5 stars)
+export async function fetchFavoriteMovies(): Promise<Movie[]> {
     const response = await fetch(`${API_URL}/favorites`, {
       credentials: "include",
     });
@@ -39,8 +52,8 @@ export async function fetchMovieById(showId: string) {
     return await response.json();
   }
   
-  // Get the movies that have been rated by the user
-  export async function fetchRatedMovies(): Promise<any[]> {
+// Get the movies that have been rated by the user
+export async function fetchRatedMovies(): Promise<Movie[]> {
     const response = await fetch(`${API_URL}/rated`, {
       credentials: "include",
     });

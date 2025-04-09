@@ -2,11 +2,14 @@ import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import TableOfContents from "../components/TableOfContents";
+import { useAuthStatus } from "../components/UseAuthStatus";
+import HeaderNotSignedIn from "../components/HeaderNotSignedIn";
 
 const ContactPage: React.FC = () => {
+  const isLoggedIn = useAuthStatus();  // Determine whether the user is logged in
   return (
     <>
-      <Header />
+      {isLoggedIn === null ? null : isLoggedIn ? <Header /> : <HeaderNotSignedIn />}
       <div className="container py-5" style={{ marginTop: "80px" }}>
         <div className="row">
           {/* Left Sidebar: Table of Contents */}
@@ -22,8 +25,8 @@ const ContactPage: React.FC = () => {
             <h1 className="fw-bold">Contact Us</h1>
             <br />
             <p>
-              We’d love to hear from you! If you have any questions, comments,
-              or feedback, please don’t hesitate to reach out.
+              We'd love to hear from you! If you have any questions, comments,
+              or feedback, please don't hesitate to reach out.
             </p>
             <br />
             <h2 className="fw-bold">Email</h2>

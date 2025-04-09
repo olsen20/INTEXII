@@ -47,7 +47,7 @@ export async function registerUser(
     } catch (err) {
       return { ok: false, message: "Network error." };
     }
-  };  
+};  
 
 
 // Login the user
@@ -64,7 +64,7 @@ export async function loginUser(email: string, password: string, rememberMe: boo
     });
   
     return response;
-  }
+}
   
 
 // Logout the user
@@ -76,7 +76,7 @@ export async function logoutUser(): Promise<Response> {
     });
   
     return response;
-  }
+}
 
 
 // Make sure the user is authenticated before accessing content
@@ -101,4 +101,4 @@ export async function getAuthenticatedUser(): Promise<User | null> {
       console.error("Auth check failed:", error);
       return null;
     }
-  }  
+}  
