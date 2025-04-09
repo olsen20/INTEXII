@@ -87,35 +87,31 @@
 /* Modal overlay: allow vertical scrolling if content exceeds viewport */
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 1000;
   display: flex;
   justify-content: center;
-  align-items: center;
-  overflow-y: auto; /* change from hidden to auto for vertical scrolling */
-  padding: 1rem; /* Add some padding so the modal doesn't touch the very edge */
+  align-items: center; /* stays centered */
+  overflow: hidden; /* don't scroll this! */
 }
 
-/* Modal content: wider and scrollable body */
 .modal-content {
+  width: 600px;
+  max-height: 80vh;
   background-color: #2a2a2a;
   border-radius: 8px;
-  width: 600px; /* Wider modal */
-  max-height: 80vh; /* Restrict height relative to viewport */
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: hidden; /* the scroll will go to .modal-body */
+  padding-top: 1rem;
 }
 
-/* The scrollable modal body that contains all form fields */
 .modal-body {
-  flex: 1 1 auto;
   padding: 2rem;
+  padding-bottom: 4rem;
   overflow-y: auto;
+  max-height: calc(80vh - 70px); /* leave space for buttons */
 }
 
 /* Hide modal body scrollbar if desired */
