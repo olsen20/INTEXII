@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace Intex.API.Controllers
 {
@@ -138,5 +140,56 @@ namespace Intex.API.Controllers
 
             return Ok(result);
         }
+
+        // Get the user's favorite movies (those rated 5 stars)
+        [HttpGet("favorites")]
+        [Authorize]
+        public async Task<ActionResult<IEnumerable<MovieTitle>>> GetFavoriteMovies()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (userId == null)
+            {
+                return Unauthorized("User is not logged in.");
+            }
+
+            var favoriteMovies = await _movieContext.MovieRatings
+                .Where(r => r.UserId == userId && r.Rating == 5)
+                .Join(
+                    _movieContext.MovieTitles,
+                    rating => rating.ShowId,
+                    movie => movie.ShowId,
+                    (rating, movie) => movie
+                )
+                .ToListAsync();
+
+            return Ok(favoriteMovies);
+        }
+
+        // Get the movies that have been rated by the user
+        [HttpGet("rated")]
+        [Authorize]
+        public async Task<ActionResult<IEnumerable<ListedMovieDTO>>> GetRatedMovies()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var ratedMovies = await _movieContext.MovieRatings
+                .Where(r => r.UserId == userId)
+                .Join(
+                    _movieContext.MovieTitles,
+                    rating => rating.ShowId,
+                    movie => movie.ShowId,
+                    (rating, movie) => new ListedMovieDTO
+                    {
+                        ShowId = movie.ShowId,
+                        Title = movie.Title,
+                        PosterUrl = movie.PosterUrl
+                    }
+                )
+                .ToListAsync();
+
+            return Ok(ratedMovies);
+        }
+
     }
 }
