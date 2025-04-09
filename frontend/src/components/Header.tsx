@@ -62,7 +62,7 @@ const Header: React.FC = () => {
               {/* Conditional admin button */}
               {!isLoading && role === "Administrator" && (
                 <li className="nav-item me-5">
-                  <Link className="nav-link" to="/admin">
+                  <Link className="button-fade-in nav-link" to="/admin">
                     Admin
                   </Link>
                 </li>

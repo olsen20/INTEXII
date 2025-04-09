@@ -106,3 +106,18 @@
   height: 30px;
   border-radius: 50%;
 }
+
+
+
+.button-fade-in {
+  animation: fadeInUp 1s ease forwards;
+  opacity: 0;
+  transform: translateY(0px);
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 2;
+    transform: translateY(0);
+  }
+}
