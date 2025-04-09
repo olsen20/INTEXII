@@ -7,20 +7,20 @@ import { useEffect, useState } from "react";
 import { fetchFavoriteMovies, fetchRatedMovies } from "../api/MovieAPI";
 
 function MyStuffPage() {
-    const [favorites, setFavorites] = useState<any[]>([]);
-    const [rated, setRated] = useState<any[]>([]);
-    const [error, setError] = useState("");
+  const [favorites, setFavorites] = useState<any[]>([]);
+  const [rated, setRated] = useState<any[]>([]);
+  const [error, setError] = useState("");
 
-    useEffect(() => {
-        // Fetch both favorites and rated movies
-        Promise.all([fetchFavoriteMovies(), fetchRatedMovies()])
-        .then(([favoritesData, ratedData]) => {
-            setFavorites(favoritesData);
-            setRated(ratedData);
-        })
-        .catch((err) => setError(err.message));
-    }, []);
-  
+  useEffect(() => {
+    // Fetch both favorites and rated movies
+    Promise.all([fetchFavoriteMovies(), fetchRatedMovies()])
+      .then(([favoritesData, ratedData]) => {
+        setFavorites(favoritesData);
+        setRated(ratedData);
+      })
+      .catch((err) => setError(err.message));
+  }, []);
+
   return (
     <>
       <Header />
@@ -30,16 +30,18 @@ function MyStuffPage() {
           <h1 className="page-title">My Stuff</h1>
         </div>
 
+        {error && <div className="error-message">Error: {error}</div>}
+
         <div className="section">
-            <div className="px-5">
+          <div className="px-5">
             <CarouselRow title="My Favorites" movies={favorites} />
-            </div>
+          </div>
         </div>
 
         <div className="section">
-            <div className="px-5">
-                <CarouselRow title="Movies I've Rated" movies={rated} />
-            </div>
+          <div className="px-5">
+            <CarouselRow title="Movies I've Rated" movies={rated} />
+          </div>
         </div>
       </div>
       <Footer />
