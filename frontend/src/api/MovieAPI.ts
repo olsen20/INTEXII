@@ -21,7 +21,31 @@ export async function fetchMovieById(showId: string) {
   if (!response.ok) {
     throw new Error("Movie not found");
   }
-
-  const data = await response.json();
-  return data;
 }
+  
+  // Get the user's favorite movies (those rated 5 stars)
+  export async function fetchFavoriteMovies(): Promise<any[]> {
+    const response = await fetch(`${API_URL}/favorites`, {
+      credentials: "include",
+    });
+  
+    if (!response.ok) {
+      throw new Error("Failed to fetch favorite movies.");
+    }
+  
+    return await response.json();
+  }
+  
+  // Get the movies that have been rated by the user
+  export async function fetchRatedMovies(): Promise<any[]> {
+    const response = await fetch(`${API_URL}/rated`, {
+      credentials: "include",
+    });
+  
+    if (!response.ok) {
+      throw new Error("Failed to fetch rated movies.");
+    }
+  
+    return await response.json();
+  }
+  

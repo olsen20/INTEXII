@@ -1,4 +1,4 @@
-.movie-card {
+.movie-cards {
   width: 10rem;
   border: none !important;
   position: relative; /* Enables absolute positioning for the rank overlay */
@@ -6,12 +6,12 @@
 }
 
 /* Hover scale effect for the entire card */
-.movie-card:hover {
+.movie-cards:hover {
   transform: scale(1.05);
 }
 
 /* The poster image inside the card */
-.movie-card img {
+.movie-cards img {
   width: 10rem;
   height: 15rem;
   object-fit: cover;
@@ -20,7 +20,7 @@
 }
 
 /* The ranking overlay, shown only if the card has the "top10" class + rank */
-.movie-card.top10 .top10-ranking {
+.movie-cards.top10 .top10-ranking {
   position: absolute;
   bottom: 100px; /* or top: 8px if you prefer it in the upper-left corner */
   left: 8px;
@@ -33,7 +33,7 @@
 }
 
 /* Card body (title area) */
-.movie-card-body {
+.movie-cards-body {
   background-color: #202020;
   padding: 0.5rem;
   height: 6rem;
@@ -43,7 +43,7 @@
   border: none;
 }
 
-.movieCard {
+.movieCards {
   background-color: "#333" !important;
   border: "none" !important;
   width: "10rem" !important;
