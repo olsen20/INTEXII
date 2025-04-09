@@ -19,10 +19,13 @@ import ScrollToTop from "./components/ScrollToTop";
 import AuthorizeView from "./components/AuthorizeView";
 import CookieConsent, { getCookieConsentValue } from "react-cookie-consent";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { RoleProvider } from "./context/RoleContext"; // Import RoleProvider
 
 function App() {
   return (
-    <>
+    <RoleProvider>
+      {" "}
+      {/* Wrap everything with RoleProvider */}
       <Router>
         <ScrollToTop />
         <Routes>
@@ -56,7 +59,6 @@ function App() {
           />
         </Routes>
       </Router>
-
       {/* Cookie Consent Section */}
       <CookieConsent
         location="bottom"
@@ -87,7 +89,7 @@ function App() {
         We use cookies to personalize content and improve your experience. By
         clicking "Accept", you agree to our use of cookies.
       </CookieConsent>
-    </>
+    </RoleProvider> // End of RoleProvider
   );
 }
 
