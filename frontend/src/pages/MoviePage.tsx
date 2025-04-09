@@ -8,13 +8,28 @@ import "../index.css";
 import "../styles/MovieCard.css";
 import { fetchAllMovies, fetchTrendingMovies } from "../api/MovieAPI";
 import { fetchUserRecommendations } from "../api/RecommenderAPI";
-
+import SplashScreen from "../components/SplashScreen";
 import AuthorizeView from "../components/AuthorizeView";
 
 const MoviePage: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [top10Movies, setTop10Movies] = useState<Movie[]>([]);
   const [error, setError] = useState("");
+
+  const [showSplash, setShowSplash] = useState(() => {
+    return sessionStorage.getItem("splashShown") !== "true";
+  });
+
+  useEffect(() => {
+    if (showSplash) {
+      const timer = setTimeout(() => {
+        setShowSplash(false);
+        sessionStorage.setItem("splashShown", "true"); // ✅ Set the flag
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [showSplash]);
 
   // Retrieve list of all movies and list of trending (top 10) movies, and user recs
   useEffect(() => {
@@ -46,18 +61,38 @@ const MoviePage: React.FC = () => {
   const tvShowsCategory = movies.filter(
     (movie) => movie.typeField?.toLowerCase() === "tv show"
   );
-  const actionMovies = movies.filter((movie) => movie.action || movie.tvAction === 1);
+  const actionMovies = movies.filter(
+    (movie) => movie.action || movie.tvAction === 1
+  );
   const comedyMovies = movies.filter((movie) => movie.comedies === 1);
   const documentaryMovies = movies.filter((movie) => movie.documentaries === 1);
   const horrorMovies = movies.filter((movie) => movie.horrorMovies === 1);
   const adventureMovies = movies.filter((movie) => movie.adventure === 1);
-  const animeMovies = movies.filter((movie) => movie.animeSeriesInternationalTvShows === 1);
-  const kidsMovies = movies.filter((movie) => movie.children || movie.familyMovies === 1);
-  const romanceMovies = movies.filter((movie) => movie.dramasRomanticMovies || movie.comediesRomanticMovies === 1);
-  const thrillerMovies = movies.filter((movie) => movie.thrillers || movie.internationalMoviesThrillers === 1);
+  const animeMovies = movies.filter(
+    (movie) => movie.animeSeriesInternationalTvShows === 1
+  );
+  const kidsMovies = movies.filter(
+    (movie) => movie.children || movie.familyMovies === 1
+  );
+  const romanceMovies = movies.filter(
+    (movie) => movie.dramasRomanticMovies || movie.comediesRomanticMovies === 1
+  );
+  const thrillerMovies = movies.filter(
+    (movie) => movie.thrillers || movie.internationalMoviesThrillers === 1
+  );
   const fantasyMovies = movies.filter((movie) => movie.fantasy === 1);
-  const crimeMovies = movies.filter((movie) => movie.crimeTvShowsDocuseries === 1);
-  const dramaMovies = movies.filter((movie) => movie.comediesDramasInternationalMovies || movie.dramas || movie.dramasInternationalMovies || movie.dramasRomanticMovies || movie.internationalTvShowsRomanticTvShowsTvDramas || movie.tvDramas === 1);
+  const crimeMovies = movies.filter(
+    (movie) => movie.crimeTvShowsDocuseries === 1
+  );
+  const dramaMovies = movies.filter(
+    (movie) =>
+      movie.comediesDramasInternationalMovies ||
+      movie.dramas ||
+      movie.dramasInternationalMovies ||
+      movie.dramasRomanticMovies ||
+      movie.internationalTvShowsRomanticTvShowsTvDramas ||
+      movie.tvDramas === 1
+  );
 
   const sections = [
     {
@@ -113,6 +148,8 @@ const MoviePage: React.FC = () => {
 
   return (
     <AuthorizeView>
+      <>{showSplash && <SplashScreen />}</>
+
       <div className="bg-black text-white min-vh-100 pt-5">
         <Header />
         {/* Hero section at the top using the trailer */}

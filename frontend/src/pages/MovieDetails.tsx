@@ -72,7 +72,7 @@ function MovieDetails() {
 
               {/* Poster Image */}
               <img
-                  src={movie.posterUrl}
+                  src={movie.posterUrl || "/posters/default.png"}
                   alt={movie.title}
                   className="movie-poster"
                   onError={(e) => {
