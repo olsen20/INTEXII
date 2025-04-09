@@ -34,11 +34,11 @@ const HeaderNotSignedIn: React.FC = () => {
         {/* Left Section: Logo */}
         <div className="d-flex align-items-center">
           <Link className="navbar-brand me-5" to="/">
-            <img
-              src={fullLogo2}
-              alt="CineNiche Logo"
-              style={{ height: "50px" }}
-            />
+          <img
+            src={fullLogo2}
+            alt="CineNiche Logo"
+            className="header-logo"
+          />
           </Link>
         </div>
         {/* Right Section: Login and Sign Up */}

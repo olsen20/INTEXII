@@ -38,11 +38,11 @@ const Header: React.FC = () => {
           <div className="d-flex align-items-center">
             {/* Logo */}
             <Link className="navbar-brand me-5" to="/browse">
-              <img
-                src={fullLogo2}
-                alt="CineNiche Logo"
-                style={{ height: "50px" }}
-              />
+            <img
+              src={fullLogo2}
+              alt="CineNiche Logo"
+              className="header-logo"
+            />
             </Link>
             {/* Navigation Links */}
             <ul className="navbar-nav d-flex flex-row">
@@ -64,19 +64,16 @@ const Header: React.FC = () => {
             <ul className="navbar-nav d-flex flex-row">
               <li className="nav-item me-5">
                 <Link className="nav-link" to="/search">
-                  <i
-                    className="bi bi-search"
-                    style={{ fontSize: "1.2rem" }}
-                  ></i>
+                <i className="bi bi-search search-icon"></i>
                 </Link>
               </li>
               <li className="nav-item me-5">
                 <Link className="nav-link" to="/mystuff">
-                  <img
-                    src={profileIcon}
-                    alt="Profile"
-                    style={{ height: "30px", borderRadius: "50%" }}
-                  />
+                <img
+                  src={profileIcon}
+                  alt="Profile"
+                  className="profile-icon"
+                />
                 </Link>
               </li>
               <li className="nav-item me-5">

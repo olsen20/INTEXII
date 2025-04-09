@@ -191,3 +191,19 @@
     color: #fff;
   }
   
+  .bg-cult-favorites {
+    background-image: url("../../AmarAkbarAnthony.jpg");
+  }
+  
+  .bg-global-stories {
+    background-image: url("../../InuYasha.jpg");
+  }
+  
+  .bg-unfiltered-truth {
+    background-image: url("../../TheFearof13.jpg");
+  }
+  
+  .bg-indie-films {
+    background-image: url("../../BadDayfortheCut.jpg");
+  }
+  

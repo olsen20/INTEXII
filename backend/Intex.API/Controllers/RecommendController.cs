@@ -64,7 +64,7 @@ namespace Intex.API.Controllers
 
             if (recommendations == null)
             {
-                return NotFound(new { message = "No recommendations found for this ShowId" });
+                return NoContent(); // Return 204 if no entry exists for this show
             }
 
             var recommendationIds = new List<string?>
@@ -83,13 +83,19 @@ namespace Intex.API.Controllers
             .Where(id => !string.IsNullOrEmpty(id))
             .ToList();
 
+            if (!recommendationIds.Any())
+            {
+                return NoContent(); // Return 204 if the record exists but contains no recommendations
+            }
+
             var recommendedMovies = await _context.MovieTitles
                 .Where(m => recommendationIds.Contains(m.ShowId))
                 .ToListAsync();
 
-            return Ok(recommendedMovies); // ✅ Ensures a return value
+            return Ok(recommendedMovies);
         }
 
+        // SHOW-BASED (content) RECOMMENDATIONS
         [HttpGet("content/{showId}")]
         public async Task<ActionResult<IEnumerable<MovieTitle>>> GetContentRecommendations(string showId)
         {
@@ -100,7 +106,7 @@ namespace Intex.API.Controllers
 
             if (contentRecommendations == null || contentRecommendations.Count == 0)
             {
-                return NotFound(new { message = "No content recommendations found for this ShowId" });
+                return NoContent(); // Return 204 instead of 404 if no recommendations exist
             }
 
             // Step 2: Extract the ContentRecommendation values (recommended ShowIds)
@@ -108,6 +114,11 @@ namespace Intex.API.Controllers
                 .Select(cr => cr.Recommendation)
                 .Where(id => !string.IsNullOrEmpty(id))
                 .ToList();
+
+            if (!recommendationIds.Any())
+            {
+                return NoContent(); // Return 204 if the recommendations are empty/null
+            }
 
             // Step 3: Query the MovieTitles table to get the recommended movies by their ShowIds
             var recommendedMovies = await _context.MovieTitles
