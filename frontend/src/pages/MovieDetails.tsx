@@ -6,27 +6,43 @@ import StarRating from "../components/StarRating";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../styles/MovieDetails.css";
+import CarouselRow from "../components/CarouselRow";
+import { fetchCollaborativeRecommendations, fetchContentRecommendations } from "../api/RecommenderAPI";
 
 function MovieDetails() {
   const { showId } = useParams();
   const [movie, setMovie] = useState<any>(null);
   const [error, setError] = useState("");
   const [userRating, setUserRating] = useState<number>(0);
+  const [colRecommendations, setColRecommendations] = useState<any[]>([]);
+  const [conRecommendations, setConRecommendations] = useState<any[]>([]);
 
   useEffect(() => {
     if (showId) {
+      setMovie(null);  // Reset movie to trigger loading state
+      setUserRating(0);  // Reset user rating to prevent previous carry-over
 
       // Retrieve the movie details
       fetchMovieById(showId)
         .then((data) => setMovie(data))
         .catch((err) => setError(err.message));
       
-        // Retrieve the user rating (if provided)
+      // Retrieve the user rating (if provided)
       getUserRating(showId)
         .then((rating) => {
           if (rating !== null) setUserRating(rating);
         })
         .catch(() => console.error("Could not load user rating."));
+
+      // Use Content filtering to get which movies are similar
+      fetchContentRecommendations(showId)
+        .then(setConRecommendations)
+        .catch((err) => console.error("Failed to fetch Content recommendations:", err));
+
+      // Use Collaborative Filtering to get which movies viewers also watched
+      fetchCollaborativeRecommendations(showId)
+        .then(setColRecommendations)
+        .catch((err) => console.error("Failed to fetch Collaborative recommendations:", err));
     }
   }, [showId]);
 
@@ -108,6 +124,36 @@ function MovieDetails() {
           </div>
         </div>
       </div>
+
+      {/* Recommended Movie Carousels */}
+      <div className="recommended-section">
+
+        {/* Content Filtering */}
+        {conRecommendations.length > 0 && (
+          <div className="trending px-5">
+            <CarouselRow
+              title="More Movies Like This:"
+              movies={conRecommendations}
+              limit={10}
+              showRanking={false}
+            />
+          </div>
+        )}
+
+        {/* Collaborative Filtering */}
+        {colRecommendations.length > 0 && (
+          <div className="trending px-5">
+            <CarouselRow
+              title="Viewers Who Watched This Also Watched:"
+              movies={colRecommendations}
+              limit={10}
+              showRanking={false}
+            />
+          </div>
+        )}
+      </div>
+
+
       <Footer />
     </>
   );

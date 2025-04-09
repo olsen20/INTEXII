@@ -1,6 +1,7 @@
 // Configure URL
 const API_URL = "https://localhost:5000/api/Movie";
 
+// Get the top 10 most trending movies
 export async function fetchTrendingMovies(): Promise<any[]> {
     try {
       const response = await fetch(`${API_URL}/top10`);
@@ -50,4 +51,3 @@ export async function fetchMovieById(showId: string) {
   
     return await response.json();
   }
-  
