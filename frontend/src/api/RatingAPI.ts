@@ -1,6 +1,6 @@
 // Configure URL
 const API_URL =
-  "https://cineniche2-backend-gvduhzdyd9e0gea2.eastus-01.azurewebsites.net/api/Rating";
+  "https://localhost:5000/api/Rating";
 
 // Get the User Rating for an individual movie
 export async function getUserRating(showId: string): Promise<number | null> {
