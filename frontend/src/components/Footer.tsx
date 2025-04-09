@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="footer full-width-footer bg-dark text-white pt-4">
-      <div className="container-fluid px-5">
+      <div className="footer container-fluid px-5">
         {/* Single row with three columns */}
         <div className="row">
           {/* Left-aligned column */}
