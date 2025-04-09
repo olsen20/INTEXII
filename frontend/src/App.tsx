@@ -13,6 +13,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import MovieDetails from "./pages/MovieDetails";
+import MyStuffPage from "./pages/MyStuffPage";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/terms" element={<TermsOfServicePage />} />
         <Route path="/about" element={<AboutUsPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/mystuff" element={<MyStuffPage />} />
       </Routes>
     </Router>
   );
