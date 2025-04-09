@@ -103,3 +103,18 @@
     background-color: #777;
   }
   
+
+
+  .carousel-fade-in {
+    animation: fadeInUp 2s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 2;
+      transform: translateY(0);
+    }
+  }
+  
