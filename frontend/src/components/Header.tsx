@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../styles/Header.css"; // Import custom CSS for slide-up/slide-down animations
 import fullLogo2 from "../assets/fullLogo2.png"; // Logo image
 import profileIcon from "../assets/profileIcon.png"; // Profile icon image
@@ -8,7 +8,6 @@ import Logout from "../components/Logout"; // Import the Logout component
 const Header: React.FC = () => {
   const [showHeader, setShowHeader] = useState<boolean>(true);
   const lastScrollY = useRef<number>(window.pageYOffset);
-  const navigate = useNavigate();
 
   const controlHeader = () => {
     const currentScrollY = window.pageYOffset;
@@ -72,7 +71,7 @@ const Header: React.FC = () => {
                 </Link>
               </li>
               <li className="nav-item me-5">
-                <Link className="nav-link" to="/account">
+                <Link className="nav-link" to="/mystuff">
                   <img
                     src={profileIcon}
                     alt="Profile"
