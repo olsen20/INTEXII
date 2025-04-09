@@ -3,6 +3,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import AuthorizeView from "../components/AuthorizeView";
 import "../styles/AdminPage.css"; // Admin page styling
+import AuthorizeView from "../components/AuthorizeView";
+import { fetchAllMovies } from "../api/MovieAPI";
 
 // Define the Movie interface with all necessary fields
 interface Movie {
@@ -114,12 +116,14 @@ const AdminPage: React.FC = () => {
   // New state for a single selected genre
   const [selectedGenre, setSelectedGenre] = useState<string>("");
 
-  useEffect(() => {
-    fetch("https://localhost:5000/api/Movie/GetAllTitles")
-      .then((res) => res.json())
-      .then((data: Movie[]) => setMovies(data))
-      .catch((err) => console.error("Error fetching admin movies:", err));
-  }, []);
+   useEffect(() => {
+     Promise.all([fetchAllMovies()])
+       .then(([all]) => {
+         setMovies(all);
+         
+       })
+       .catch((err) => setError(err.message));
+   }, []);
 
   // Filter movies by title
   const filteredMovies = movies.filter((m) =>
@@ -206,6 +210,7 @@ const AdminPage: React.FC = () => {
         `https://localhost:5000/api/Admin/Movies/${showId}`,
         {
           method: "DELETE",
+          credentials: "include"
         }
       );
       if (response.ok) {
@@ -240,6 +245,7 @@ const AdminPage: React.FC = () => {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(updatedMovie),
+            credentials: "include",
           }
         );
 
@@ -261,6 +267,7 @@ const AdminPage: React.FC = () => {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(updatedMovie),
+            credentials: "include",
           }
         );
 
@@ -320,6 +327,7 @@ const AdminPage: React.FC = () => {
 
   return (
     <AuthorizeView>
+
       <div className="bg-black text-white min-vh-100">
         <Header />
         <br />
@@ -618,3 +626,7 @@ const AdminPage: React.FC = () => {
 };
 
 export default AdminPage;
+function setError(message: any): any {
+  throw new Error("Function not implemented.");
+}
+

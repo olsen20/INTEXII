@@ -18,18 +18,24 @@ import AdminPage from "./pages/AdminPage";
 import ScrollToTop from "./components/ScrollToTop";
 import AuthorizeView from "./components/AuthorizeView";
 import CookieConsent, { getCookieConsentValue } from "react-cookie-consent";
-
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
     <>
-      {/* Routes and app navigation */}
       <Router>
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/browse" element={<MoviePage />} />
-          <Route path="/movies/:showId" element={<AuthorizeView><MovieDetails /></AuthorizeView>} />
+          <Route
+            path="/movies/:showId"
+            element={
+              <AuthorizeView>
+                <MovieDetails />
+              </AuthorizeView>
+            }
+          />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/create-account" element={<CreateAccountPage />} />
           <Route path="/login" element={<LoginPage />} />
@@ -38,7 +44,16 @@ function App() {
           <Route path="/about" element={<AboutUsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/mystuff" element={<MyStuffPage />} />
-          <Route path="/admin" element={<AdminPage />} />
+
+          {/* Use ProtectedRoute here to protect the /admin route */}
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <AdminPage />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </Router>
 
@@ -69,7 +84,8 @@ function App() {
         }}
         cookieName="cineNicheUserConsent"
       >
-        We use cookies to personalize content and improve your experience. By clicking "Accept", you agree to our use of cookies.
+        We use cookies to personalize content and improve your experience. By
+        clicking "Accept", you agree to our use of cookies.
       </CookieConsent>
     </>
   );
