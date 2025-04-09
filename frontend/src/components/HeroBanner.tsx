@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import "../index.css"; // Optional: external CSS file
 
 interface HeroBannerProps {
@@ -15,7 +15,7 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
   trailerUrl,
   // movieId,
 }) => {
-  const navigate = useNavigate();
+ // const navigate = useNavigate();
 
   const handleDetails = () => {
     // navigate(`/movies/${movieId}`);

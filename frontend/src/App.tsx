@@ -15,10 +15,13 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import MovieDetails from "./pages/MovieDetails";
 import MyStuffPage from "./pages/MyStuffPage";
 import AdminPage from "./pages/AdminPage";
+import ScrollToTop from "./components/ScrollToTop";
+
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/browse" element={<MoviePage />} />
