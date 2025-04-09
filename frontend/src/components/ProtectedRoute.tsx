@@ -1,12 +1,13 @@
 import React, { useEffect, useState, ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
+import { useRole } from "../context/RoleContext"; // Correct path to RoleContext
 
 interface ProtectedRouteProps {
-  children: ReactNode; // The children passed to ProtectedRoute
+  children: ReactNode; // Define the type for the children prop
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
-  const [role, setRole] = useState<string | null>(null);
+  const { role, setRole } = useRole();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const navigate = useNavigate();
 
@@ -23,7 +24,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
 
         if (response.ok) {
           const data = await response.json();
-          setRole(data.roles[0]); // Assuming only one role for simplicity
+          setRole(data.roles[0]);
         } else {
           setRole(null);
         }
@@ -36,19 +37,17 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     };
 
     fetchRole();
-  }, []);
+  }, [setRole]);
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  // If the user is not an Administrator, redirect them
   if (role !== "Administrator") {
-    navigate("/browse"); // Redirect to unauthorized page
+    navigate("/browse");
     return null;
   }
 
-  // If the user is an Administrator, render the protected content
   return <>{children}</>;
 };
 
