@@ -4,12 +4,17 @@ import Footer from "../components/Footer";
 import TableOfContents from "../components/TableOfContents";
 import { useAuthStatus } from "../components/UseAuthStatus";
 import HeaderNotSignedIn from "../components/HeaderNotSignedIn";
+import "../styles/TableOfContents.css";
 
 const PrivacyPage: React.FC = () => {
-  const isLoggedIn = useAuthStatus();  // Determine whether the user is logged in
+  const isLoggedIn = useAuthStatus(); // Determine whether the user is logged in
   return (
     <>
-      {isLoggedIn === null ? null : isLoggedIn ? <Header /> : <HeaderNotSignedIn />}
+      {isLoggedIn === null ? null : isLoggedIn ? (
+        <Header />
+      ) : (
+        <HeaderNotSignedIn />
+      )}
       <div className="container py-5 text-start" style={{ marginTop: "80px" }}>
         <div className="row">
           {/* Left Sidebar: Table of Contents */}
