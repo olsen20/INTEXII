@@ -19,7 +19,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, rank }) => {
   return (
     <Link to={`/movies/${movie.showId}`} className="text-decoration-none me-3">
       {/* Add the "top10" class if a rank is provided */}
-      <div className={`card movie-card ${rank ? "top10" : ""}`}>
+      <div className={`card movie-cards ${rank ? "top10" : ""}`}>
         <img
           src={posterUrl}
           alt={movie.title}
@@ -29,7 +29,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, rank }) => {
           }
         />
         {rank && <span className="top10-ranking">{rank}</span>}
-        <div className="card-body p-2 movie-card-body">
+        <div className="card-body p-2 movie-cards-body">
           <p className="card-text text-center text-white">{movie.title}</p>
         </div>
       </div>
