@@ -20,6 +20,7 @@ namespace Intex.API.Controllers
 
         // Return all movie titles contained in the database
         [HttpGet("GetAllTitles")]
+        [Authorize]
         public IEnumerable<MovieTitle> GetTitles()
         {
             var movieList = _movieContext.MovieTitles.ToList();
@@ -28,6 +29,7 @@ namespace Intex.API.Controllers
 
         // Return all movie users contained in the database
         [HttpGet("GetAllUsers")]
+        [Authorize]
         public IEnumerable<MovieUser> GetUsers()
         {
             var userList = _movieContext.MovieUsers.ToList();
@@ -36,6 +38,7 @@ namespace Intex.API.Controllers
 
         // Return all movie ratings contained in the database
         [HttpGet("GetAllRatings")]
+        [Authorize]
         public IEnumerable<MovieRating> GetRatings()
         {
             var ratingList = _movieContext.MovieRatings.ToList();
@@ -76,6 +79,7 @@ namespace Intex.API.Controllers
 
         // Return full movie details for a specific show_id
         [HttpGet("Details/{showId}")]
+        [Authorize]
         public async Task<ActionResult<MovieDetailsDTO>> GetMovieById(string showId)
         {
             // Get the desired movie

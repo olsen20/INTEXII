@@ -6,6 +6,7 @@ using System.Security.Claims;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class RatingController : ControllerBase
 {
     private readonly MovieDbContext _context;

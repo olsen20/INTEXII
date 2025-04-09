@@ -8,14 +8,16 @@ import Footer from "../components/Footer";
 import "../styles/MovieDetails.css";
 import CarouselRow from "../components/CarouselRow";
 import { fetchCollaborativeRecommendations, fetchContentRecommendations } from "../api/RecommenderAPI";
+import AuthorizeView from "../components/AuthorizeView";
+import { Movie } from "../types/Movies";
 
 function MovieDetails() {
   const { showId } = useParams();
   const [movie, setMovie] = useState<any>(null);
   const [error, setError] = useState("");
   const [userRating, setUserRating] = useState<number>(0);
-  const [colRecommendations, setColRecommendations] = useState<any[]>([]);
-  const [conRecommendations, setConRecommendations] = useState<any[]>([]);
+  const [colRecommendations, setColRecommendations] = useState<Movie[]>([]);
+  const [conRecommendations, setConRecommendations] = useState<Movie[]>([]);
 
   useEffect(() => {
     if (showId) {
@@ -62,99 +64,100 @@ function MovieDetails() {
 
   return (
     <>
-      <Header />
-      <div className="movie-detail-container">
-        <div className="movie-detail-content">
-          <div className="poster-and-info">
+      <AuthorizeView>
+        <Header />
+        <div className="movie-detail-container">
+          <div className="movie-detail-content">
+            <div className="poster-and-info">
 
-            {/* Poster Image */}
-            <img
-                src={movie.posterUrl}
-                alt={movie.title}
-                className="movie-poster"
-                onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.onerror = null; // Prevent infinite loop if default also fails
-                    target.src = "/posters/default.png";
-            }}
-            />
+              {/* Poster Image */}
+              <img
+                  src={movie.posterUrl}
+                  alt={movie.title}
+                  className="movie-poster"
+                  onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.onerror = null; // Prevent infinite loop if default also fails
+                      target.src = "/posters/default.png";
+              }}
+              />
 
-            {/* Movie Info */}
-            <div className="movie-info">
-              <h1 className="movie-title">{movie.title}</h1>
-              <p className="movie-subtitle">
-                {movie.releaseYear} &nbsp; | &nbsp; {movie.rating || "Unrated"}
-              </p>
-              <p className="movie-meta">
-                <span>{movie.typeField || "Unknown Type"}</span>
-                <span>{movie.duration || "Unknown Duration"}</span>
-                <span>{movie.country || "Unknown Country"}</span>
-              </p>
+              {/* Movie Info */}
+              <div className="movie-info">
+                <h1 className="movie-title">{movie.title}</h1>
+                <p className="movie-subtitle">
+                  {movie.releaseYear} &nbsp; | &nbsp; {movie.rating || "Unrated"}
+                </p>
+                <p className="movie-meta">
+                  <span>{movie.typeField || "Unknown Type"}</span>
+                  <span>{movie.duration || "Unknown Duration"}</span>
+                  <span>{movie.country || "Unknown Country"}</span>
+                </p>
 
-              {/* Star Rating */}
-              <div className="rating-row">
-                <span className="rating-label">Your Rating</span>
-                <StarRating
-                  initialRating={userRating}
-                  onRate={handleRatingChange}
-                />
-              </div>
-
-              <p className="movie-detail">
-                <strong>Director:</strong> {movie.director || "Not listed"}
-              </p>
-              <p className="movie-detail">
-                <strong>Cast:</strong> {movie.cast_field || "Not listed"}
-              </p>
-              <p className="movie-detail">
-                <strong>Description:</strong> {movie.description}
-              </p>
-
-              {/* Genres if available */}
-              {movie.genres && movie.genres.length > 0 && (
-                <div className="movie-genres">
-                  {movie.genres.map((genre: string, index: number) => (
-                    <span key={index} className="genre-badge">
-                      {genre}
-                    </span>
-                  ))}
+                {/* Star Rating */}
+                <div className="rating-row">
+                  <span className="rating-label">Your Rating</span>
+                  <StarRating
+                    initialRating={userRating}
+                    onRate={handleRatingChange}
+                  />
                 </div>
-              )}
+
+                <p className="movie-detail">
+                  <strong>Director:</strong> {movie.director || "Not listed"}
+                </p>
+                <p className="movie-detail">
+                  <strong>Cast:</strong> {movie.cast_field || "Not listed"}
+                </p>
+                <p className="movie-detail">
+                  <strong>Description:</strong> {movie.description}
+                </p>
+
+                {/* Genres if available */}
+                {movie.genres && movie.genres.length > 0 && (
+                  <div className="movie-genres">
+                    {movie.genres.map((genre: string, index: number) => (
+                      <span key={index} className="genre-badge">
+                        {genre}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Recommended Movie Carousels */}
-      <div className="recommended-section">
+        {/* Recommended Movie Carousels */}
+        <div className="recommended-section">
 
-        {/* Content Filtering */}
-        {conRecommendations.length > 0 && (
-          <div className="trending px-5">
-            <CarouselRow
-              title="More Movies Like This:"
-              movies={conRecommendations}
-              limit={10}
-              showRanking={false}
-            />
-          </div>
-        )}
+          {/* Content Filtering */}
+          {conRecommendations.length > 0 && (
+            <div className="trending px-5">
+              <CarouselRow
+                title="More Movies Like This:"
+                movies={conRecommendations}
+                limit={10}
+                showRanking={false}
+              />
+            </div>
+          )}
 
-        {/* Collaborative Filtering */}
-        {colRecommendations.length > 0 && (
-          <div className="trending px-5">
-            <CarouselRow
-              title="Viewers Who Watched This Also Watched:"
-              movies={colRecommendations}
-              limit={10}
-              showRanking={false}
-            />
-          </div>
-        )}
-      </div>
+          {/* Collaborative Filtering */}
+          {colRecommendations.length > 0 && (
+            <div className="trending px-5">
+              <CarouselRow
+                title="Viewers Who Watched This Also Watched:"
+                movies={colRecommendations}
+                limit={10}
+                showRanking={false}
+              />
+            </div>
+          )}
+        </div>
 
-
-      <Footer />
+        <Footer />
+      </AuthorizeView>
     </>
   );
 }

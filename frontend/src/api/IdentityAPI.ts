@@ -6,6 +6,50 @@ const API_URL =
 
 // Register a user to the database (Create Account)
 export async function registerUser(
+    email: string,
+    password: string
+  ): Promise<{ ok: boolean; message: string }> {
+    try {
+      const response = await fetch(`${API_URL}/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+  
+      let message = "Unknown error.";
+      let data: any = {};
+  
+      const contentLength = response.headers.get("content-length");
+      const contentType = response.headers.get("content-type");
+  
+      if (
+        contentLength !== "0" &&
+        contentType &&
+        contentType.includes("application/json")
+      ) {
+        data = await response.json();
+  
+        if (data.errors && typeof data.errors === "object") {
+          const firstKey = Object.keys(data.errors)[0];
+          const firstMessage = data.errors[firstKey][0];
+          message = firstMessage;
+        } else if (data.title) {
+          message = data.title;
+        } else {
+          message = "Registered successfully.";
+        }
+      } else {
+        message = response.ok
+          ? "Registered successfully."
+          : "Unknown error during registration.";
+      }
+  
+      return { ok: response.ok, message };
+    } catch (err) {
+      return { ok: false, message: "Network error." };
+    }
+};  
+
   email: string,
   password: string
 ): Promise<{ ok: boolean; message: string }> {
@@ -72,6 +116,14 @@ export async function loginUser(
 
 // Logout the user
 export async function logoutUser(): Promise<Response> {
+    const response = await fetch(`${API_URL}/logout`, {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+    });
+  
+    return response;
+}
   const response = await fetch(`${API_URL}/logout`, {
     method: "POST",
     credentials: "include",
