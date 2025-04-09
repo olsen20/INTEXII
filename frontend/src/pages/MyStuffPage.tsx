@@ -36,7 +36,7 @@ function MyStuffPage() {
         <Header />
         <div className="my-stuff-container">
           <div className="profile-header">
-            <FaUserCircle className="profile-icon" />
+            <FaUserCircle className="big-profile-icon" />
             <h1 className="page-title">My Stuff</h1>
           </div>
 

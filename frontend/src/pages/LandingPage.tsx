@@ -45,40 +45,28 @@ function HomePage() {
 
     {/* Movie example images */}
     <div className="category-highlights">
-      <div
-        className="highlight-card"
-        style={{ backgroundImage: `url(../../AmarAkbarAnthony.jpg)` }}
-      >
+      <div className="highlight-card bg-cult-favorites">
         <div className="card-overlay">
           <h5 className="highlight-subtitle">Cult Favorites</h5>
           <h3 className="highlight-title">Classics & Underground</h3>
         </div>
       </div>
 
-      <div
-        className="highlight-card"
-        style={{ backgroundImage: `url(../../InuYasha.jpg)` }}
-      >
+      <div className="highlight-card bg-global-stories">
         <div className="card-overlay">
           <h5 className="highlight-subtitle">Global Stories</h5>
           <h3 className="highlight-title">International Cinema</h3>
         </div>
       </div>
 
-      <div
-        className="highlight-card"
-        style={{ backgroundImage: `url(../../TheFearof13.jpg)` }}
-      >
+      <div className="highlight-card bg-unfiltered-truth">
         <div className="card-overlay">
           <h5 className="highlight-subtitle">Unfiltered Truth</h5>
           <h3 className="highlight-title">Niche Documentaries</h3>
         </div>
       </div>
 
-      <div
-        className="highlight-card"
-        style={{ backgroundImage: `url(../../BadDayfortheCut.jpg)` }}
-      >
+      <div className="highlight-card bg-indie-films">
         <div className="card-overlay">
           <h5 className="highlight-subtitle">Breakthroughs</h5>
           <h3 className="highlight-title">Indie Films</h3>

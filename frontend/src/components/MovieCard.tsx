@@ -20,13 +20,15 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, rank }) => {
     <Link to={`/movies/${movie.showId}`} className="text-decoration-none me-3">
       {/* Add the "top10" class if a rank is provided */}
       <div className={`card movie-cards ${rank ? "top10" : ""}`}>
-        <img
+      <img
           src={posterUrl}
           alt={movie.title}
           className="card-img-top"
-          onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) =>
-            (e.currentTarget.src = "/posters/default.png")
-          }
+          onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+            const target = e.currentTarget;
+            target.onerror = null; // ✅ prevent infinite loop
+            target.src = "/posters/default.png"; // ✅ fallback image
+          }}
         />
         {rank && <span className="top10-ranking">{rank}</span>}
         <div className="card-body p-2 movie-cards-body">

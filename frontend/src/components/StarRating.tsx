@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa";
+import "../styles/StarRating.css";
 
 type StarRatingProps = {
   initialRating?: number;
@@ -30,7 +31,6 @@ function StarRating({ initialRating = 0, onRate }: StarRatingProps) {
           onClick={() => handleClick(star)}
           onMouseEnter={() => setHovered(star)}
           onMouseLeave={() => setHovered(0)}
-          style={{ cursor: "pointer", transition: "color 0.2s" }}
           color={star <= (hovered || selected) ? "#f5c518" : "#999"}
         />
       ))}

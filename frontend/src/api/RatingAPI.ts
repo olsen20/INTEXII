@@ -5,7 +5,7 @@ const API_URL =
 // Get the User Rating for an individual movie
 export async function getUserRating(showId: string): Promise<number | null> {
   try {
-    const response = await fetch(`${API_URL}/${showId}`, {
+    const response = await fetch(`${API_URL}/user/${showId}`, {
       credentials: "include",
     });
 
@@ -30,7 +30,7 @@ export async function submitUserRating(
   showId: string,
   rating: number
 ): Promise<void> {
-  await fetch(`${API_URL}/${showId}`, {
+  await fetch(`${API_URL}/user/${showId}`, {
     method: "POST",
     credentials: "include",
     headers: { "Content-Type": "application/json" },

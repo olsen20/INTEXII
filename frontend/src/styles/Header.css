@@ -93,3 +93,16 @@
     opacity: 1;
   }
 }
+
+.header-logo {
+  height: 50px;
+}
+
+.search-icon {
+  font-size: 1.2rem;
+}
+
+.profile-icon {
+  height: 30px;
+  border-radius: 50%;
+}

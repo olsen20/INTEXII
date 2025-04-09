@@ -64,10 +64,7 @@ const Footer: React.FC = () => {
             <ul className="list-unstyled d-flex justify-content-end">
               <li className="ms-3">
                 <a className="text-white" href="https://facebook.com">
-                  <i
-                    className="bi bi-facebook"
-                    style={{ fontSize: "1.5rem" }}
-                  ></i>
+                  <i className="bi bi-facebook social-icon"></i>
                 </a>
               </li>
               <li className="ms-3">

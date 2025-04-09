@@ -24,3 +24,7 @@
 .btn-subscribe:hover {
   background-color: #7180b5 !important; /* slightly darker on hover */
 }
+
+.social-icon {
+  font-size: 1.5rem;
+}

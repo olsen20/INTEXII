@@ -9,6 +9,7 @@ namespace Intex.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class MovieController : ControllerBase
     {
         private MovieDbContext _movieContext;
@@ -20,7 +21,6 @@ namespace Intex.API.Controllers
 
         // Return all movie titles contained in the database
         [HttpGet("GetAllTitles")]
-        [Authorize]
         public IEnumerable<MovieTitle> GetTitles()
         {
             var movieList = _movieContext.MovieTitles.ToList();
@@ -29,7 +29,6 @@ namespace Intex.API.Controllers
 
         // Return all movie users contained in the database
         [HttpGet("GetAllUsers")]
-        [Authorize]
         public IEnumerable<MovieUser> GetUsers()
         {
             var userList = _movieContext.MovieUsers.ToList();
@@ -38,7 +37,6 @@ namespace Intex.API.Controllers
 
         // Return all movie ratings contained in the database
         [HttpGet("GetAllRatings")]
-        [Authorize]
         public IEnumerable<MovieRating> GetRatings()
         {
             var ratingList = _movieContext.MovieRatings.ToList();
@@ -47,6 +45,7 @@ namespace Intex.API.Controllers
 
         // Return the top ten trending movies
         [HttpGet("top10")]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<ListedMovieDTO>>> GetTop10Trending()
         {
             // Return the top ten trending movies based on the number of ratings and the average rating
@@ -79,7 +78,6 @@ namespace Intex.API.Controllers
 
         // Return full movie details for a specific show_id
         [HttpGet("Details/{showId}")]
-        [Authorize]
         public async Task<ActionResult<MovieDetailsDTO>> GetMovieById(string showId)
         {
             // Get the desired movie
@@ -147,7 +145,6 @@ namespace Intex.API.Controllers
 
         // Get the user's favorite movies (those rated 5 stars)
         [HttpGet("favorites")]
-        [Authorize]
         public async Task<ActionResult<IEnumerable<MovieTitle>>> GetFavoriteMovies()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -172,7 +169,6 @@ namespace Intex.API.Controllers
 
         // Get the movies that have been rated by the user
         [HttpGet("rated")]
-        [Authorize]
         public async Task<ActionResult<IEnumerable<ListedMovieDTO>>> GetRatedMovies()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
