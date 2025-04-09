@@ -4,17 +4,22 @@ import "../styles/LandingPage.css";
 import { useEffect, useState } from "react";
 import { Movie } from "../types/Movies";
 import { fetchTrendingMovies } from "../api/MovieAPI";
+import { getCookieConsentValue } from "react-cookie-consent";
 
 function HomePage() {
   const [trendingMovies, setTrendingMovies] = useState<Movie[]>([]);
 
-  // Retrieve top ten most trending movies
   useEffect(() => {
+    // Retrieve top ten most trending movies
     fetchTrendingMovies()
       .then((data) => setTrendingMovies(data))
-      .catch((err) =>
-        console.error("Failed to load trending movies:", err)
-      );
+      .catch((err) => console.error("Failed to load trending movies:", err));
+  
+    // Check cookie consent and set a test cookie
+    if (getCookieConsentValue("cineNicheUserConsent") === "true") {
+      document.cookie = "cineNicheTest=true; path=/";
+      console.log("Test cookie set.");
+    }
   }, []);
   
   return (

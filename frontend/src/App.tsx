@@ -17,27 +17,61 @@ import MyStuffPage from "./pages/MyStuffPage";
 import AdminPage from "./pages/AdminPage";
 import ScrollToTop from "./components/ScrollToTop";
 import AuthorizeView from "./components/AuthorizeView";
+import CookieConsent, { getCookieConsentValue } from "react-cookie-consent";
 
 
 function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/browse" element={<MoviePage />} />
-        <Route path="/movies/:showId" element={<AuthorizeView><MovieDetails /></AuthorizeView>} />
-        <Route path="/search" element={<SearchPage />} />
-        <Route path="/create-account" element={<CreateAccountPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/privacy" element={<PrivacyPage />} />
-        <Route path="/terms" element={<TermsOfServicePage />} />
-        <Route path="/about" element={<AboutUsPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/mystuff" element={<MyStuffPage />} />
-        <Route path="/admin" element={<AdminPage />} />
-      </Routes>
-    </Router>
+    <>
+      {/* Routes and app navigation */}
+      <Router>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/browse" element={<MoviePage />} />
+          <Route path="/movies/:showId" element={<AuthorizeView><MovieDetails /></AuthorizeView>} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/create-account" element={<CreateAccountPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/terms" element={<TermsOfServicePage />} />
+          <Route path="/about" element={<AboutUsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/mystuff" element={<MyStuffPage />} />
+          <Route path="/admin" element={<AdminPage />} />
+        </Routes>
+      </Router>
+
+      {/* Cookie Consent Section */}
+      <CookieConsent
+        location="bottom"
+        buttonText="Accept All Cookies"
+        declineButtonText="Decline"
+        enableDeclineButton
+        style={{
+          background: "#1c1c2e", // deep dark blue/gray to match header/footer
+          color: "#fff",
+          fontSize: "0.9rem",
+        }}
+        buttonStyle={{
+          backgroundColor: "#a3acd7", // lavender tone matching your brand
+          color: "#fff",
+          fontWeight: "bold",
+          borderRadius: "4px",
+          padding: "8px 15px",
+        }}
+        declineButtonStyle={{
+          backgroundColor: "#444", // muted gray for decline
+          color: "#fff",
+          fontWeight: "bold",
+          borderRadius: "4px",
+          padding: "8px 15px",
+        }}
+        cookieName="cineNicheUserConsent"
+      >
+        We use cookies to personalize content and improve your experience. By clicking "Accept", you agree to our use of cookies.
+      </CookieConsent>
+    </>
   );
 }
 

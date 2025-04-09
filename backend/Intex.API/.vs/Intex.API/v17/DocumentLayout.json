@@ -46,8 +46,7 @@
               "RelativeToolTip": "Controllers\\RecommendController.cs",
               "ViewState": "AgIAAFoAAAAAAAAAAAAkwGEAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T17:27:20.451Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-09T17:27:20.451Z"
             },
             {
               "$type": "Document",
@@ -72,8 +71,7 @@
               "RelativeToolTip": "Controllers\\MovieController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAKoAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T03:29:27.584Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-09T03:29:27.584Z"
             },
             {
               "$type": "Document",
@@ -85,8 +83,7 @@
               "RelativeToolTip": "Data\\MovieDetailsDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T20:32:13.398Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T20:32:13.398Z"
             }
           ]
         }
