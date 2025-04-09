@@ -168,3 +168,4 @@ C:\Users\maris\OneDrive\Desktop\School\Winter 2025\INTEX\Application\backend\Int
 C:\Users\maris\OneDrive\Desktop\School\Winter 2025\INTEX\Application\backend\Intex.API\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\maris\OneDrive\Desktop\School\Winter 2025\INTEX\Application\backend\Intex.API\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\maris\OneDrive\Desktop\School\Winter 2025\INTEX\Application\backend\Intex.API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\maris\OneDrive\Desktop\School\Winter 2025\INTEX\Application\backend\Intex.API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Google.dll

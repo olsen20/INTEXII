@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import AuthorizeView from "../components/AuthorizeView";
 import "../styles/AdminPage.css"; // Admin page styling
 import AuthorizeView from "../components/AuthorizeView";
 import { fetchAllMovies } from "../api/MovieAPI";
@@ -326,7 +327,7 @@ const AdminPage: React.FC = () => {
 
   return (
     <AuthorizeView>
-      
+
       <div className="bg-black text-white min-vh-100">
         <Header />
         <br />

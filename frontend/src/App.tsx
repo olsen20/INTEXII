@@ -64,19 +64,19 @@ function App() {
         declineButtonText="Decline"
         enableDeclineButton
         style={{
-          background: "#1c1c2e", // deep dark blue/gray to match header/footer
+          background: "#1c1c2e",
           color: "#fff",
           fontSize: "0.9rem",
         }}
         buttonStyle={{
-          backgroundColor: "#a3acd7", // lavender tone matching your brand
+          backgroundColor: "#a3acd7",
           color: "#fff",
           fontWeight: "bold",
           borderRadius: "4px",
           padding: "8px 15px",
         }}
         declineButtonStyle={{
-          backgroundColor: "#444", // muted gray for decline
+          backgroundColor: "#444",
           color: "#fff",
           fontWeight: "bold",
           borderRadius: "4px",
