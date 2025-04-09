@@ -2,7 +2,7 @@ import { Movie } from "../types/Movies";
 
 // Configure URL
 const API_URL =
-  "https://cineniche2-backend-gvduhzdyd9e0gea2.eastus-01.azurewebsites.net/api/Movie";
+  "https://localhost:5000/api/Movie";
 
 // Return all movies in the database
 export async function fetchAllMovies(): Promise<Movie[]> {

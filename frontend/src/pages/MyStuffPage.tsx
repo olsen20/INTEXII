@@ -57,7 +57,7 @@ function MyStuffPage() {
           {/* Recommended movies to watch based on the user */}
           <div className="section">
               <div className="px-5">
-                  <CarouselRow title="Movies We Think You'll Like:" movies={userRecs} />
+                  <CarouselRow title="Recommended for Me" movies={userRecs} />
               </div>
           </div>
         </div>

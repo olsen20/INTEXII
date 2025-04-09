@@ -16,6 +16,7 @@ import MovieDetails from "./pages/MovieDetails";
 import MyStuffPage from "./pages/MyStuffPage";
 import AdminPage from "./pages/AdminPage";
 import ScrollToTop from "./components/ScrollToTop";
+import AuthorizeView from "./components/AuthorizeView";
 
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/browse" element={<MoviePage />} />
-        <Route path="/movies/:showId" element={<MovieDetails />} />
+        <Route path="/movies/:showId" element={<AuthorizeView><MovieDetails /></AuthorizeView>} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/create-account" element={<CreateAccountPage />} />
         <Route path="/login" element={<LoginPage />} />
