@@ -2,21 +2,19 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../api/IdentityAPI";
 import "../styles/Header.css"; // Create this CSS file for overlay styling
+import ReactDOM from "react-dom";
 
 function Logout(props: { children: React.ReactNode }) {
   const navigate = useNavigate();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
-  const handleLogout = async (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    // Show the overlay transition
+  const handleLogout = async () => {
     setIsLoggingOut(true);
     try {
       const response = await logoutUser();
       if (response.ok) {
-        // Delay the navigation to allow the overlay to show
+        sessionStorage.removeItem("splashShown");
         setTimeout(() => {
-          sessionStorage.removeItem("splashShown");
           navigate("/");
         }, 1000);
       } else {
@@ -31,14 +29,18 @@ function Logout(props: { children: React.ReactNode }) {
 
   return (
     <>
-      <a className="logout" href="#" onClick={handleLogout}>
+      <button className="dropdown-item no-underline" onClick={handleLogout}>
         {props.children}
-      </a>
-      {isLoggingOut && (
-        <div className="logout-overlay">
-          <div className="logout-message">Logging Out...</div>
-        </div>
-      )}
+      </button>
+      {/* Portal the overlay outside the dropdown */}
+      {isLoggingOut &&
+        document.body &&
+        ReactDOM.createPortal(
+          <div className="logout-overlay">
+            <div className="logout-message">Logging Out...</div>
+          </div>,
+          document.body
+        )}
     </>
   );
 }

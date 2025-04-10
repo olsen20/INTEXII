@@ -39,51 +39,6 @@
   text-decoration: none;
 }
 
-.logout-button {
-  color: #cfcfe1 !important;
-  border: 1.5px solid #cfcfe1 !important;
-  background-color: transparent !important;
-  padding: 5px 22px !important;
-  margin-top: 2px !important;
-  border-radius: 999px !important;
-  font-weight: 500 !important;
-  font-size: 1rem !important;
-  letter-spacing: 0.5px !important;
-  transition: all 0.25s ease !important;
-  text-transform: uppercase !important;
-  text-decoration: none;
-}
-
-.logout-button:hover,
-.logout-button:focus {
-  background-color:#cfcfe1 !important;
-  color: #1a1a1a !important;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-  outline: none;
-}
-
-
-/* Styles for the logout transition overlay */
-.logout-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  background-color: rgba(0, 0, 0, 0.8); /* semi-transparent black */
-  z-index: 1000; /* above header and content */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-.logout-message {
-  font-size: 2rem;
-  color: #fff;
-  text-align: center;
-}
-
 /* Simple fade-in animation */
 @keyframes fadeIn {
   from {
@@ -100,11 +55,85 @@
 
 .search-icon {
   font-size: 1.2rem;
+  color: #ccc;
+}
+
+.search-icon:hover {
+  color: #fff;
 }
 
 .profile-icon {
   height: 30px;
   border-radius: 50%;
+}
+
+.dropdown-menu {
+  background-color: #222 !important;
+  border: none;
+}
+
+.dropdown-item,
+.no-underline {
+  color: #ccc !important;
+  text-decoration: none !important;
+  background: none;
+  text-align: left;
+}
+
+.dropdown-item:hover,
+.no-underline:hover {
+  background-color: #333 !important;
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+.custom-dropdown-overlay {
+  animation: fadeIn 2s ease-in-out;
+}
+
+.custom-dropdown-overlay {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 10px;
+  background-color: #222;
+  border-radius: 8px;
+  min-width: 180px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  opacity: 0;
+  animation: fadeIn2 0.3s ease forwards;
+  text-decoration: none;
+}
+
+.custom-dropdown-overlay .dropdown-item {
+  color: #ccc !important;
+  background: none;
+  border: none;
+  width: 100%;
+  padding: 1rem 0rem;
+  border-radius: 8px;
+  text-decoration: none !important;
+}
+
+.custom-dropdown-overlay .dropdown-item:hover {
+  background-color: #333;
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+/* Profile Dropdown Styles */
+.profile-toggle {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.profile-toggle span {
+  white-space: nowrap;
 }
 
 
@@ -115,9 +144,13 @@
   transform: translateY(0px);
 }
 
-@keyframes fadeInUp {
+@keyframes fadeIn2 {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
   to {
-    opacity: 2;
+    opacity: 1;
     transform: translateY(0);
   }
 }
@@ -127,4 +160,44 @@
 
 .admin-link:hover {
   color: #a3acd7 !important;
+}
+
+.user-email-display {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #ccc;
+  font-size: 1rem;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.user-email-display:hover {
+  color: #fff;
+}
+
+.dropdown-caret {
+  font-size: 0.7rem;
+  color: #ccc;
+}
+
+/* Styles for the logout transition overlay */
+.logout-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.logout-message {
+  font-size: 2rem !important;
+  color: #fff !important;
+  text-align: center !important;
 }
