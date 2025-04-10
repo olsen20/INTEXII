@@ -157,6 +157,7 @@ const MoviePage: React.FC = () => {
           title={featuredMovie.title || ""}
           description={heroDescription}
           trailerUrl={trailerUrl}
+          movieId="s9000"
         />
                 <br></br>        {/* Display error message if it exists */}     
           {error && <div className="text-danger px-4 py-3">Error: {error}</div>}
