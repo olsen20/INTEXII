@@ -7,10 +7,13 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../styles/MovieDetails.css";
 import CarouselRow from "../components/CarouselRow";
-import { fetchCollaborativeRecommendations, fetchContentRecommendations } from "../api/RecommenderAPI";
+import {
+  fetchCollaborativeRecommendations,
+  fetchContentRecommendations,
+} from "../api/RecommenderAPI";
 import AuthorizeView from "../components/AuthorizeView";
 import { Movie } from "../types/Movies";
-import { FaPlay, FaPencilAlt } from "react-icons/fa";
+import { FaPlay } from "react-icons/fa";
 
 function MovieDetails() {
   const { showId } = useParams();
@@ -18,7 +21,7 @@ function MovieDetails() {
   const [error, setError] = useState("");
   const [userRating, setUserRating] = useState<number>(0);
   const [savedComment, setSavedComment] = useState<string>(""); // What is in the DB
-  const [editComment, setEditComment] = useState<string>("");   // What the user is typing
+  const [editComment, setEditComment] = useState<string>(""); // What the user is typing
   const [showCommentBox, setShowCommentBox] = useState(false);
   const [isEditingComment, setIsEditingComment] = useState(false);
   const [colRecommendations, setColRecommendations] = useState<Movie[]>([]);
@@ -26,8 +29,8 @@ function MovieDetails() {
 
   useEffect(() => {
     if (showId) {
-      setMovie(null);  // Reset movie to trigger loading state
-      setUserRating(0);  // Reset user rating to prevent previous carry-over
+      setMovie(null); // Reset movie to trigger loading state
+      setUserRating(0); // Reset user rating to prevent previous carry-over
       setShowCommentBox(false);
       setIsEditingComment(false);
 
@@ -35,7 +38,7 @@ function MovieDetails() {
       fetchMovieById(showId)
         .then((data) => setMovie(data))
         .catch((err) => setError(err.message));
-      
+
       // Retrieve the user rating (if provided)
       getUserRating(showId)
         .then((data) => {
@@ -46,11 +49,10 @@ function MovieDetails() {
             setShowCommentBox(true);
           }
         })
-    .catch((err) => console.error("Failed to load user rating:", err));
+        .catch((err) => console.error("Failed to load user rating:", err));
 
-    fetchContentRecommendations(showId).then(setConRecommendations);
-    fetchCollaborativeRecommendations(showId).then(setColRecommendations);
-
+      fetchContentRecommendations(showId).then(setConRecommendations);
+      fetchCollaborativeRecommendations(showId).then(setColRecommendations);
     }
   }, [showId]);
 
@@ -64,7 +66,7 @@ function MovieDetails() {
     } catch (err) {
       console.error("Error submitting rating:", err);
     }
-  };  
+  };
 
   // Ran when adding a new comment
   const handleCommentSubmit = async () => {
@@ -77,7 +79,7 @@ function MovieDetails() {
       console.error("Error submitting comment:", err);
       alert("Failed to submit comment.");
     }
-  };  
+  };
 
   if (error) return <div className="text-danger">{error}</div>;
   if (!movie) return <div className="text-light px-4 py-5">Loading...</div>;
@@ -89,24 +91,24 @@ function MovieDetails() {
         <div className="movie-detail-container">
           <div className="movie-detail-content">
             <div className="poster-and-info">
-
               {/* Poster Image */}
               <img
-                  src={movie.posterUrl || "/posters/default.png"}
-                  alt={movie.title}
-                  className="movie-poster"
-                  onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.onerror = null; // Prevent infinite loop if default also fails
-                      target.src = "/posters/default.png";
-              }}
+                src={movie.posterUrl || "/posters/default.png"}
+                alt={movie.title}
+                className="movie-poster"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.onerror = null; // Prevent infinite loop if default also fails
+                  target.src = "/posters/default.png";
+                }}
               />
 
               {/* Movie Info */}
               <div className="carousel-fade-in movie-info">
                 <h1 className="movie-title">{movie.title}</h1>
                 <p className="movie-subtitle">
-                  {movie.releaseYear} &nbsp; | &nbsp; {movie.rating || "Unrated"}
+                  {movie.releaseYear} &nbsp; | &nbsp;{" "}
+                  {movie.rating || "Unrated"}
                 </p>
                 <p className="movie-meta">
                   <span>{movie.typeField || "Unknown Type"}</span>
@@ -144,61 +146,70 @@ function MovieDetails() {
                   </div>
                 )}
 
-              {/* Watch buttons */}
-              <div className="button-row">
-                <button className="watch-now-button mt-3">
-                  <FaPlay className="me-2" />Watch Now
-                </button>
-                <button className="watch-trailer-button mt-3">
-                  Watch Trailer
-                </button>
-              </div>
+                {/* Watch buttons */}
+                <div className="button-row">
+                  <button className="watch-now-button mt-3">
+                    <FaPlay className="me-2" />
+                    Watch Now
+                  </button>
+                  <button className="watch-trailer-button mt-3">
+                    Watch Trailer
+                  </button>
+                </div>
               </div>
             </div>
-            
             {/* Comment area */}
-            <hr className="divider" />
-            <h5>{savedComment ? "Your Comment" : "Add a Comment"}</h5>
-            {savedComment && !isEditingComment ? (
+            {showCommentBox && (
               <>
-                <div className="user-comment">{savedComment}</div>
-                <button className="btn comment-button mt-2" onClick={() => setIsEditingComment(true)}>
-                  Edit Comment
-                </button>
-              </>
-            ) : (
-              <>
-                <textarea
-                  className="form-control"
-                  value={editComment}
-                  onChange={(e) => setEditComment(e.target.value)}
-                  placeholder="Leave your thoughts..."
-                />
-                <div className="button-row">
-                  <button className="btn comment-button mt-2" onClick={handleCommentSubmit}>
-                    Submit Comment
-                  </button>
-                  {savedComment && (
+                <hr className="divider" />
+                <h5>{savedComment ? "Your Comment" : "Add a Comment"}</h5>
+                {savedComment && !isEditingComment ? (
+                  <>
+                    <div className="user-comment">{savedComment}</div>
                     <button
                       className="btn comment-button mt-2"
-                      onClick={() => {
-                        setIsEditingComment(false);
-                        setEditComment(savedComment); // Reset to last saved
-                      }}
+                      onClick={() => setIsEditingComment(true)}
                     >
-                      Cancel
+                      Edit Comment
                     </button>
-                  )}
-                </div>
+                  </>
+                ) : (
+                  <>
+                    <textarea
+                      className="form-control"
+                      value={editComment}
+                      onChange={(e) => setEditComment(e.target.value)}
+                      placeholder="Leave your thoughts..."
+                    />
+                    <div className="button-row">
+                      <button
+                        className="btn comment-button mt-2"
+                        onClick={handleCommentSubmit}
+                      >
+                        Submit Comment
+                      </button>
+                      {savedComment && (
+                        <button
+                          className="btn comment-button mt-2"
+                          onClick={() => {
+                            setIsEditingComment(false);
+                            setEditComment(savedComment); // Reset to last saved
+                          }}
+                        >
+                          Cancel
+                        </button>
+                      )}
+                    </div>
+                  </>
+                )}
+                <hr className="divider" />
               </>
             )}
-            <hr className="divider" />
           </div>
         </div>
 
         {/* Recommended Movie Carousels */}
         <div className="recommended-section">
-
           {/* Content Filtering */}
           {conRecommendations.length > 0 && (
             <div className="carousel-fade-in trending px-5">

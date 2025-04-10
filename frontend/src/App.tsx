@@ -17,7 +17,7 @@ import MyStuffPage from "./pages/MyStuffPage";
 import AdminPage from "./pages/AdminPage";
 import ScrollToTop from "./components/ScrollToTop";
 import AuthorizeView from "./components/AuthorizeView";
-import CookieConsent, { getCookieConsentValue } from "react-cookie-consent";
+import CookieConsent from "react-cookie-consent";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { RoleProvider } from "./context/RoleContext"; // Import RoleProvider
 

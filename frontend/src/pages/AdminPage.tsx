@@ -228,6 +228,7 @@ const AdminPage: React.FC = () => {
   const totalItems = filteredMovies.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
+
   const goToPage = (pageNum: number) => {
     if (pageNum >= 1 && pageNum <= totalPages) {
       setCurrentPage(pageNum);
@@ -804,6 +805,6 @@ const AdminPage: React.FC = () => {
 };
 
 export default AdminPage;
-function setError(message: any): any {
+function setError(_message: any): any {
   throw new Error("Function not implemented.");
 }
