@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Intex.API.Controllers
 {
-    [Authorize(Roles = "Administrator")] 
+    // [Authorize(Roles = "Administrator")] 
     //[Authorize]
     
     [Route("api/Admin/[controller]")]

@@ -47,7 +47,7 @@
 }
 
 .admin-movie-table thead tr {
-  background-color: #333;
+  background-color: #444;
   color: #fff;
 }
 
@@ -105,6 +105,16 @@
   flex-direction: column;
   overflow: hidden; /* the scroll will go to .modal-body */
   padding-top: 1rem;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    sans-serif;
 }
 
 .modal-body {
@@ -153,7 +163,7 @@
 /* Fixed modal buttons: always visible at bottom of modal content */
 .modal-buttons {
   flex: 0 0 auto;
-  background-color: #2a2a2a;
+  background-color: #b2b5e0;
   padding: 1rem;
   position: sticky;
   bottom: 0;

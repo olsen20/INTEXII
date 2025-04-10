@@ -30,6 +30,7 @@ function MyStuffPage() {
           setUserRecs(recommendations);
         })
         .catch((err) => setError(err.message));
+        console.log(error);
     
       // Fetch user email
       fetchCurrentUserEmail()

@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import "../styles/AdminPage.css"; // Admin page styling
 import { fetchAllMovies } from "../api/MovieAPI";
 import { useRole } from "../context/RoleContext";
+import AuthorizeView from "../components/AuthorizeView";
 
 // Define the Movie interface with all necessary fields
 interface Movie {
@@ -529,11 +530,12 @@ const AdminPage: React.FC = () => {
                       }
                     />
                   </div>
+
+                  {/* changing Release Year to be a drop down menu for user to select instead of inputting a year */}
                   <div className="form-group">
                     <label>Release Year:</label>
-                    <input
-                      type="number"
-                      value={currentMovie.releaseYear || 0}
+                    <select
+                      value={currentMovie.releaseYear || ""}
                       onChange={(e) =>
                         setCurrentMovie((prev) => ({
                           ...prev,
@@ -541,8 +543,19 @@ const AdminPage: React.FC = () => {
                         }))
                       }
                       required
-                    />
+                    >
+                      <option value="">Select a year</option>
+                      {Array.from(
+                        { length: new Date().getFullYear() - 1925 + 1 },
+                        (_, index) => new Date().getFullYear() - index
+                      ).map((year) => (
+                        <option key={year} value={year}>
+                          {year}
+                        </option>
+                      ))}
+                    </select>
                   </div>
+
                   <div className="form-group">
                     <label>MPAA/TV Rating:</label>
                     <select

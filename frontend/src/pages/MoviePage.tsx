@@ -147,8 +147,8 @@ const MoviePage: React.FC = () => {
     "Travis Henderson, a disoriented drifter with no memory, is unexpectedly reunited with his long-lost family. Witness a quiet, contemplative journey of rediscovery and hope.";
 
   // Grabbing the movie id to connect the movie to the whole description
-  const movieId;
-  // hard code the Paris, Texas movie ID
+  const movieId = "s9000";
+  
   return (
     <AuthorizeView>
       <>{showSplash && <SplashScreen />}</>
@@ -160,6 +160,7 @@ const MoviePage: React.FC = () => {
           title={featuredMovie.title || ""}
           description={heroDescription}
           trailerUrl={trailerUrl}
+          movieId={movieId}
         />
         <br></br>
         <div className="recommended-section">
