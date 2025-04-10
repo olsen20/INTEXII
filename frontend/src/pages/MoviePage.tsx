@@ -157,6 +157,7 @@ const MoviePage: React.FC = () => {
           title={featuredMovie.title || ""}
           description={heroDescription}
           trailerUrl={trailerUrl}
+          movieId="s9000"
         />
         <br></br>
         <div className="recommended-section">

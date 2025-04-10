@@ -132,9 +132,6 @@ const Header: React.FC = () => {
 
               {dropdownOpen && (
                 <div className="custom-dropdown-overlay">
-                  <Link to="/mystuff" className="dropdown-item no-underline">
-                    My Stuff
-                  </Link>
                   <div className="dropdown-item no-underline">
                     <button
                       className="dropdown-item no-underline"
