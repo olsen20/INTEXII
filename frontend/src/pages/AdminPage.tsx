@@ -225,7 +225,7 @@ const AdminPage: React.FC = () => {
   const handleDeleteMovie = async (showId: string) => {
     if (isLoading) {
       // Show a loading spinner or message until the role is loaded
-      return <div>Loading role...</div>;
+      return <div className="bg-black text-white min-vh-100 d-flex justify-content-center align-items-center">Loading role...</div>;
     }
 
     if (role !== "Administrator") {

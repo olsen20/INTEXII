@@ -21,14 +21,14 @@ namespace Intex.API.Controllers
             _context = context;
         }
 
-        // GET: api/admin/movies
+        // Get all movies from the database
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MovieTitle>>> GetMovies()
         {
             return await _context.MovieTitles.ToListAsync();
         }
 
-        // GET: api/admin/movies/{id}
+        // Get an individual movie
         [HttpGet("{id}")]
         public async Task<ActionResult<MovieTitle>> GetMovie(string id)
         {
@@ -40,7 +40,7 @@ namespace Intex.API.Controllers
             return movie;
         }
 
-        // POST: api/admin/movies
+        // Add a new movie to the database
         [HttpPost]
         public async Task<ActionResult<MovieTitle>> CreateMovie()
         {
@@ -51,7 +51,7 @@ namespace Intex.API.Controllers
                 body,
                 new JsonSerializerOptions
                 {
-                    PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                 }
             );
 
@@ -67,7 +67,7 @@ namespace Intex.API.Controllers
         }
 
 
-        // PUT: api/admin/movies/{id}
+        // Update an existing movie
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateMovie(string id, MovieTitle movie)
         {
@@ -134,7 +134,7 @@ namespace Intex.API.Controllers
         }
 
 
-        // DELETE: api/admin/movies/{id}
+        // Delete a movie from the database
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMovie(string id)
         {
