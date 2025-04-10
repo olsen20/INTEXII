@@ -14,7 +14,8 @@ function LoginPage() {
 
   // Third-party authentication with Google
   const handleGoogleLogin = () => {
-    window.location.href = "https://localhost:5000/Account/ExternalLogin?provider=Google&returnUrl=/browse";
+    window.location.href =
+      "https://localhost:5000/Account/ExternalLogin?provider=Google&returnUrl=/browse";
   };
 
   // When the form is changed, update the submission
@@ -34,7 +35,7 @@ function LoginPage() {
   // Handle the form submission
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError("");
+    setError(""); // Reset error state on each form submit
 
     // Ensure both fields are filled in
     if (!email || !password) {
@@ -42,8 +43,8 @@ function LoginPage() {
       return;
     }
 
-    // Attempt to login
     try {
+      // Step 1: Log in via cookies (this sets the cookie on success)
       const response = await loginUser(email, password, rememberme);
       let data = null;
 
@@ -52,7 +53,29 @@ function LoginPage() {
         data = await response.json();
       }
 
-      if (!response.ok) throw new Error(data?.message || "Invalid email or password.");
+      if (!response.ok)
+        throw new Error(data?.message || "Invalid email or password.");
+
+      // Step 2: Fetch the JWT token from API after successful login
+      const tokenRes = await fetch(
+        `https://localhost:5000/api/Token/token?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwt_token")}`, // Assuming you're passing the JWT here
+          },
+          credentials: "include", // If you're using cookies, include this
+        }
+      );
+
+      if (!tokenRes.ok) throw new Error("Could not fetch JWT token.");
+
+      const { token } = await tokenRes.json();
+
+      // Step 3: Store the JWT token (in sessionStorage, localStorage, or wherever you prefer)
+      sessionStorage.setItem("jwt", token);
+
+      // Step 4: Navigate to the browse page after login
       navigate("/browse");
     } catch (error: any) {
       setError(error.message || "Error logging in.");
@@ -68,7 +91,9 @@ function LoginPage() {
             <div className="row justify-content-center">
               <div className="col-md-8 col-lg-6">
                 <div className="login-card p-5 text-light rounded-4 shadow-lg">
-                  <h1 className="text-center fw-bold mb-4 display-5 text-light">Sign In</h1>
+                  <h1 className="text-center fw-bold mb-4 display-5 text-light">
+                    Sign In
+                  </h1>
                   <form onSubmit={handleSubmit}>
                     <div className="form-floating mb-3">
                       <input
@@ -79,7 +104,9 @@ function LoginPage() {
                         value={email}
                         onChange={handleChange}
                       />
-                      <label htmlFor="email" className="text-secondary">Email address</label>
+                      <label htmlFor="email" className="text-secondary">
+                        Email address
+                      </label>
                     </div>
 
                     <div className="form-floating mb-3">
@@ -91,7 +118,9 @@ function LoginPage() {
                         value={password}
                         onChange={handleChange}
                       />
-                      <label htmlFor="password" className="text-secondary">Password</label>
+                      <label htmlFor="password" className="text-secondary">
+                        Password
+                      </label>
                     </div>
 
                     <div className="form-check mb-3">
@@ -102,21 +131,33 @@ function LoginPage() {
                         checked={rememberme}
                         onChange={handleChange}
                       />
-                      <label className="form-check-label text-light" htmlFor="rememberme">
+                      <label
+                        className="form-check-label text-light"
+                        htmlFor="rememberme"
+                      >
                         Remember me
                       </label>
                     </div>
 
-                    {error && <p className="text-danger text-center">{error}</p>}
+                    {error && (
+                      <p className="text-danger text-center">{error}</p>
+                    )}
 
                     <div className="d-grid mb-3">
-                      <button type="submit" className="btn btn-secondary text-light w-100">
+                      <button
+                        type="submit"
+                        className="btn btn-secondary text-light w-100"
+                      >
                         Sign In
                       </button>
                     </div>
 
                     <div className="d-grid mb-3">
-                      <button type="button" className="btn-google w-100" onClick={handleGoogleLogin}>
+                      <button
+                        type="button"
+                        className="btn-google w-100"
+                        onClick={handleGoogleLogin}
+                      >
                         <img
                           src="/googleIcon.png"
                           alt="Google Logo"
