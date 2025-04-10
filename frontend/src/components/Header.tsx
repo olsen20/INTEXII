@@ -4,10 +4,12 @@ import "../styles/Header.css"; // Import custom CSS for slide-up/slide-down anim
 import fullLogo2 from "../assets/fullLogo2.png"; // Logo image
 import profileIcon from "../assets/profileIcon.png"; // Profile icon image
 import Logout from "../components/Logout"; // Import the Logout component
+import { fetchUserRoles } from "../api/IdentityAPI";
 
 const Header: React.FC = () => {
   const [showHeader, setShowHeader] = useState<boolean>(true);
   const lastScrollY = useRef<number>(window.pageYOffset);
+  const [roles, setRoles] = useState<string[]>([]);
 
   const controlHeader = () => {
     const currentScrollY = window.pageYOffset;
@@ -21,6 +23,14 @@ const Header: React.FC = () => {
     lastScrollY.current = currentScrollY;
   };
 
+  // Get the user's role to see if they are an Administrator
+  useEffect(() => {
+    fetchUserRoles()
+      .then(setRoles)
+      .catch((err) => console.error(err));
+  }, []);
+
+  // Add scroll effect to header
   useEffect(() => {
     window.addEventListener("scroll", controlHeader);
     return () => window.removeEventListener("scroll", controlHeader);
@@ -56,6 +66,9 @@ const Header: React.FC = () => {
                   My Stuff
                 </Link>
               </li>
+              {roles.includes("Administrator") && (
+                <Link to="/admin" className="nav-link">Admin</Link>
+              )}
             </ul>
           </div>
 

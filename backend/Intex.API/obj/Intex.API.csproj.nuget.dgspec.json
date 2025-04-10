@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\Intex.API.csproj": {}
+    "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\Intex.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\Intex.API.csproj": {
+    "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\Intex.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\Intex.API.csproj",
+        "projectUniqueName": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\Intex.API.csproj",
         "projectName": "Intex.API",
-        "projectPath": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\Intex.API.csproj",
+        "projectPath": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\Intex.API.csproj",
         "packagesPath": "C:\\Users\\maris\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\obj\\",
+        "outputPath": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
