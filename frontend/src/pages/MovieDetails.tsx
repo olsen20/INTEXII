@@ -10,7 +10,7 @@ import CarouselRow from "../components/CarouselRow";
 import { fetchCollaborativeRecommendations, fetchContentRecommendations } from "../api/RecommenderAPI";
 import AuthorizeView from "../components/AuthorizeView";
 import { Movie } from "../types/Movies";
-import { FaPlay, FaPencilAlt } from "react-icons/fa";
+import { FaPlay } from "react-icons/fa";
 
 function MovieDetails() {
   const { showId } = useParams();
@@ -58,7 +58,7 @@ function MovieDetails() {
   const handleRatingChange = async (rating: number) => {
     if (!showId) return;
     try {
-      await submitUserRating(showId, rating, null);  // ONLY send rating
+      await submitUserRating(showId, rating, savedComment);  // Send rating + last saved comment
       setUserRating(rating);
       setShowCommentBox(true);
     } catch (err) {
