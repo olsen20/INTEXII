@@ -10,6 +10,7 @@ import CarouselRow from "../components/CarouselRow";
 import { fetchCollaborativeRecommendations, fetchContentRecommendations } from "../api/RecommenderAPI";
 import AuthorizeView from "../components/AuthorizeView";
 import { Movie } from "../types/Movies";
+import { FaPlay } from "react-icons/fa";
 
 function MovieDetails() {
   const { showId } = useParams();
@@ -123,6 +124,17 @@ function MovieDetails() {
                     ))}
                   </div>
                 )}
+
+              {/* Watch buttons */}
+              <div className="button-row">
+                <button className="watch-now-button mt-3">
+                  <FaPlay className="me-2" />Watch Now
+                </button>
+                <button className="watch-trailer-button mt-3">
+                  Watch Trailer
+                </button>
+              </div>
+
               </div>
             </div>
           </div>

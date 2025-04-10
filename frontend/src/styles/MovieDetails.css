@@ -103,7 +103,53 @@
     background-color: #777;
   }
   
+  .button-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  .watch-now-button {
+    background-color: #89bbd9;
+    color: #000;
+    font-weight: 600;
+    padding: 0.6rem 1.4rem;
+    font-size: 1rem;
+    border: 2px solid #89bbd9;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    max-height: 50px;
+}
 
+.watch-now-button:hover {
+    background-color: #6fa7c3;
+    border-color: #6fa7c3;
+    transform: translateY(-2px);
+}
+
+  .watch-trailer-button {
+    background-color: #202020;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 0.6rem 1.4rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border-color: #ffffff;
+    border-width: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    margin-left: 20px;
+    max-height: 50px;
+  }
+  
+  .watch-trailer-button:hover {
+    background-color: #282727;
+    transform: translateY(-2px);
+  }
+  
 
   .carousel-fade-in {
     animation: fadeInUp 2s ease forwards;
