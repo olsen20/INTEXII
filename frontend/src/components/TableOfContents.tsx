@@ -5,7 +5,7 @@ import "../styles/TableOfContents.css";
 
 const TableOfContents: React.FC = () => {
   return (
-    <nav className="list-group">
+    <nav className="list-group sticky-toc">
       <Link to="/browse" className="list-group-item list-group-item-action">
         Home
       </Link>

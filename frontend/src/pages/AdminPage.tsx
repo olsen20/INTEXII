@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import AuthorizeView from "../components/AuthorizeView";
 import "../styles/AdminPage.css"; // Admin page styling
 import { fetchAllMovies } from "../api/MovieAPI";
+import { useRole } from "../context/RoleContext";
+import AuthorizeView from "../components/AuthorizeView";
 
 // Define the Movie interface with all necessary fields
 interface Movie {
@@ -98,6 +99,7 @@ const genreMap = [
 ];
 
 const AdminPage: React.FC = () => {
+  const { role, isLoading } = useRole();
   const [movies, setMovies] = useState<Movie[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -115,14 +117,13 @@ const AdminPage: React.FC = () => {
   // New state for a single selected genre
   const [selectedGenre, setSelectedGenre] = useState<string>("");
 
-   useEffect(() => {
-     Promise.all([fetchAllMovies()])
-       .then(([all]) => {
-         setMovies(all);
-         
-       })
-       .catch((err) => setError(err.message));
-   }, []);
+  useEffect(() => {
+    Promise.all([fetchAllMovies()])
+      .then(([all]) => {
+        setMovies(all);
+      })
+      .catch((err) => setError(err.message));
+  }, []);
 
   // Filter movies by title
   const filteredMovies = movies.filter((m) =>
@@ -203,27 +204,55 @@ const AdminPage: React.FC = () => {
   };
 
   const handleDeleteMovie = async (showId: string) => {
+    if (isLoading) {
+      // Show a loading spinner or message until the role is loaded
+      return <div>Loading role...</div>;
+    }
+
+    if (role !== "Administrator") {
+      alert("You do not have permission to delete movies.");
+      return;
+    }
+
     if (!window.confirm("Are you sure you want to delete this movie?")) return;
+
     try {
+      const token = sessionStorage.getItem("jwt"); // Retrieve token from sessionStorage
+
       const response = await fetch(
         `https://localhost:5000/api/admin/Movies/${showId}`,
         {
           method: "DELETE",
-          credentials: "include"
+          headers: {
+            "Content-Type": "application/json",
+
+            Authorization: token ? `Bearer ${token}` : "", // Include token in Authorization header
+            // Add JWT token in Authorization header
+          },
+          credentials: "include", // Ensures session cookie is included in the request
         }
       );
+
       if (response.ok) {
         setMovies((prev) => prev.filter((m) => m.showId !== showId));
       } else {
         console.error("Failed to delete movie:", response.status);
+        alert("Failed to delete movie. Please try again.");
       }
     } catch (error) {
       console.error("Error deleting movie:", error);
+      alert("An error occurred while trying to delete the movie.");
     }
   };
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // No need to call useRole here, role is already available from the component's state
+    if (role !== "Administrator") {
+      alert("You do not have permission to add or edit movies.");
+      return;
+    }
 
     const updatedMovie = { ...currentMovie } as any;
 
@@ -234,17 +263,24 @@ const AdminPage: React.FC = () => {
     if (isAdding) {
       try {
         const payload = { ...updatedMovie };
-        delete payload.showId; // remove showId from POST
+        delete payload.showId; // Remove showId from POST
 
         console.log("Adding movie:", payload);
+
+        const token = sessionStorage.getItem("jwt"); // Retrieve token from sessionStorage
 
         const response = await fetch(
           "https://localhost:5000/api/Admin/Movies",
           {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+              "Content-Type": "application/json",
+
+              Authorization: token ? `Bearer ${token}` : "", // Include token in Authorization header
+              // Add JWT token in Authorization header
+            },
             body: JSON.stringify(updatedMovie),
-            credentials: "include",
+            credentials: "include", // Ensure session cookie is included
           }
         );
 
@@ -253,20 +289,29 @@ const AdminPage: React.FC = () => {
           setMovies((prev) => [...prev, newMovie]);
         } else {
           console.error("Add movie failed:", response.status);
+          alert("Failed to add the movie. Please try again.");
         }
       } catch (error) {
         console.error("Error adding movie:", error);
+        alert("An error occurred while adding the movie.");
       }
       setIsAdding(false);
     } else if (isEditing && currentMovie.showId) {
       try {
+        const token = sessionStorage.getItem("jwt"); // Retrieve token from sessionStorage
+
         const response = await fetch(
           `https://localhost:5000/api/Admin/Movies/${currentMovie.showId}`,
           {
             method: "PUT",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+              "Content-Type": "application/json",
+
+              Authorization: token ? `Bearer ${token}` : "", // Include token in Authorization header
+              // Add JWT token in Authorization header
+            },
             body: JSON.stringify(updatedMovie),
-            credentials: "include",
+            credentials: "include", // Ensure session cookie is included
           }
         );
 
@@ -297,6 +342,7 @@ const AdminPage: React.FC = () => {
         }
       } catch (error) {
         console.error("Error updating movie:", error);
+        alert("An error occurred while updating the movie.");
       }
 
       setIsEditing(false);
@@ -326,7 +372,6 @@ const AdminPage: React.FC = () => {
 
   return (
     <AuthorizeView>
-
       <div className="bg-black text-white min-vh-100">
         <Header />
         <br />
@@ -628,4 +673,3 @@ export default AdminPage;
 function setError(message: any): any {
   throw new Error("Function not implemented.");
 }
-

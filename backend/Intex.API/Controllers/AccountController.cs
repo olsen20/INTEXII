@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -19,6 +20,30 @@ namespace Intex.API.Controllers
             _userManager = userManager;
         }
 
+        // DTO for registration
+        public class RegisterDto
+        {
+            public string Email { get; set; }
+            public string Password { get; set; }
+        }
+
+        // Register a new user (create account)
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterDto model)
+        {
+            var user = new IdentityUser { UserName = model.Email, Email = model.Email };
+            var result = await _userManager.CreateAsync(user, model.Password);
+
+            if (!result.Succeeded)
+            {
+                var errors = result.Errors.ToDictionary(e => e.Code, e => new[] { e.Description });
+                return BadRequest(new { errors });
+            }
+
+            return Ok(new { message = "Registration successful." });
+        }
+
+        // Login using Google
         [HttpGet("ExternalLogin")]
         public IActionResult ExternalLogin(string provider, string returnUrl = "http://localhost:3000/browse")
         {
@@ -29,6 +54,7 @@ namespace Intex.API.Controllers
             return Challenge(properties, provider);
         }
 
+        // Login with Google
         [HttpGet("ExternalLoginCallback")]
         public async Task<IActionResult> ExternalLoginCallback(string returnUrl = "http://localhost:3000/browse")
         {
@@ -55,6 +81,20 @@ namespace Intex.API.Controllers
             }
 
             return BadRequest("Error logging in with external provider.");
+        }
+
+        // Get the user's email
+        [HttpGet("me")]
+        [Authorize]
+        public async Task<IActionResult> GetCurrentUserEmail()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user == null)
+                return NotFound();
+
+            return Ok(new { email = user.Email });
         }
 
     }
