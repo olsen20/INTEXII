@@ -206,7 +206,7 @@ const AdminPage: React.FC = () => {
     if (!window.confirm("Are you sure you want to delete this movie?")) return;
     try {
       const response = await fetch(
-        `https://localhost:5000/api/Admin/Movies/${showId}`,
+        `https://localhost:5000/api/admin/Movies/${showId}`,
         {
           method: "DELETE",
           credentials: "include"

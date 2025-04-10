@@ -10,7 +10,7 @@ namespace Intex.API.Controllers
 {
     [Authorize(Roles = "Administrator")] 
     //[Authorize]
-    [Route("api/Admin/[controller]")]
+    [Route("api/admin/[controller]")]
     [ApiController]
     public class MoviesController : ControllerBase
     {
