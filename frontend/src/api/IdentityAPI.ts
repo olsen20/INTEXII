@@ -11,7 +11,7 @@ export async function registerUser(
     try {
       const response = await fetch(`${API_URL}/register`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", },
         body: JSON.stringify({ email, password }),
       });
   

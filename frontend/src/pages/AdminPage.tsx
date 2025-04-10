@@ -217,12 +217,17 @@ const AdminPage: React.FC = () => {
     if (!window.confirm("Are you sure you want to delete this movie?")) return;
 
     try {
+      const token = sessionStorage.getItem("jwt"); // Retrieve token from sessionStorage
+
       const response = await fetch(
         `https://localhost:5000/api/Admin/Movies/${showId}`,
         {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
+
+            Authorization: token ? `Bearer ${token}` : "", // Include token in Authorization header
+            // Add JWT token in Authorization header
           },
           credentials: "include", // Ensures session cookie is included in the request
         }
@@ -232,7 +237,6 @@ const AdminPage: React.FC = () => {
         setMovies((prev) => prev.filter((m) => m.showId !== showId));
       } else {
         console.error("Failed to delete movie:", response.status);
-        // Optionally, show an alert if you want a user-friendly error
         alert("Failed to delete movie. Please try again.");
       }
     } catch (error) {
@@ -263,12 +267,17 @@ const AdminPage: React.FC = () => {
 
         console.log("Adding movie:", payload);
 
+        const token = sessionStorage.getItem("jwt"); // Retrieve token from sessionStorage
+
         const response = await fetch(
           "https://localhost:5000/api/Admin/Movies",
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
+
+              Authorization: token ? `Bearer ${token}` : "", // Include token in Authorization header
+              // Add JWT token in Authorization header
             },
             body: JSON.stringify(updatedMovie),
             credentials: "include", // Ensure session cookie is included
@@ -289,12 +298,17 @@ const AdminPage: React.FC = () => {
       setIsAdding(false);
     } else if (isEditing && currentMovie.showId) {
       try {
+        const token = sessionStorage.getItem("jwt"); // Retrieve token from sessionStorage
+
         const response = await fetch(
           `https://localhost:5000/api/Admin/Movies/${currentMovie.showId}`,
           {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
+
+              Authorization: token ? `Bearer ${token}` : "", // Include token in Authorization header
+              // Add JWT token in Authorization header
             },
             body: JSON.stringify(updatedMovie),
             credentials: "include", // Ensure session cookie is included
