@@ -60,7 +60,7 @@ function MovieDetails() {
   const handleRatingChange = async (rating: number) => {
     if (!showId) return;
     try {
-      await submitUserRating(showId, rating, null);  // ONLY send rating
+      await submitUserRating(showId, rating, savedComment);  // Send rating + last saved comment
       setUserRating(rating);
       setShowCommentBox(true);
     } catch (err) {
