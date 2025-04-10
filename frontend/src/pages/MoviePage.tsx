@@ -10,11 +10,15 @@ import { fetchAllMovies, fetchTrendingMovies } from "../api/MovieAPI";
 import { fetchUserRecommendations } from "../api/RecommenderAPI";
 import SplashScreen from "../components/SplashScreen";
 import AuthorizeView from "../components/AuthorizeView";
+import MovieDetails from "../pages/MovieDetails";
+import { useParams } from "react-router-dom"; // Import useParams
 
 const MoviePage: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [top10Movies, setTop10Movies] = useState<Movie[]>([]);
   const [error, setError] = useState("");
+  // movieId for Paris, Texas
+  const { showId } = useParams<{ showId?: string }>(); // Get the showId from the URL parameter
 
   const [showSplash, setShowSplash] = useState(() => {
     return sessionStorage.getItem("splashShown") !== "true";
@@ -147,8 +151,8 @@ const MoviePage: React.FC = () => {
     "Travis Henderson, a disoriented drifter with no memory, is unexpectedly reunited with his long-lost family. Witness a quiet, contemplative journey of rediscovery and hope.";
 
   // Grabbing the movie id to connect the movie to the whole description
-  const movieId = "s9000";
-  
+  const parisMovieId = "s9000";
+
   return (
     <AuthorizeView>
       <>{showSplash && <SplashScreen />}</>
@@ -160,7 +164,7 @@ const MoviePage: React.FC = () => {
           title={featuredMovie.title || ""}
           description={heroDescription}
           trailerUrl={trailerUrl}
-          movieId={movieId}
+          movieId={parisMovieId}
         />
         <br></br>
         <div className="recommended-section">

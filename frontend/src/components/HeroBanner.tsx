@@ -1,5 +1,4 @@
 import React from "react";
-// import { useNavigate } from "react-router-dom";
 import "../index.css"; // Optional: external CSS file
 import { useNavigate } from "react-router-dom";
 
@@ -9,6 +8,7 @@ interface HeroBannerProps {
   trailerUrl: string; // URL to your trailer video
   movieId: string;
 }
+
 const HeroBanner: React.FC<HeroBannerProps> = ({
   title,
   description,
@@ -18,7 +18,7 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
   const navigate = useNavigate();
 
   const handleDetails = () => {
-    navigate(`api/Movie/Details/${movieId}`);
+    navigate(`/movies/${movieId}`); // Use the correct route
   };
 
   return (
