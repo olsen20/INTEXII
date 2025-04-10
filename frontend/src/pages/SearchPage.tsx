@@ -65,7 +65,7 @@ const SearchPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [mediaTypeFilter, setMediaTypeFilter] = useState<string>("all");
   const [genreFilters, setGenreFilters] = useState<string[]>([]);
-  const [sortBy, setSortBy] = useState<string>("titleAsc");
+  const [sortBy, setSortBy] = useState<string>("default");
   const [ratingFilter, setRatingFilter] = useState<string>("all");
 
   // Pagination
@@ -139,8 +139,9 @@ const SearchPage: React.FC = () => {
       return a.title.localeCompare(b.title);
     } else if (sortBy === "titleDesc") {
       return b.title.localeCompare(a.title);
+    } else {
+      return 0; // ✅ No sorting — keep original DB order
     }
-    return 0;
   });
 
   // Pagination logic
@@ -172,17 +173,20 @@ const SearchPage: React.FC = () => {
           />
           <br></br>
           <div className="filter-sort-menu">
+            {/* Sort by Title */}
+            <select value={sortBy} onChange={handleSortChange}>
+              <option value="default">Sort</option>
+              <option value="titleAsc">Title (A-Z)</option>
+              <option value="titleDesc">Title (Z-A)</option>
+            </select>
+
             {/* Media Type */}
             <select value={mediaTypeFilter} onChange={handleMediaTypeChange}>
               <option value="all">All Media</option>
               <option value="movie">Movies</option>
               <option value="tv">TV Shows</option>
             </select>
-            {/* Sort by Title */}
-            <select value={sortBy} onChange={handleSortChange}>
-              <option value="titleAsc">Title (A-Z)</option>
-              <option value="titleDesc">Title (Z-A)</option>
-            </select>
+
             {/* Filter by Rating */}
             <select
               value={ratingFilter}
