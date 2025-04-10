@@ -18,7 +18,7 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
  // const navigate = useNavigate();
 
   const handleDetails = () => {
-    // navigate(`/movies/${movieId}`);
+    // navigate(`api/Movie/Details/${movieId}`);
   };
 
   return (

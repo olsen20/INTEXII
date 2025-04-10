@@ -25,7 +25,6 @@ function HomePage() {
   return (
     <>
       <HeaderNotSignedIn />
-
       <div className="login-background">
         <div className="login-overlay d-flex flex-column justify-content-center align-items-center text-center text-light px-3">
           <h1 className="fw-bold display-4 mb-3">DISCOVER THE FILMS</h1>
