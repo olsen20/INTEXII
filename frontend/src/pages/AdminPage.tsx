@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import "../styles/AdminPage.css";
 import { fetchAllMovies } from "../api/MovieAPI";
 import { useRole } from "../context/RoleContext";
-import AuthorizeView from "../components/AuthorizeView"; 
+import AuthorizeView from "../components/AuthorizeView";
 
 // Define the Movie interface with all necessary fields
 interface Movie {
@@ -134,7 +134,6 @@ const AdminPage: React.FC = () => {
     );
   }
 
-  
   // Block access if not Admin
   if (role !== "Administrator") {
     return (
@@ -150,9 +149,9 @@ const AdminPage: React.FC = () => {
   );
 
   // Pagination slice
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const pageMovies = filteredMovies.slice(startIndex, endIndex);
+  // const startIndex = (currentPage - 1) * itemsPerPage;
+  // const endIndex = startIndex + itemsPerPage;
+  // const pageMovies = filteredMovies.slice(startIndex, endIndex);
 
   const goToPage = (pageNum: number) => {
     if (pageNum >= 1 && pageNum <= totalPages) {
@@ -225,7 +224,11 @@ const AdminPage: React.FC = () => {
   const handleDeleteMovie = async (showId: string) => {
     if (isLoading) {
       // Show a loading spinner or message until the role is loaded
-      return <div className="bg-black text-white min-vh-100 d-flex justify-content-center align-items-center">Loading role...</div>;
+      return (
+        <div className="bg-black text-white min-vh-100 d-flex justify-content-center align-items-center">
+          Loading role...
+        </div>
+      );
     }
 
     if (role !== "Administrator") {
@@ -262,33 +265,36 @@ const AdminPage: React.FC = () => {
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-  
+
     if (role !== "Administrator") {
       alert("You do not have permission to add or edit movies.");
       return;
     }
-  
+
     const updatedMovie = { ...currentMovie } as any;
-  
+
     // Handle genre selection
     genreMap.forEach((g) => {
       updatedMovie[g.key] = g.key === selectedGenre ? 1 : 0;
     });
-  
+
     if (isAdding) {
       try {
         const payload = { ...updatedMovie };
         delete payload.showId; // Remove showId when adding new movie
         console.log(JSON.stringify(payload, null, 2));
-        const response = await fetch("https://localhost:5000/api/Admin/Movies", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
-          credentials: "include",
-        });
-  
+        const response = await fetch(
+          "https://localhost:5000/api/Admin/Movies",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+            credentials: "include",
+          }
+        );
+
         if (response.ok) {
           const newMovie: Movie = await response.json();
           setMovies((prev) => [...prev, newMovie]);
@@ -315,12 +321,14 @@ const AdminPage: React.FC = () => {
             credentials: "include",
           }
         );
-  
+
         if (response.ok) {
           const updatedMovieResponse: Movie = await response.json();
           setMovies((prev) =>
             prev.map((m) =>
-              m.showId === updatedMovieResponse.showId ? updatedMovieResponse : m
+              m.showId === updatedMovieResponse.showId
+                ? updatedMovieResponse
+                : m
             )
           );
         } else {
@@ -331,11 +339,10 @@ const AdminPage: React.FC = () => {
         console.error("Error updating movie:", error);
         alert("An error occurred while updating the movie.");
       }
-  
+
       setIsEditing(false);
     }
   };
-  
 
   // Helper to generate a comma-separated genre string for table display.
   const computeGenreLabel = (movie: Movie): string => {
@@ -658,6 +665,6 @@ const AdminPage: React.FC = () => {
 };
 
 export default AdminPage;
-function setError(message: any): any {
+function setError(_message: any): any {
   throw new Error("Function not implemented.");
 }

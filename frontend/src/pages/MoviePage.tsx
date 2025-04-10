@@ -148,27 +148,33 @@ const MoviePage: React.FC = () => {
 
   return (
     <AuthorizeView>
-      <>{showSplash && <SplashScreen />}</>
-
+            <>{showSplash && <SplashScreen />}</>     {" "}
       <div className="bg-black text-white min-vh-100 pt-5">
-        <Header />
+                <Header />       {" "}
         {/* Hero section at the top using the trailer */}
+               {" "}
         <HeroBanner
           title={featuredMovie.title || ""}
           description={heroDescription}
           trailerUrl={trailerUrl}
         />
-        <br></br>
+                <br></br>        {/* Display error message if it exists */}     
+          {error && <div className="text-danger px-4 py-3">Error: {error}</div>}
+               {" "}
         <div className="recommended-section">
+                   {" "}
           {userRecs.length > 0 && (
             <div className="carousel-fade-in px-5">
+                           {" "}
               <CarouselRow
                 title="Recommended for You"
                 movies={userRecs}
                 limit={10}
               />
+                         {" "}
             </div>
           )}
+                   {" "}
           {sections.slice(0, visibleSections).map((section, index) => (
             <div
               key={section.title}
@@ -180,16 +186,20 @@ const MoviePage: React.FC = () => {
                 }
               }}
             >
+                           {" "}
               <CarouselRow
                 title={section.title}
                 movies={section.movies}
                 {...section.props}
               />
+                         {" "}
             </div>
           ))}
+                 {" "}
         </div>
-        <Footer />
+                <Footer />     {" "}
       </div>
+         {" "}
     </AuthorizeView>
   );
 };
