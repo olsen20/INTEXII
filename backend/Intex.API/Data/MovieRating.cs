@@ -14,5 +14,8 @@ namespace Intex.API.Data
 
         [Column("rating")]
         public decimal Rating { get; set; }
+
+        [Column("comment")]
+        public string? Comment { get; set; }
     }
 }
