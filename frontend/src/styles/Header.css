@@ -121,3 +121,10 @@
     transform: translateY(0);
   }
 }
+.admin-link {
+  color: #7180b5 !important;
+}
+
+.admin-link:hover {
+  color: #a3acd7 !important;
+}
