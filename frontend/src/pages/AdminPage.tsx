@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import "../styles/AdminPage.css"; // Admin page styling
+import "../styles/AdminPage.css";
 import { fetchAllMovies } from "../api/MovieAPI";
 import { useRole } from "../context/RoleContext";
+import AuthorizeView from "../components/AuthorizeView"; 
 
 // Define the Movie interface with all necessary fields
 interface Movie {
@@ -124,6 +125,25 @@ const AdminPage: React.FC = () => {
       .catch((err) => setError(err.message));
   }, []);
 
+  // Show loading while checking role
+  if (isLoading) {
+    return (
+      <div className="bg-black text-white min-vh-100 d-flex justify-content-center align-items-center">
+        <h2>Loading...</h2>
+      </div>
+    );
+  }
+
+  
+  // Block access if not Admin
+  if (role !== "Administrator") {
+    return (
+      <div className="bg-black text-white min-vh-100 d-flex justify-content-center align-items-center">
+        <h2>Access Denied: Admins Only</h2>
+      </div>
+    );
+  }
+
   // Filter movies by title
   const filteredMovies = movies.filter((m) =>
     m.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -242,38 +262,33 @@ const AdminPage: React.FC = () => {
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    // No need to call useRole here, role is already available from the component's state
+  
     if (role !== "Administrator") {
       alert("You do not have permission to add or edit movies.");
       return;
     }
-
+  
     const updatedMovie = { ...currentMovie } as any;
-
+  
+    // Handle genre selection
     genreMap.forEach((g) => {
       updatedMovie[g.key] = g.key === selectedGenre ? 1 : 0;
     });
-
+  
     if (isAdding) {
       try {
         const payload = { ...updatedMovie };
-        delete payload.showId; // Remove showId from POST
-
-        console.log("Adding movie:", payload);
-
-        const response = await fetch(
-          "https://localhost:5000/api/Admin/Movies",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(updatedMovie),
-            credentials: "include", // Ensure session cookie is included
-          }
-        );
-
+        delete payload.showId; // Remove showId when adding new movie
+        console.log(JSON.stringify(payload, null, 2));
+        const response = await fetch("https://localhost:5000/api/Admin/Movies", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+          credentials: "include",
+        });
+  
         if (response.ok) {
           const newMovie: Movie = await response.json();
           setMovies((prev) => [...prev, newMovie]);
@@ -287,6 +302,7 @@ const AdminPage: React.FC = () => {
       }
       setIsAdding(false);
     } else if (isEditing && currentMovie.showId) {
+      console.log("Updating movie with id:", currentMovie.showId);
       try {
         const response = await fetch(
           `https://localhost:5000/api/Admin/Movies/${currentMovie.showId}`,
@@ -296,43 +312,30 @@ const AdminPage: React.FC = () => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify(updatedMovie),
-            credentials: "include", // Ensure session cookie is included
+            credentials: "include",
           }
         );
-
-        let updatedMovieResponse: Movie | null = null;
-
-        if (
-          response.status !== 204 &&
-          response.headers.get("content-length") !== "0"
-        ) {
-          updatedMovieResponse = await response.json();
-        }
-
-        if (updatedMovieResponse) {
+  
+        if (response.ok) {
+          const updatedMovieResponse: Movie = await response.json();
           setMovies((prev) =>
             prev.map((m) =>
-              m.showId === updatedMovieResponse!.showId
-                ? updatedMovieResponse!
-                : m
+              m.showId === updatedMovieResponse.showId ? updatedMovieResponse : m
             )
           );
         } else {
-          // If backend returns 204 No Content, update manually
-          setMovies((prev) =>
-            prev.map((m) =>
-              m.showId === updatedMovie.showId ? updatedMovie : m
-            )
-          );
+          console.error("Failed to update movie:", response.status);
+          alert("Failed to update movie. Please try again.");
         }
       } catch (error) {
         console.error("Error updating movie:", error);
         alert("An error occurred while updating the movie.");
       }
-
+  
       setIsEditing(false);
     }
   };
+  
 
   // Helper to generate a comma-separated genre string for table display.
   const computeGenreLabel = (movie: Movie): string => {

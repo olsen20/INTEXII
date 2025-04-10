@@ -99,6 +99,18 @@
         }
       }
     },
+    "/Account/roles": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/register": {
       "post": {
         "tags": [
@@ -765,25 +777,6 @@
         "tags": [
           "Movies"
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MovieTitle"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MovieTitle"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/MovieTitle"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "OK",

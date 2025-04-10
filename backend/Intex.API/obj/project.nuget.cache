@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XQyJxHaOeXM=",
+  "dgSpecHash": "xe0f5hNDwcQ=",
   "success": true,
-  "projectFilePath": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\Intex.API.csproj",
+  "projectFilePath": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\Intex.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\maris\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\maris\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\8.0.13\\microsoft.aspnetcore.authentication.google.8.0.13.nupkg.sha512",

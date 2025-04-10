@@ -38,7 +38,7 @@ namespace Intex.API.Data
         public string Description { get; set; }
 
         [Column("poster_url")]
-        public string PosterUrl { get; set; }
+        public string? PosterUrl { get; set; }
 
         [Column("action")]
         public int Action { get; set; }
