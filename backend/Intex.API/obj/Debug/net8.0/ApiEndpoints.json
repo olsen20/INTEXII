@@ -443,30 +443,6 @@
     ]
   },
   {
-<<<<<<< HEAD
-    "ContainingType": "Intex.API.Controllers.TokenController",
-    "Method": "GetJwt",
-    "RelativePath": "api/Token/token",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "email",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "password",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-=======
->>>>>>> 1b6b1b5705063852f2de4ce88bcd05ac99c2962b
     "ContainingType": "Intex.API.Controllers.UserController",
     "Method": "GetUserRole",
     "RelativePath": "api/User/role",
@@ -574,7 +550,7 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_7",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_6",
     "RelativePath": "logout",
     "HttpMethod": "POST",
     "IsController": false,
@@ -692,7 +668,7 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_8",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_7",
     "RelativePath": "pingauth",
     "HttpMethod": "GET",
     "IsController": false,
