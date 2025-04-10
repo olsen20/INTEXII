@@ -53,6 +53,7 @@ function MyStuffPage() {
               {userEmail && <p className="user-email">{userEmail}</p>}
             </div>
           </div>
+          <hr className="divider" />
 
           {/* Favorite Movies (rated 5 stars) */}
           <div className="section">

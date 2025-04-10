@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\maris\\onedrive\\desktop\\school\\winter 2025\\intex\\intexii\\backend\\intex.api\\controllers\\ratingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:controllers\\ratingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\maris\\onedrive\\desktop\\school\\winter 2025\\intex\\intexii\\backend\\intex.api\\controllers\\adminpagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:controllers\\adminpagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -17,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\maris\\onedrive\\desktop\\school\\winter 2025\\intex\\intexii\\backend\\intex.api\\data\\movietitle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:data\\movietitle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\maris\\onedrive\\desktop\\school\\winter 2025\\intex\\intexii\\backend\\intex.api\\controllers\\ratingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:controllers\\ratingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\maris\\onedrive\\desktop\\school\\winter 2025\\intex\\intexii\\backend\\intex.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -46,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 279,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -70,19 +70,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "RatingController.cs",
               "DocumentMoniker": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\Controllers\\RatingController.cs",
               "RelativeDocumentMoniker": "Controllers\\RatingController.cs",
               "ToolTip": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\Controllers\\RatingController.cs",
               "RelativeToolTip": "Controllers\\RatingController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwBoAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T17:36:11.635Z"
+              "WhenOpened": "2025-04-10T17:36:11.635Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "MovieTitle.cs",
               "DocumentMoniker": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\Data\\MovieTitle.cs",
               "RelativeDocumentMoniker": "Data\\MovieTitle.cs",
@@ -94,13 +95,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "AdminPageController.cs",
               "DocumentMoniker": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\Controllers\\AdminPageController.cs",
               "RelativeDocumentMoniker": "Controllers\\AdminPageController.cs",
               "ToolTip": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\Controllers\\AdminPageController.cs",
               "RelativeToolTip": "Controllers\\AdminPageController.cs",
-              "ViewState": "AgIAAIwAAAAAAAAAAAAswKYAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAI4AAAAAAAAAAAAgwKYAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-10T15:31:34.792Z",
               "EditorCaption": ""
@@ -143,7 +144,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -151,12 +152,11 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T16:50:24.238Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-09T16:50:24.238Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "MovieController.cs",
               "DocumentMoniker": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\Controllers\\MovieController.cs",
               "RelativeDocumentMoniker": "Controllers\\MovieController.cs",
@@ -164,8 +164,7 @@
               "RelativeToolTip": "Controllers\\MovieController.cs",
               "ViewState": "AgIAABMAAAAAAAAAAAAQwBUAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T03:29:27.584Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-09T03:29:27.584Z"
             },
             {
               "$type": "Document",
