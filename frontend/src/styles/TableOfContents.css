@@ -1,23 +1,20 @@
-/* TableOfContents.css */
-
-/* Make sidebar sticky (optional) */
+/* Sticky TOC */
 .sticky-toc {
-  position: sticky;
-  top: 100px; /* adjust as needed */
+  position: fixed;
+  top: 150px; /* adjust to match your header */
+  z-index: 10;
+  width: 240px;
 }
 
-/* Remove any background, border, or shadow around the TOC */
+/* Optional styling */
 .toc-wrapper {
-  background-color: transparent;
-  padding: 1rem;
-  border-radius: 0;
-  box-shadow: none;
-  font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial";
+  padding-right: 1rem;
 }
 
-/* List group items: no background, no border */
+/* Clean list styling */
 .list-group-item {
   border: none;
+  text-align: left !important;
   background-color: transparent;
   transition: background-color 0.2s ease-in-out;
 }
@@ -26,9 +23,14 @@
   background-color: #f2f2f2;
 }
 
-/* Remove focus/active states */
-.list-group-item:focus,
-.list-group-item.active {
-  background-color: transparent;
-  outline: none;
+@media (min-width: 768px) {
+  .sticky-toc {
+    width: 240px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .sticky-toc {
+    display: none; /* Or convert to dropdown if desired */
+  }
 }

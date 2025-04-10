@@ -10,6 +10,7 @@ import CarouselRow from "../components/CarouselRow";
 import { fetchCollaborativeRecommendations, fetchContentRecommendations } from "../api/RecommenderAPI";
 import AuthorizeView from "../components/AuthorizeView";
 import { Movie } from "../types/Movies";
+import { FaPlay } from "react-icons/fa";
 
 function MovieDetails() {
   const { showId } = useParams();
@@ -72,7 +73,7 @@ function MovieDetails() {
 
               {/* Poster Image */}
               <img
-                  src={movie.posterUrl}
+                  src={movie.posterUrl || "/posters/default.png"}
                   alt={movie.title}
                   className="movie-poster"
                   onError={(e) => {
@@ -83,7 +84,7 @@ function MovieDetails() {
               />
 
               {/* Movie Info */}
-              <div className="movie-info">
+              <div className="carousel-fade-in movie-info">
                 <h1 className="movie-title">{movie.title}</h1>
                 <p className="movie-subtitle">
                   {movie.releaseYear} &nbsp; | &nbsp; {movie.rating || "Unrated"}
@@ -123,6 +124,17 @@ function MovieDetails() {
                     ))}
                   </div>
                 )}
+
+              {/* Watch buttons */}
+              <div className="button-row">
+                <button className="watch-now-button mt-3">
+                  <FaPlay className="me-2" />Watch Now
+                </button>
+                <button className="watch-trailer-button mt-3">
+                  Watch Trailer
+                </button>
+              </div>
+
               </div>
             </div>
           </div>
@@ -133,7 +145,7 @@ function MovieDetails() {
 
           {/* Content Filtering */}
           {conRecommendations.length > 0 && (
-            <div className="trending px-5">
+            <div className="carousel-fade-in trending px-5">
               <CarouselRow
                 title="More Movies Like This:"
                 movies={conRecommendations}
@@ -145,7 +157,7 @@ function MovieDetails() {
 
           {/* Collaborative Filtering */}
           {colRecommendations.length > 0 && (
-            <div className="trending px-5">
+            <div className="carousel-fade-in trending px-5">
               <CarouselRow
                 title="Viewers Who Watched This Also Watched:"
                 movies={colRecommendations}

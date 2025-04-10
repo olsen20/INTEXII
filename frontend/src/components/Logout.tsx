@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../api/IdentityAPI";
 import "../styles/Header.css"; // Create this CSS file for overlay styling
 
@@ -16,6 +16,7 @@ function Logout(props: { children: React.ReactNode }) {
       if (response.ok) {
         // Delay the navigation to allow the overlay to show
         setTimeout(() => {
+          sessionStorage.removeItem("splashShown");
           navigate("/");
         }, 1000);
       } else {

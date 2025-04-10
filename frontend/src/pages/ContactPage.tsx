@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import TableOfContents from "../components/TableOfContents";
 import { useAuthStatus } from "../components/UseAuthStatus";
 import HeaderNotSignedIn from "../components/HeaderNotSignedIn";
+import "../styles/TableOfContents.css";
 
 const ContactPage: React.FC = () => {
   const isLoggedIn = useAuthStatus();  // Determine whether the user is logged in

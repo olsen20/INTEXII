@@ -9,7 +9,7 @@ export async function registerUser(
     password: string
   ): Promise<{ ok: boolean; message: string }> {
     try {
-      const response = await fetch(`${API_URL}/register`, {
+      const response = await fetch(`${API_URL}/Account/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json", },
         body: JSON.stringify({ email, password }),
@@ -102,3 +102,19 @@ export async function getAuthenticatedUser(): Promise<User | null> {
       return null;
     }
 }  
+
+// Get the user's email
+export async function fetchCurrentUserEmail(): Promise<string | null> {
+  try {
+    const response = await fetch(`${API_URL}/Account/me`, {
+      credentials: "include",
+    });
+
+    if (!response.ok) return null;
+
+    const data = await response.json();
+    return data.email;
+  } catch {
+    return null;
+  }
+}

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../styles/AdminPage.css"; // Admin page styling
-import AuthorizeView from "../components/AuthorizeView";
 import { fetchAllMovies } from "../api/MovieAPI";
 import { useRole } from "../context/RoleContext";
 

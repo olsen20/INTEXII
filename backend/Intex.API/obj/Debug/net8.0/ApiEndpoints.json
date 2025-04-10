@@ -37,6 +37,32 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Intex.API.Controllers.AccountController",
+    "Method": "GetCurrentUserEmail",
+    "RelativePath": "Account/me",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Intex.API.Controllers.AccountController",
+    "Method": "Register",
+    "RelativePath": "Account/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Intex.API.Controllers.AccountController\u002BRegisterDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Intex.API.Controllers.MoviesController",
     "Method": "GetMovies",
     "RelativePath": "api/Admin/Movies",
@@ -417,6 +443,7 @@
     ]
   },
   {
+<<<<<<< HEAD
     "ContainingType": "Intex.API.Controllers.TokenController",
     "Method": "GetJwt",
     "RelativePath": "api/Token/token",
@@ -438,6 +465,8 @@
     "ReturnTypes": []
   },
   {
+=======
+>>>>>>> 1b6b1b5705063852f2de4ce88bcd05ac99c2962b
     "ContainingType": "Intex.API.Controllers.UserController",
     "Method": "GetUserRole",
     "RelativePath": "api/User/role",

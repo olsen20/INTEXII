@@ -5,6 +5,37 @@
     "version": "1.0"
   },
   "paths": {
+    "/Account/register": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/Account/ExternalLogin": {
       "get": {
         "tags": [
@@ -48,6 +79,18 @@
               "default": "http://localhost:3000/browse"
             }
           }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Account/me": {
+      "get": {
+        "tags": [
+          "Account"
         ],
         "responses": {
           "200": {
@@ -1151,6 +1194,7 @@
         }
       }
     },
+<<<<<<< HEAD
     "/api/Token/token": {
       "get": {
         "tags": [
@@ -1179,6 +1223,8 @@
         }
       }
     },
+=======
+>>>>>>> 1b6b1b5705063852f2de4ce88bcd05ac99c2962b
     "/api/User/role": {
       "get": {
         "tags": [
@@ -1685,6 +1731,20 @@
         "type": "object",
         "properties": {
           "refreshToken": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegisterDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
             "type": "string",
             "nullable": true
           }
