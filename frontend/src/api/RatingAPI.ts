@@ -2,8 +2,15 @@
 const API_URL =
   "https://localhost:5000/api/Rating";
 
+// Create a rating data type
+type UserRatingResponse = {
+    rating: number | null;
+    comment: string;
+};
+
 // Get the User Rating for an individual movie
-export async function getUserRating(showId: string): Promise<number | null> {
+
+export async function getUserRating(showId: string): Promise<UserRatingResponse | null> {
   try {
     const response = await fetch(`${API_URL}/user/${showId}`, {
       credentials: "include",
@@ -17,8 +24,11 @@ export async function getUserRating(showId: string): Promise<number | null> {
       throw new Error("Failed to fetch rating");
     }
 
-    const rating = await response.json();
-    return rating;
+    const data = await response.json();
+    return {
+      rating: data.rating ?? null,
+      comment: data.comment ?? "",
+    };
   } catch (error) {
     console.error("Error fetching user rating:", error);
     return null;
@@ -26,14 +36,22 @@ export async function getUserRating(showId: string): Promise<number | null> {
 }
 
 // Submit a new user rating for a movie
-export async function submitUserRating(
-  showId: string,
-  rating: number
-): Promise<void> {
-  await fetch(`${API_URL}/user/${showId}`, {
+export async function submitUserRating(showId: string, rating: number, comment: string | null) {
+  const payload: any = { rating };
+  if (comment !== null) {
+    payload.comment = comment;
+  }
+
+  const response = await fetch(`${API_URL}/user/${showId}`, {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
     credentials: "include",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(rating),
+    body: JSON.stringify(payload),
   });
+
+  if (!response.ok) {
+    throw new Error("Failed to submit rating");
+  }
 }

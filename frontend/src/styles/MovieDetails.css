@@ -164,3 +164,109 @@
     }
   }
   
+  .comment-section {
+    background-color: #2a2a2a;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    margin-top: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .comment-section h5 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    color: #f5f5f5;
+  }
+  
+  .comment-section textarea {
+    background-color: #1e1e1e;
+    color: #ddd;
+    border: 1px solid #444;
+  }
+  
+  .comment-section .button-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  
+  .comment-section button:hover {
+    background-color: #6fa7c3;
+  }
+
+  .user-comment {
+    background-color: #1e1e1e;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    color: #ddd;
+    white-space: pre-wrap;
+    min-height: 80px;
+  }
+  
+  .button-row {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  
+  .button-row button {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+  }
+  
+  .comment-button {
+    background-color: #333;
+    color: #ddd;
+    border: none;
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .comment-button:hover {
+    background-color: #444;
+    color: #fff;
+  }
+  
+/* Add space between poster/info section and comment section */
+.poster-and-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 4rem;  /* <- This pushes comments section down */
+}
+
+@media (min-width: 768px) {
+  .poster-and-info {
+    flex-direction: row;
+    align-items: flex-start;
+    margin-bottom: 5rem;  /* Even more space on desktop */
+  }
+}
+
+/* Optional: more space between poster and info text */
+.movie-info {
+  margin-top: 1rem; /* Mobile */
+}
+
+@media (min-width: 768px) {
+  .movie-info {
+    margin-top: 0;  /* Remove extra top margin for desktop */
+  }
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #444;
+  margin: 3rem 0;
+  opacity: 0.7;
+}
+
+.movie-detail-content {
+  max-width: 1000px;
+  width: 100%;
+  margin-top: 5rem;  /* Add this line for breathing room */
+}

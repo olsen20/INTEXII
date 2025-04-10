@@ -87,3 +87,14 @@
     }
   }
   
+  .divider {
+    border: none;
+    border-top: 1px solid #444;
+    margin: 3rem 0;
+    opacity: 0.7;
+  }
+
+  .profile-header {
+    margin-top: 3rem;  /* Add this line for breathing room */
+  }
+  

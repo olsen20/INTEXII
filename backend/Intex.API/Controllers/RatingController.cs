@@ -24,10 +24,10 @@ public class RatingController : ControllerBase
         var rating = await _context.MovieRatings.FindAsync(userId, showId);
 
         if (rating == null)
-            return Ok(new { Rating = (int?)null, Comment = "No comment" }); // No rating yet
+            return Ok(new { Rating = (int?)null, Comment = "" }); // No rating yet
 
         // Ensure that Comment is not null, if it is, return a default value
-        var comment = rating.Comment ?? "No comment";  // Provide default value if comment is null
+        var comment = rating.Comment ?? "";  // Provide default value if comment is null
 
         // Return an object containing both the rating and the comment
         return Ok(new { rating.Rating, Comment = comment });

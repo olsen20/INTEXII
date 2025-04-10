@@ -335,17 +335,7 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "RatingController",
@@ -361,8 +351,8 @@
         "IsRequired": true
       },
       {
-        "Name": "newRating",
-        "Type": "System.Decimal",
+        "Name": "request",
+        "Type": "Intex.API.Data.MovieRatingRequest",
         "IsRequired": true
       }
     ],
