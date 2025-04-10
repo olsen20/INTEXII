@@ -5,10 +5,13 @@ import fullLogo2 from "../assets/fullLogo2.png"; // Logo image
 import profileIcon from "../assets/profileIcon.png"; // Profile icon image
 import Logout from "../components/Logout"; // Import the Logout component
 import { useRole } from "../context/RoleContext";
+import { fetchCurrentUserEmail } from "../api/IdentityAPI";
 
 const Header: React.FC = () => {
   const [showHeader, setShowHeader] = useState<boolean>(true);
   const lastScrollY = useRef<number>(window.pageYOffset);
+
+  const [userEmail, setUserEmail] = useState("");
 
   const { role, isLoading } = useRole();
 
@@ -27,6 +30,13 @@ const Header: React.FC = () => {
   useEffect(() => {
     window.addEventListener("scroll", controlHeader);
     return () => window.removeEventListener("scroll", controlHeader);
+
+    // Fetch user email
+    fetchCurrentUserEmail()
+      .then((email) => {
+        if (email) setUserEmail(email);
+      })
+      .catch(() => {});
   }, []);
 
   return (
@@ -62,7 +72,10 @@ const Header: React.FC = () => {
               {/* Conditional admin button */}
               {!isLoading && role === "Administrator" && (
                 <li className="nav-item me-5">
-                  <Link className="button-fade-in nav-link admin-link" to="/admin">
+                  <Link
+                    className="button-fade-in nav-link admin-link"
+                    to="/admin"
+                  >
                     Admin
                   </Link>
                 </li>
@@ -85,6 +98,11 @@ const Header: React.FC = () => {
                     alt="Profile"
                     className="profile-icon"
                   />
+                </Link>
+              </li>
+              <li className="nav-item me-5">
+                <Link className="nav-link" to="/mystuff">
+                  {userEmail && <p >{userEmail}</p>}
                 </Link>
               </li>
               <li className="nav-item me-5">
