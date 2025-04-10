@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import "../styles/AdminPage.css"; // Admin page styling
 import { fetchAllMovies } from "../api/MovieAPI";
 import { useRole } from "../context/RoleContext";
+import AuthorizeView from "../components/AuthorizeView";
 
 // Define the Movie interface with all necessary fields
 interface Movie {
