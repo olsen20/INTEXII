@@ -10,13 +10,17 @@ import CarouselRow from "../components/CarouselRow";
 import { fetchCollaborativeRecommendations, fetchContentRecommendations } from "../api/RecommenderAPI";
 import AuthorizeView from "../components/AuthorizeView";
 import { Movie } from "../types/Movies";
-import { FaPlay } from "react-icons/fa";
+import { FaPlay, FaPencilAlt } from "react-icons/fa";
 
 function MovieDetails() {
   const { showId } = useParams();
   const [movie, setMovie] = useState<any>(null);
   const [error, setError] = useState("");
   const [userRating, setUserRating] = useState<number>(0);
+  const [savedComment, setSavedComment] = useState<string>(""); // What is in the DB
+  const [editComment, setEditComment] = useState<string>("");   // What the user is typing
+  const [showCommentBox, setShowCommentBox] = useState(false);
+  const [isEditingComment, setIsEditingComment] = useState(false);
   const [colRecommendations, setColRecommendations] = useState<Movie[]>([]);
   const [conRecommendations, setConRecommendations] = useState<Movie[]>([]);
 
@@ -24,6 +28,8 @@ function MovieDetails() {
     if (showId) {
       setMovie(null);  // Reset movie to trigger loading state
       setUserRating(0);  // Reset user rating to prevent previous carry-over
+      setShowCommentBox(false);
+      setIsEditingComment(false);
 
       // Retrieve the movie details
       fetchMovieById(showId)
@@ -32,20 +38,19 @@ function MovieDetails() {
       
       // Retrieve the user rating (if provided)
       getUserRating(showId)
-        .then((rating) => {
-          if (rating !== null) setUserRating(rating);
+        .then((data) => {
+          if (data) {
+            setUserRating(data.rating ?? 0);
+            setSavedComment(data.comment ?? "");
+            setEditComment(data.comment ?? "");
+            setShowCommentBox(true);
+          }
         })
-        .catch(() => console.error("Could not load user rating."));
+    .catch((err) => console.error("Failed to load user rating:", err));
 
-      // Use Content filtering to get which movies are similar
-      fetchContentRecommendations(showId)
-        .then(setConRecommendations)
-        .catch((err) => console.error("Failed to fetch Content recommendations:", err));
+    fetchContentRecommendations(showId).then(setConRecommendations);
+    fetchCollaborativeRecommendations(showId).then(setColRecommendations);
 
-      // Use Collaborative Filtering to get which movies viewers also watched
-      fetchCollaborativeRecommendations(showId)
-        .then(setColRecommendations)
-        .catch((err) => console.error("Failed to fetch Collaborative recommendations:", err));
     }
   }, [showId]);
 
@@ -53,12 +58,26 @@ function MovieDetails() {
   const handleRatingChange = async (rating: number) => {
     if (!showId) return;
     try {
-      await submitUserRating(showId, rating);
+      await submitUserRating(showId, rating, null);  // ONLY send rating
       setUserRating(rating);
+      setShowCommentBox(true);
     } catch (err) {
       console.error("Error submitting rating:", err);
     }
-  };
+  };  
+
+  // Ran when adding a new comment
+  const handleCommentSubmit = async () => {
+    if (!showId) return;
+    try {
+      await submitUserRating(showId, userRating, editComment);
+      setSavedComment(editComment); // Update display
+      setIsEditingComment(false);
+    } catch (err) {
+      console.error("Error submitting comment:", err);
+      alert("Failed to submit comment.");
+    }
+  };  
 
   if (error) return <div className="text-danger">{error}</div>;
   if (!movie) return <div className="text-light px-4 py-5">Loading...</div>;
@@ -134,9 +153,46 @@ function MovieDetails() {
                   Watch Trailer
                 </button>
               </div>
-
               </div>
             </div>
+            
+            {/* Comment area */}
+            <hr className="divider" />
+            <h5>{savedComment ? "Your Comment" : "Add a Comment"}</h5>
+            {savedComment && !isEditingComment ? (
+              <>
+                <div className="user-comment">{savedComment}</div>
+                <button className="btn comment-button mt-2" onClick={() => setIsEditingComment(true)}>
+                  Edit Comment
+                </button>
+              </>
+            ) : (
+              <>
+                <textarea
+                  className="form-control"
+                  value={editComment}
+                  onChange={(e) => setEditComment(e.target.value)}
+                  placeholder="Leave your thoughts..."
+                />
+                <div className="button-row">
+                  <button className="btn comment-button mt-2" onClick={handleCommentSubmit}>
+                    Submit Comment
+                  </button>
+                  {savedComment && (
+                    <button
+                      className="btn comment-button mt-2"
+                      onClick={() => {
+                        setIsEditingComment(false);
+                        setEditComment(savedComment); // Reset to last saved
+                      }}
+                    >
+                      Cancel
+                    </button>
+                  )}
+                </div>
+              </>
+            )}
+            <hr className="divider" />
           </div>
         </div>
 

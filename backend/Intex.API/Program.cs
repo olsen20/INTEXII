@@ -21,20 +21,28 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("IdentityDb")));
 
 builder.Services.AddAuthorization();
+// Authorization Policy to require Administrator role
+// Authorization Policy to require Administrator role
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("RequireAdministratorRole", policy =>
+        policy.RequireRole("Administrator"));
+});
 
-// Allow user roles
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 builder.Services.AddSingleton<IEmailSender<IdentityUser>, NoOpEmailSender<IdentityUser>>();
 
+// This makes sure roles are included in the cookie every time
+builder.Services.AddScoped<IUserClaimsPrincipalFactory<IdentityUser>, UserClaimsPrincipalFactory<IdentityUser, IdentityRole>>();
+
 builder.Services.Configure<IdentityOptions>(options =>
 {
-    // Claim configuration
     options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier;
     options.ClaimsIdentity.UserNameClaimType = ClaimTypes.Email;
+    options.ClaimsIdentity.RoleClaimType = ClaimTypes.Role;
 
-    // Password policy
     options.Password.RequireDigit = false;
     options.Password.RequireLowercase = false;
     options.Password.RequireUppercase = false;
@@ -43,17 +51,31 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequiredUniqueChars = 1;
 });
 
-
-builder.Services.AddScoped<IUserClaimsPrincipalFactory<IdentityUser>, CustomUserClaimsPrincipalFactory>();
-
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.Cookie.HttpOnly = true;
-    options.Cookie.SameSite = SameSiteMode.None; // Change after adding https for production - change it to Secure
+    options.Cookie.SameSite = SameSiteMode.None; // Change after adding https for production
     options.Cookie.Name = ".AspNetCore.Identity.Application";
-    options.LoginPath = "/login";
     options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+
+    options.Events.OnSigningIn = async context =>
+    {
+        var userManager = context.HttpContext.RequestServices.GetRequiredService<UserManager<IdentityUser>>();
+        var user = await userManager.GetUserAsync(context.Principal);
+
+        if (user != null)
+        {
+            var roles = await userManager.GetRolesAsync(user);
+            var identity = (ClaimsIdentity)context.Principal.Identity;
+
+            foreach (var role in roles)
+            {
+                identity.AddClaim(new Claim(ClaimTypes.Role, role));
+            }
+        }
+    };
 });
+
 
 // Configure CORS
 builder.Services.AddCors(options =>

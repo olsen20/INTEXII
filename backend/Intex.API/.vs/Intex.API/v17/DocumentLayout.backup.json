@@ -1,30 +1,42 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\",
+  "WorkspaceRootPath": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\maris\\onedrive\\desktop\\school\\winter 2025\\intex\\application\\backend\\intex.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\maris\\onedrive\\desktop\\school\\winter 2025\\intex\\intexii\\backend\\intex.api\\controllers\\ratingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:controllers\\ratingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\maris\\onedrive\\desktop\\school\\winter 2025\\intex\\application\\backend\\intex.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\maris\\onedrive\\desktop\\school\\winter 2025\\intex\\intexii\\backend\\intex.api\\controllers\\adminpagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:controllers\\adminpagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\maris\\onedrive\\desktop\\school\\winter 2025\\intex\\application\\backend\\intex.api\\controllers\\moviecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\maris\\onedrive\\desktop\\school\\winter 2025\\intex\\intexii\\backend\\intex.api\\controllers\\moviecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:controllers\\moviecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\maris\\onedrive\\desktop\\school\\winter 2025\\intex\\application\\backend\\intex.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\maris\\onedrive\\desktop\\school\\winter 2025\\intex\\intexii\\backend\\intex.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\maris\\onedrive\\desktop\\school\\winter 2025\\intex\\intexii\\backend\\intex.api\\data\\movietitle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:data\\movietitle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\maris\\onedrive\\desktop\\school\\winter 2025\\intex\\intexii\\backend\\intex.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\maris\\onedrive\\desktop\\school\\winter 2025\\intex\\intexii\\backend\\intex.api\\controllers\\recommendcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:controllers\\recommendcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\maris\\onedrive\\desktop\\school\\winter 2025\\intex\\intexii\\backend\\intex.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\maris\\onedrive\\desktop\\school\\winter 2025\\intex\\application\\backend\\intex.api\\data\\moviedetailsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\maris\\onedrive\\desktop\\school\\winter 2025\\intex\\intexii\\backend\\intex.api\\data\\moviedetailsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:data\\moviedetailsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|c:\\users\\maris\\onedrive\\desktop\\school\\winter 2025\\intex\\application\\backend\\intex.api\\controllers\\recommendcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5C0AE368-37DD-4F51-AABF-D6F808E891F6}|Intex.API.csproj|solutionrelative:controllers\\recommendcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -33,8 +45,8 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "DockedWidth": 279,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -45,25 +57,74 @@
               "Name": "ST:129:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{26341fe2-71dd-46fd-bb1b-2e51a92a0d64}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
-              "ToolTip": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "Controllers\\AccountController.cs",
-              "ViewState": "AgIAAEwAAAAAAAAAAAAwwFUAAAAfAAAAAAAAAA==",
+              "Title": "RatingController.cs",
+              "DocumentMoniker": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\Controllers\\RatingController.cs",
+              "RelativeDocumentMoniker": "Controllers\\RatingController.cs",
+              "ToolTip": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\Controllers\\RatingController.cs",
+              "RelativeToolTip": "Controllers\\RatingController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwBoAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T18:26:56.324Z",
+              "WhenOpened": "2025-04-10T17:36:11.635Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
+              "Title": "MovieTitle.cs",
+              "DocumentMoniker": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\Data\\MovieTitle.cs",
+              "RelativeDocumentMoniker": "Data\\MovieTitle.cs",
+              "ToolTip": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\Data\\MovieTitle.cs",
+              "RelativeToolTip": "Data\\MovieTitle.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAywCgAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T16:16:28.466Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AdminPageController.cs",
+              "DocumentMoniker": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\Controllers\\AdminPageController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AdminPageController.cs",
+              "ToolTip": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\Controllers\\AdminPageController.cs",
+              "RelativeToolTip": "Controllers\\AdminPageController.cs",
+              "ViewState": "AgIAAI4AAAAAAAAAAAAgwKYAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T15:31:34.792Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Controllers\\AccountController.cs",
+              "ViewState": "AgIAAFUAAAAAAAAAAAAwwGMAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-09T18:26:56.324Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\appsettings.json",
+              "DocumentMoniker": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\appsettings.json",
+              "ToolTip": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\appsettings.json",
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
@@ -71,11 +132,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "RecommendController.cs",
-              "DocumentMoniker": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\Controllers\\RecommendController.cs",
+              "DocumentMoniker": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\Controllers\\RecommendController.cs",
               "RelativeDocumentMoniker": "Controllers\\RecommendController.cs",
-              "ToolTip": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\Controllers\\RecommendController.cs",
+              "ToolTip": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\Controllers\\RecommendController.cs",
               "RelativeToolTip": "Controllers\\RecommendController.cs",
               "ViewState": "AgIAAG0AAAAAAAAAAAAkwGEAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -83,13 +144,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\Program.cs",
+              "ToolTip": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-09T16:50:24.238Z"
             },
@@ -97,25 +158,63 @@
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "MovieController.cs",
-              "DocumentMoniker": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\Controllers\\MovieController.cs",
+              "DocumentMoniker": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\Controllers\\MovieController.cs",
               "RelativeDocumentMoniker": "Controllers\\MovieController.cs",
-              "ToolTip": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\Controllers\\MovieController.cs",
+              "ToolTip": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\Controllers\\MovieController.cs",
               "RelativeToolTip": "Controllers\\MovieController.cs",
-              "ViewState": "AgIAAK8AAAAAAAAAAADwv6oAAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwBUAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-09T03:29:27.584Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "MovieDetailsDTO.cs",
-              "DocumentMoniker": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\Data\\MovieDetailsDTO.cs",
+              "DocumentMoniker": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\Data\\MovieDetailsDTO.cs",
               "RelativeDocumentMoniker": "Data\\MovieDetailsDTO.cs",
-              "ToolTip": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\Application\\backend\\Intex.API\\Data\\MovieDetailsDTO.cs",
+              "ToolTip": "C:\\Users\\maris\\OneDrive\\Desktop\\School\\Winter 2025\\INTEX\\INTEXII\\backend\\Intex.API\\Data\\MovieDetailsDTO.cs",
               "RelativeToolTip": "Data\\MovieDetailsDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-08T20:32:13.398Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 36,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:18:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:17:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:35:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:36:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:36:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:43:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             }
           ]
         }

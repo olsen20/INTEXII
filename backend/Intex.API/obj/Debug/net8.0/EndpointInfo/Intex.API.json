@@ -99,6 +99,18 @@
         }
       }
     },
+    "/Account/roles": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/register": {
       "post": {
         "tags": [
@@ -765,25 +777,6 @@
         "tags": [
           "Movies"
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MovieTitle"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MovieTitle"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/MovieTitle"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "OK",
@@ -923,27 +916,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "number",
-                  "format": "double"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "number",
-                  "format": "double"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "number",
-                  "format": "double"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       },
@@ -965,20 +938,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "number",
-                "format": "double"
+                "$ref": "#/components/schemas/MovieRatingRequest"
               }
             },
             "text/json": {
               "schema": {
-                "type": "number",
-                "format": "double"
+                "$ref": "#/components/schemas/MovieRatingRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "type": "number",
-                "format": "double"
+                "$ref": "#/components/schemas/MovieRatingRequest"
               }
             }
           }
@@ -1437,6 +1407,24 @@
           "rating": {
             "type": "number",
             "format": "double"
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MovieRatingRequest": {
+        "type": "object",
+        "properties": {
+          "rating": {
+            "type": "number",
+            "format": "double"
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

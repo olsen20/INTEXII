@@ -5,9 +5,9 @@ import "../styles/Header.css"; // Import custom CSS for slide-up/slide-down anim
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import fullLogo2 from "../assets/fullLogo2.png"; // Logo image
 import profileIcon from "../assets/profileIcon.png"; // Profile icon image
-import { useRole } from "../context/RoleContext";
 import { fetchCurrentUserEmail } from "../api/IdentityAPI";
 import { logoutUser } from "../api/IdentityAPI";
+import { fetchUserRoles } from "../api/IdentityAPI";
 
 const Header: React.FC = () => {
   const [showHeader, setShowHeader] = useState<boolean>(true);
@@ -17,7 +17,7 @@ const Header: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const { role, isLoading } = useRole();
+  const [roles, setRoles] = useState<string[]>([]);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -35,6 +35,14 @@ const Header: React.FC = () => {
     lastScrollY.current = currentScrollY;
   };
 
+  // Get the user's role to see if they are an Administrator
+  useEffect(() => {
+    fetchUserRoles()
+      .then(setRoles)
+      .catch((err) => console.error(err));
+  }, []);
+
+  // Add scroll effect to header
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       const dropdown = document.getElementById("profileDropdown");
@@ -89,15 +97,10 @@ const Header: React.FC = () => {
                   My Stuff
                 </Link>
               </li>
-              {/* Conditional admin button */}
-              {!isLoading && role === "Administrator" && (
+              {/* Conditional admin button */}  
+              {roles.includes("Administrator") && (
                 <li className="nav-item me-5">
-                  <Link
-                    className="button-fade-in nav-link admin-link"
-                    to="/admin"
-                  >
-                    Admin
-                  </Link>
+                  <Link to="/admin" className="nav-link admin-link">Admin</Link>
                 </li>
               )}
             </ul>

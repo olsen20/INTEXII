@@ -97,5 +97,13 @@ namespace Intex.API.Controllers
             return Ok(new { email = user.Email });
         }
 
+        // Get any user roles the user is assigned
+        [HttpGet("roles")]
+        public async Task<IActionResult> GetUserRoles()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var roles = await _userManager.GetRolesAsync(user);
+            return Ok(roles);
+        }
     }
 }

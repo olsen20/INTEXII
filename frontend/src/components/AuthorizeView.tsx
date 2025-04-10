@@ -30,7 +30,7 @@ function AuthorizeView(props: { children: React.ReactNode }) {
   
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <div className="bg-black text-white min-vh-100 d-flex justify-content-center align-items-center">Loading...</div>;
   }
 
   if (authorized) {

@@ -118,3 +118,12 @@ export async function fetchCurrentUserEmail(): Promise<string | null> {
     return null;
   }
 }
+
+// Get the user's assigned roles
+export async function fetchUserRoles(): Promise<string[]> {
+  const response = await fetch(`${API_URL}/Account/roles`, {
+    credentials: "include",
+  });
+  if (!response.ok) throw new Error("Failed to fetch roles.");
+  return await response.json();
+}
