@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import "../styles/AdminPage.css";
 import { fetchAllMovies } from "../api/MovieAPI";
 import { useRole } from "../context/RoleContext";
-import AuthorizeView from "../components/AuthorizeView"; 
+import AuthorizeView from "../components/AuthorizeView";
 
 // Define the Movie interface with all necessary fields
 interface Movie {
@@ -98,16 +98,64 @@ const genreMap = [
   { key: "thrillers", label: "Thrillers" },
 ];
 
+const subGenreMap: { [key: string]: string[] } = {
+  action: ["action", "tvAction"],
+  adventure: ["adventure"],
+  anime: ["animeSeriesInternationalTvShows"],
+  british: ["britishTvShowsDocuseriesInternationalTvShows"],
+  children: ["children"],
+  comedies: [
+    "comedies",
+    "tvComedies",
+    "comediesInternationalMovies",
+    "comediesRomanticMovies",
+    "comediesDramasInternationalMovies",
+  ],
+  crime: ["crimeTvShowsDocuseries"],
+  docuseries: ["docuseries", "britishTvShowsDocuseriesInternationalTvShows"],
+  dramas: [
+    "dramas",
+    "dramasInternationalMovies",
+    "dramasRomanticMovies",
+    "tvDramas",
+    "internationalTvShowsRomanticTvShowsTvDramas",
+  ],
+  family: ["familyMovies", "children", "kidsTv"],
+  fantasy: ["fantasy"],
+  horror: ["horrorMovies"],
+  international: [
+    "animeSeriesInternationalTvShows",
+    "britishTvShowsDocuseriesInternationalTvShows",
+    "dramasInternationalMovies",
+    "documentariesInternationalMovies",
+    "comediesInternationalMovies",
+    "internationalMoviesThrillers",
+    "internationalTvShowsRomanticTvShowsTvDramas",
+  ],
+  musicals: ["musicals"],
+  nature: ["natureTv"],
+  reality: ["realityTv"],
+  romance: ["internationalTvShowsRomanticTvShowsTvDramas"],
+  spiritual: ["spirituality"],
+  talkShows: ["talkShowsTvComedies"],
+  thrillers: ["thrillers", "internationalMoviesThrillers"],
+};
+
+const years: number[] = [];
+for (let y = new Date().getFullYear(); y >= 1900; y--) {
+  years.push(y);
+}
+
 const AdminPage: React.FC = () => {
   const { role, isLoading } = useRole();
   const [movies, setMovies] = useState<Movie[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Pagination
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
-  const totalItems = movies.length;
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  // Filters
+  const [mediaTypeFilter, setMediaTypeFilter] = useState<string>("all");
+  const [genreFilters, setGenreFilters] = useState<string[]>([]);
+  const [sortBy, setSortBy] = useState<string>("default");
+  const [ratingFilter, setRatingFilter] = useState<string>("all");
 
   // Modal (for Add/Edit) state
   const [isAdding, setIsAdding] = useState(false);
@@ -134,7 +182,6 @@ const AdminPage: React.FC = () => {
     );
   }
 
-  
   // Block access if not Admin
   if (role !== "Administrator") {
     return (
@@ -144,15 +191,42 @@ const AdminPage: React.FC = () => {
     );
   }
 
-  // Filter movies by title
-  const filteredMovies = movies.filter((m) =>
-    m.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Filter movies
+  const filteredMovies = movies
+    .filter((m) => m.title.toLowerCase().includes(searchTerm.toLowerCase()))
+    .filter((m) => {
+      if (mediaTypeFilter === "all") return true;
+      if (mediaTypeFilter === "movie")
+        return m.typeField?.toLowerCase().includes("movie");
+      if (mediaTypeFilter === "tv")
+        return m.typeField?.toLowerCase().includes("tv");
+      return true;
+    })
+    .filter((m) => {
+      if (genreFilters.length === 0) return true;
+      return genreFilters.some((subGenre) =>
+        subGenreMap[subGenre].some((field) => (m as any)[field] === 1)
+      );
+    })
+    .filter((m) => {
+      if (ratingFilter === "all") return true;
+      return m.rating === ratingFilter;
+    })
+    .sort((a, b) => {
+      if (sortBy === "titleAsc") {
+        return a.title.localeCompare(b.title);
+      } else if (sortBy === "titleDesc") {
+        return b.title.localeCompare(a.title);
+      } else {
+        return 0; // ✅ No sorting — keep original DB order
+      }
+    });
 
-  // Pagination slice
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const pageMovies = filteredMovies.slice(startIndex, endIndex);
+  // Pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const totalItems = filteredMovies.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   const goToPage = (pageNum: number) => {
     if (pageNum >= 1 && pageNum <= totalPages) {
@@ -225,7 +299,11 @@ const AdminPage: React.FC = () => {
   const handleDeleteMovie = async (showId: string) => {
     if (isLoading) {
       // Show a loading spinner or message until the role is loaded
-      return <div className="bg-black text-white min-vh-100 d-flex justify-content-center align-items-center">Loading role...</div>;
+      return (
+        <div className="bg-black text-white min-vh-100 d-flex justify-content-center align-items-center">
+          Loading role...
+        </div>
+      );
     }
 
     if (role !== "Administrator") {
@@ -262,33 +340,36 @@ const AdminPage: React.FC = () => {
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-  
+
     if (role !== "Administrator") {
       alert("You do not have permission to add or edit movies.");
       return;
     }
-  
+
     const updatedMovie = { ...currentMovie } as any;
-  
+
     // Handle genre selection
     genreMap.forEach((g) => {
       updatedMovie[g.key] = g.key === selectedGenre ? 1 : 0;
     });
-  
+
     if (isAdding) {
       try {
         const payload = { ...updatedMovie };
         delete payload.showId; // Remove showId when adding new movie
         console.log(JSON.stringify(payload, null, 2));
-        const response = await fetch("https://localhost:5000/api/Admin/Movies", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
-          credentials: "include",
-        });
-  
+        const response = await fetch(
+          "https://localhost:5000/api/Admin/Movies",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+            credentials: "include",
+          }
+        );
+
         if (response.ok) {
           const newMovie: Movie = await response.json();
           setMovies((prev) => [...prev, newMovie]);
@@ -315,12 +396,14 @@ const AdminPage: React.FC = () => {
             credentials: "include",
           }
         );
-  
+
         if (response.ok) {
           const updatedMovieResponse: Movie = await response.json();
           setMovies((prev) =>
             prev.map((m) =>
-              m.showId === updatedMovieResponse.showId ? updatedMovieResponse : m
+              m.showId === updatedMovieResponse.showId
+                ? updatedMovieResponse
+                : m
             )
           );
         } else {
@@ -331,11 +414,10 @@ const AdminPage: React.FC = () => {
         console.error("Error updating movie:", error);
         alert("An error occurred while updating the movie.");
       }
-  
+
       setIsEditing(false);
     }
   };
-  
 
   // Helper to generate a comma-separated genre string for table display.
   const computeGenreLabel = (movie: Movie): string => {
@@ -363,7 +445,7 @@ const AdminPage: React.FC = () => {
       <div className="bg-black text-white min-vh-100">
         <Header />
         <br />
-
+        <br />
         <div className="admin-manage-container">
           <h1>Manage Movies</h1>
 
@@ -383,6 +465,64 @@ const AdminPage: React.FC = () => {
               + Add Movie
             </button>
           </div>
+
+          <div className="filter-sort-menu">
+            <select
+              value={sortBy}
+              onChange={(e) => {
+                setSortBy(e.target.value);
+                setCurrentPage(1); // ✅ reset to page 1 on sort change
+              }}
+            >
+              <option value="default">Sort</option>
+              <option value="titleAsc">Title (A-Z)</option>
+              <option value="titleDesc">Title (Z-A)</option>
+            </select>
+
+            <select
+              value={mediaTypeFilter}
+              onChange={(e) => setMediaTypeFilter(e.target.value)}
+            >
+              <option value="all">All Media</option>
+              <option value="movie">Movies</option>
+              <option value="tv">TV Shows</option>
+            </select>
+
+            <select
+              value={ratingFilter}
+              onChange={(e) => setRatingFilter(e.target.value)}
+            >
+              <option value="all">All Ratings</option>
+              <option value="G">G</option>
+              <option value="PG">PG</option>
+              <option value="PG-13">PG-13</option>
+              <option value="R">R</option>
+              <option value="NC-17">NC-17</option>
+              <option value="TV-Y">TV-Y</option>
+              <option value="TV-Y7">TV-Y7</option>
+              <option value="TV-G">TV-G</option>
+              <option value="TV-PG">TV-PG</option>
+              <option value="TV-14">TV-14</option>
+              <option value="TV-MA">TV-MA</option>
+            </select>
+
+            {/* Genre filter */}
+            <select
+              value={genreFilters[0] || ""}
+              onChange={(e) => {
+                setGenreFilters(e.target.value ? [e.target.value] : []);
+                setCurrentPage(1);
+              }}
+            >
+              <option value="">All Genres</option>
+              {Object.keys(subGenreMap).map((genre) => (
+                <option key={genre} value={genre}>
+                  {genre.charAt(0).toUpperCase() + genre.slice(1)}
+                </option>
+              ))}
+            </select>
+          </div>
+          <br></br>
 
           {/* Movie Table */}
           <table className="admin-movie-table">
@@ -534,17 +674,23 @@ const AdminPage: React.FC = () => {
                   </div>
                   <div className="form-group">
                     <label>Release Year:</label>
-                    <input
-                      type="number"
-                      value={currentMovie.releaseYear || 0}
+                    <select
+                      value={currentMovie.releaseYear || ""}
                       onChange={(e) =>
                         setCurrentMovie((prev) => ({
                           ...prev,
-                          releaseYear: +e.target.value,
+                          releaseYear: Number(e.target.value),
                         }))
                       }
                       required
-                    />
+                    >
+                      <option value="">-- Select Year --</option>
+                      {years.map((year) => (
+                        <option key={year} value={year}>
+                          {year}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                   <div className="form-group">
                     <label>MPAA/TV Rating:</label>
