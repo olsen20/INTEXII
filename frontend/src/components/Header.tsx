@@ -5,11 +5,14 @@ import fullLogo2 from "../assets/fullLogo2.png"; // Logo image
 import profileIcon from "../assets/profileIcon.png"; // Profile icon image
 import Logout from "../components/Logout"; // Import the Logout component
 import { fetchUserRoles } from "../api/IdentityAPI";
+import { useRole } from "../context/RoleContext";
 
 const Header: React.FC = () => {
   const [showHeader, setShowHeader] = useState<boolean>(true);
   const lastScrollY = useRef<number>(window.pageYOffset);
   const [roles, setRoles] = useState<string[]>([]);
+
+  const { role, isLoading } = useRole();
 
   const controlHeader = () => {
     const currentScrollY = window.pageYOffset;
@@ -48,11 +51,11 @@ const Header: React.FC = () => {
           <div className="d-flex align-items-center">
             {/* Logo */}
             <Link className="navbar-brand me-5" to="/browse">
-            <img
-              src={fullLogo2}
-              alt="CineNiche Logo"
-              className="header-logo"
-            />
+              <img
+                src={fullLogo2}
+                alt="CineNiche Logo"
+                className="header-logo"
+              />
             </Link>
             {/* Navigation Links */}
             <ul className="navbar-nav d-flex flex-row">
@@ -77,16 +80,16 @@ const Header: React.FC = () => {
             <ul className="navbar-nav d-flex flex-row">
               <li className="nav-item me-5">
                 <Link className="nav-link" to="/search">
-                <i className="bi bi-search search-icon"></i>
+                  <i className="bi bi-search search-icon"></i>
                 </Link>
               </li>
               <li className="nav-item me-5">
                 <Link className="nav-link" to="/mystuff">
-                <img
-                  src={profileIcon}
-                  alt="Profile"
-                  className="profile-icon"
-                />
+                  <img
+                    src={profileIcon}
+                    alt="Profile"
+                    className="profile-icon"
+                  />
                 </Link>
               </li>
               <li className="nav-item me-5">
