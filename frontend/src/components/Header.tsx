@@ -5,14 +5,11 @@ import fullLogo2 from "../assets/fullLogo2.png"; // Logo image
 import profileIcon from "../assets/profileIcon.png"; // Profile icon image
 import Logout from "../components/Logout"; // Import the Logout component
 import { fetchUserRoles } from "../api/IdentityAPI";
-import { useRole } from "../context/RoleContext";
 
 const Header: React.FC = () => {
   const [showHeader, setShowHeader] = useState<boolean>(true);
   const lastScrollY = useRef<number>(window.pageYOffset);
   const [roles, setRoles] = useState<string[]>([]);
-
-  const { role, isLoading } = useRole();
 
   const controlHeader = () => {
     const currentScrollY = window.pageYOffset;
